@@ -24,7 +24,6 @@
 
 #include "solver.h"
 #include "material.h"
-#include "graphics.h"
 
 #include <pthread.h>
 #include <sys/errno.h>
@@ -39,7 +38,7 @@
     #include <GL/glut.h>
 #endif
 
-#include "graphics.h"
+// #include "graphics.h"
 
 using namespace std;
 

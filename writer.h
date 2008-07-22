@@ -25,8 +25,8 @@
 #ifndef _WRITER_H
 #define _WRITER_H
 
-#include "evert/elPathSolution.h"
-#include "OSC/OSC-client.h"
+#include "elPathSolution.h"
+#include "OSC-client.h"
 #include "socket.h"
 
 #include <map>

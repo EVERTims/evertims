@@ -25,14 +25,14 @@
 #ifndef _SOLVER_H
 #define _SOLVER_H
 
-#include "evert/elAABB.h"
-#include "evert/elBeam.h"
-#include "evert/elBSP.h"
-#include "evert/elPathSolution.h"
-#include "evert/elPolygon.h"
-#include "evert/elRay.h"
-#include "evert/elRoom.h"
-#include "evert/elVector.h"
+#include "elAABB.h"
+#include "elBeam.h"
+#include "elBSP.h"
+#include "elPathSolution.h"
+#include "elPolygon.h"
+#include "elRay.h"
+#include "elRoom.h"
+#include "elVector.h"
 
 #include "reader.h"
 #include "writer.h"

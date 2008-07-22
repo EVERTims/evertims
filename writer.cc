@@ -23,11 +23,11 @@
  ***********************************************************************/
 
 #include "writer.h"
-#include "OSC/OSC-client.h"
+#include "OSC-client.h"
 
-#include "evert/elSource.h"
-#include "evert/elPolygon.h"
-#include "evert/elListener.h"
+#include "elSource.h"
+#include "elPolygon.h"
+#include "elListener.h"
 
 #include <iostream>
 

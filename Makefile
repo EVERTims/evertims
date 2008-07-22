@@ -2,13 +2,16 @@
 # A very simple makefile for compiling EVERTims
 #
 
+EVERTDIR = ../EVERT
+OSCDIR = ../OSC
+
 OSX = -D__OSX
 # OSX = -D__Linux
 
-CXXFLAGS = -I$(GLT) -ggdb -D_THREAD_SAFE $(OSX) # -Wall -Wstrict-prototypes -O2 -x c 
-CFLAGS = -I$(GLT) -ggdb -D_THREAD_SAFE $(OSX) # -Wall -Wstrict-prototypes -O2 -x c 
+CXXFLAGS = -I$(EVERTDIR) -I$(OSCDIR) -ggdb -D_THREAD_SAFE $(OSX) # -Wall -Wstrict-prototypes -O2 -x c 
+CFLAGS = -I$(EVERTDIR) -I$(OSCDIR) -ggdb -D_THREAD_SAFE $(OSX) # -Wall -Wstrict-prototypes -O2 -x c 
 
-LDFLAGS= -ggdb -Levert
+LDFLAGS= -L$(EVERTDIR) -ggdb 
 
 # for OSX
 LDLIBS= -levert -lm -lpthread -framework OpenGL -framework glut 
@@ -20,8 +23,8 @@ APPS=ims
 
 ALL:		$(APPS)
 
-ims:		main.o material.o solver.o writer.o reader.o socket.o \
-		OSC/OSC-client.o OSC/OSC-timetag.o 
+ims:		main.o solver.o writer.o reader.o socket.o \
+		$(OSCDIR)/OSC-client.o $(OSCDIR)/OSC-timetag.o 
 		g++ $(CFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
 clean:

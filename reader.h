@@ -32,7 +32,7 @@
 #include <cstring>
 
 #include "socket.h"
-#include "evert/elRoom.h"
+#include "elRoom.h"
 
 class Solver;
 
