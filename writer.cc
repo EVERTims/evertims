@@ -278,6 +278,13 @@ void MarkusWriter::write(EL::PathSolution *solution)
   markExistingPaths ( solution );
   releaveLeftOverPaths ();
 
+  error = OSC_closeBundle(&m_oscbuf);
+  if (error)
+    printf("OSC error: %s\n", OSC_errorMessage);
+
+  m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
+  OSC_resetBuffer(&m_oscbuf);
+
   for (int i=0; i < solution->numPaths (); i++)
   {
     const EL::PathSolution::Path& path = solution->getPath(i);
@@ -295,16 +302,11 @@ void MarkusWriter::write(EL::PathSolution *solution)
       const Material& m = p->getMaterial ();
       for (int k = 0; k < 10; k++) reflectance[k] *= ( 1 - m.absorption[k] );
     }
+
     createReflectionMessage(pathID, state, p0, pN, len, path.m_order, reflectance);
+    m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
+    OSC_resetBuffer(&m_oscbuf);
   }
-
-  error = OSC_closeBundle(&m_oscbuf);
-  if (error)
-    printf("OSC error: %s\n", OSC_errorMessage);
-
-  m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
-
-  OSC_resetBuffer(&m_oscbuf);
 
   printf ( "Sent!\n" );
 }
