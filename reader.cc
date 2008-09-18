@@ -30,6 +30,8 @@
 #include <map>
 #include <cstring>
 
+#define SCALER 1.f
+
 using namespace std;
 
 #include <pthread.h>
@@ -104,6 +106,10 @@ void parsePosition(std::string msg, std::string& id, EL::Vector3& pos)
 
   id = string(idBuf);
 
+  p0 = p0*SCALER;
+  p1 = p1*SCALER;
+  p2 = p2*SCALER;
+
   std::cout << id << " moved ";
   // from: [" << pos[0] << "," << pos[1] << "," << pos[2] << "]";
   pos.set( p0, p1, p2 );
@@ -136,6 +142,10 @@ void parseFace(std::string msg,
   id = string(buf1);
   Material& m = materials.find(buf2);
 
+   for (int i=0;i<4;i++)
+      for (int j=0;j<3;j++)
+         p[i][j]=p[i][j]*SCALER;
+
   if (p[2] == p[3])
   {
     cout << "3";
@@ -163,6 +173,7 @@ void Reader::parseListener ( std::string& msg )
   EL::Vector3 pos;
 
   parsePosition(msg, id, pos);
+  //  pos[0] = 1.64*SCALER;  pos[1] = 8.27*SCALER;  pos[2] = 2.20*SCALER;
 
   std::map<std::string, EL::Listener>::iterator l = m_listeners.find(id);
 
@@ -205,6 +216,7 @@ void Reader::parseSource ( std::string& msg )
   EL::Vector3 pos;
 
   parsePosition(msg, id, pos);
+  //  pos[0] = 0.0*SCALER;  pos[1] = -1.0*SCALER;  pos[2] = 1.50*SCALER;
 
   std::map<std::string, EL::Source>::iterator s = m_sources.find(id);
 
@@ -257,7 +269,7 @@ void *update_loop (void *obj)
 {
   Reader *re = (Reader *)obj;
 
-  char buffer[1024]; // Tampon contenant les données reçues ou envoyées
+  char buffer[1024]; 
   Socket* s = re->initializeInputSocket();
 
   while (1)
