@@ -314,18 +314,30 @@ void MarkusWriter::write(EL::PathSolution *solution)
 
 void VirchorWriter::write(EL::PathSolution *solution)
 {
-  int numLines = 0;
+  int numLines = 1;
+  bool interesting;
 
   for (int i=0; i < solution->numPaths(); i++)
   {
     const EL::PathSolution::Path& path = solution->getPath(i);
-    for (int j=0; j < path.m_points.size()-1; j++)
-    {
-      const EL::Vector3& p0 = path.m_points[j];
-      const EL::Vector3& p1 = path.m_points[j+1];
-      sprintf(m_writeBuf, "/line_on %d %f %f %f %f %f %f", numLines++, p0[0], p0[1], p0[2], p1[0], p1[1], p1[2]);
-      m_socket->write(strlen(m_writeBuf), m_writeBuf);
-    }
+
+    interesting = true;
+
+    //    int last = path.m_points.size();
+    //    if (path.m_points.size() != 4)
+    //      interesting = false;
+    //    if (path.m_points[last-2][2] > 1.2)
+    //      interesting = false;
+
+    if (interesting)
+      for (int j=0; j < path.m_points.size()-1; j++)
+	{
+	  const EL::Vector3& p0 = path.m_points[j];
+	  const EL::Vector3& p1 = path.m_points[j+1];
+	  sprintf(m_writeBuf, "/line_on %d %f %f %f %f %f %f", numLines++, p0[0], p0[1], p0[2], 
+		  p1[0], p1[1], p1[2]);
+	  m_socket->write(strlen(m_writeBuf), m_writeBuf);
+	}
   }
 
   for (int i=numLines; i < m_numLines ; i++)
