@@ -43,8 +43,10 @@ extern bool stop_signal;
 
 //------------------------------------------------------------------------
 
-static const float EPS_SIMILAR_PATHS			= 0.001f;
-static const float EPS_DEGENERATE_POLYGON_AREA	= 0.001f;
+// static const float EPS_SIMILAR_PATHS			= 0.00001f;
+// static const float EPS_DEGENERATE_POLYGON_AREA	= 0.0001f;
+static const float EPS_SIMILAR_PATHS			= 0.00000000001f;
+static const float EPS_DEGENERATE_POLYGON_AREA	= 0.000000000001f;
 static const int   DISTANCE_SKIP_BUCKET_SIZE	= 16;
 
 //------------------------------------------------------------------------
