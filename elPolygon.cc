@@ -647,18 +647,6 @@ Polygon::ClipResult Polygon::clip(const Beam& beam)
 	return result;
 }
 
-//------------------------------------------------------------------------
-/*
-void Polygon::render(const Vector3& color) const
-{
-	glBegin(GL_POLYGON);
-	glColor3fv(&color.x);
-	for (int i=0; i < numPoints(); i++)
-		glVertex3fv(&m_points[i].x);
-	glEnd();
-}
-*/
-
 void Polygon::print() const
 { 
   printf ("%d vertexes: ", m_points.size()); 
@@ -674,3 +662,36 @@ void Polygon::print() const
 
   printf(", name = '%s'", m_name.c_str());
 }
+
+
+void Polygon::expand (float eps)
+{
+  int n = numPoints ();
+  Vector3 c (0.0f, 0.0f, 0.0f);
+  for (int i = 0; i < n; i++)
+    {
+      c += m_points[i];
+    }
+  c *= (1.0f / n);
+  for (int i = 0; i < n; i++)
+    {
+      Vector3 d = m_points[i] - c;
+      d *= (1 + eps);
+      m_points[i] = c + d;
+    }
+
+}
+
+
+//------------------------------------------------------------------------
+/*
+void Polygon::render(const Vector3& color) const
+{
+	glBegin(GL_POLYGON);
+	glColor3fv(&color.x);
+	for (int i=0; i < numPoints(); i++)
+		glVertex3fv(&m_points[i].x);
+	glEnd();
+}
+*/
+
