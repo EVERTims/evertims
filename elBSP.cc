@@ -29,7 +29,7 @@ using namespace EL;
 
 //------------------------------------------------------------------------
 
-static const int   g_maxPolygonsInLeaf	= 4;
+static const int   g_maxPolygonsInLeaf	= 4; 
 
 /*
 static const float EPS_RAY_ENDS			= 1.f;
@@ -44,14 +44,6 @@ static const float EPS_BOUNDING_BOX= 1.0e-3f;
 static const float EPS_POLY_BOX_OVERLAP         = 1.0e-3f;
 static const float EPS_ISECT_POLYGON        = 1.0e-8f;
 static const float EPS_DISTANCE= 1.0e-8f;
-
-/*
-static const float EPS_RAY_ENDS			= 1e-3f;
-static const float EPS_BOUNDING_BOX		= 1e-3f;
-static const float EPS_POLY_BOX_OVERLAP = 1e-3f;
-static const float EPS_ISECT_POLYGON	= 1e-5f;
-static const float EPS_DISTANCE			= 1e-5f;
-*/
 
 //------------------------------------------------------------------------
 
