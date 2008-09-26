@@ -28,6 +28,11 @@ using namespace EL;
 
 //------------------------------------------------------------------------
 
+static const float EPS_EXPAND_BEAM = 1e-3f; 
+// static const float EPS_EXPAND_BEAM = .0f; 
+
+//------------------------------------------------------------------------
+
 Beam::Beam(void)
 {
 	// empty
@@ -37,6 +42,7 @@ Beam::Beam(const Vector3& top, const Polygon& polygon)
 :	m_top	 (top),
 	m_polygon(polygon)
 {
+        m_polygon.expand (EPS_EXPAND_BEAM); 
 	calculatePleqs();
 }
 
@@ -80,6 +86,7 @@ void Beam::calculatePleqs(void)
 	}
 	m_pleqs[0] = sign * m_polygon.getPleq();
 }
+
 /*
 void Beam::render(const Vector3& color) const
 {
