@@ -94,6 +94,8 @@ public:
 
 	EL_FORCE_INLINE std::string             getName         (void) const { return m_name; }
 
+	void                                    expand (float eps);
+
 	void                                    print           () const;
 private:
 	void					calculatePleq(void);
