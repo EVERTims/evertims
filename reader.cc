@@ -31,6 +31,7 @@
 #include <cstring>
 
 #define SCALER 1.f
+#define MAX_VERTICES 1024
 
 using namespace std;
 
@@ -167,6 +168,57 @@ void parseFace(std::string msg,
   //  cout << p3[0] << "," << p3[1] << "," << p3[2] << "]" << endl;
 }
 
+void parsePolygon(std::string msg, 
+	       MaterialFile& materials, 
+	       std::string& id, 
+	       EL::Polygon& polygon)
+{
+  char buf[1024]; 
+  char *id_str; 
+  char *name_str; 
+
+  std::string matrix_items(msg.substr(msg.find(" ")+1));
+
+  //  std::cout << "items: " << matrix_items << endl;
+
+  const char *str = matrix_items.c_str();
+
+  EL::Vector3 p[MAX_VERTICES];
+  int nof_vertices;
+
+  char *s = strcpy(buf, str);
+  id_str = strsep( &s, " ");
+  name_str = strsep( &s, " ");
+  nof_vertices = atoi(strsep( &s, " "));
+  //  sscanf(str, "%s %s %d ", &buf1, &buf2, &nof_vertices);
+  for(int i=0;i<nof_vertices;i++) {
+      cout << "s=" << s << "!" << endl;
+      sscanf(s, "%f %f %f ", &p[i][0], &p[i][1], &p[i][2]);
+      strsep( &s, " ");
+      strsep( &s, " ");
+      strsep( &s, " ");
+      cout << i << ". vertex = " << p[i][0] << "," << p[i][1] << "," << p[i][2] << endl;
+  }
+
+  id = string(id_str);
+  Material& m = materials.find(name_str);
+
+  //   for (int i=0;i<nof_vertices;i++)
+       //      for (int j=0;j<3;j++)
+	  //         p[i][j]=p[i][j]*SCALER;
+
+   polygon = EL::Polygon(&p[0], nof_vertices, m, id);
+
+  polygon.print();
+  cout << endl;
+
+  cout << "Vertices of " << id << " made of " << name_str << ": [";
+  cout << p[0][0] << "," << p[0][1] << "," << p[0][2] << "] - [";
+  cout << p[1][0] << "," << p[1][1] << "," << p[1][2] << "] - [";
+  cout << p[2][0] << "," << p[2][1] << "," << p[2][2] << "] - [";
+  cout << p[3][0] << "," << p[3][1] << "," << p[3][2] << "]" << endl;
+}
+
 void Reader::parseListener ( std::string& msg )
 {
   std::string id;
@@ -290,6 +342,12 @@ void *update_loop (void *obj)
     {
       //      cout << "Face ";
       parseFace(message, re->getMaterials(), id, element.m_polygon);
+      re->updateElements(id, element);
+    }
+    else if (message.find("/subdivision ")==0) 
+    {
+      //      cout << "Subdivision ";
+      parsePolygon(message, re->getMaterials(), id, element.m_polygon);
       re->updateElements(id, element);
     }
     else if (message.find("/source ")==0) {
