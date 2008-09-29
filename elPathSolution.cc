@@ -46,7 +46,7 @@ extern bool stop_signal;
 // static const float EPS_SIMILAR_PATHS			= 0.00001f;
 // static const float EPS_DEGENERATE_POLYGON_AREA	= 0.0001f;
 
-static const float EPS_SIMILAR_PATHS= 1.0e-4;
+static const float EPS_SIMILAR_PATHS= 1.0e-5;
 static const float EPS_DEGENERATE_POLYGON_AREA        = 1.0e-8;
 
 //static const float EPS_SIMILAR_PATHS			= 0.00000000001f;
@@ -566,7 +566,7 @@ void PathSolution::print ()
 
     for (i = 0; i < path.m_points.size () - 1; i++)
     {
-      printf ("[%.2f %.2f %.2f]-", 
+      printf ("[%.5f %.5f %.5f]-", 
 	      path.m_points[i].x, 
 	      path.m_points[i].y, 
 	      path.m_points[i].z);
