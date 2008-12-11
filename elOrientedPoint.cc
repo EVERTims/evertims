@@ -22,7 +22,7 @@
 
 #include "elOrientedPoint.h"
 
-#ifdef __OSX
+#ifdef __Darwin
     #include <OpenGL/glu.h>
     #include <GLUT/glut.h>
 #else

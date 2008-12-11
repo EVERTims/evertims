@@ -24,7 +24,7 @@
 #include "elRoom.h"
 #include <cstdio>
 
-#ifdef __OSX
+#ifdef __Darwin
     #include <OpenGL/glu.h>
     #include <OpenGL/gl.h>
 #else
@@ -284,11 +284,13 @@ void Room::render(void) const
 		color *= ldot;
 		glColor3fv(&color.x);
 
+		/*
 		glBegin(GL_POLYGON);
 		for (int j=0; j < e.m_polygon.numPoints(); j++)
 			glVertex3fv(&e.m_polygon[j].x);
 
 		glEnd();
+		*/
 	}
 	glDisable(GL_POLYGON_OFFSET_FILL);
 

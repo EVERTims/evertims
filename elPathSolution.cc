@@ -28,13 +28,12 @@
 #include "elRoom.h"
 #include "elSource.h"
 
-#ifdef __OSX
+#ifdef __Darwin
     #include <OpenGL/gl.h>
 #else
     #include <GL/gl.h>
 #endif
 
-//#include "../sound.h"
 #include <cstdio>
 
 using namespace EL;

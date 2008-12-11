@@ -48,7 +48,7 @@ public:
 	EL_FORCE_INLINE					~Matrix3		();
 	EL_FORCE_INLINE Matrix3&		operator=		(const Matrix3& m);
 	EL_FORCE_INLINE Vector3&		operator[]		(int i);
-	EL_FORCE_INLINE const Vector3&	operator[]		(int i) const;
+       	EL_FORCE_INLINE const Vector3&	operator[]		(int i) const;
 	EL_FORCE_INLINE void			set				(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22);
 	EL_FORCE_INLINE const Vector3	getRow			(int i) const;
 	EL_FORCE_INLINE const Vector3	getColumn		(int i) const;

@@ -24,7 +24,7 @@
 #include "elAABB.h"
 #include "elBeam.h"
 
-#ifdef __OSX
+#ifdef __Darwin
     #include <OpenGL/glu.h>
 #else
     #include <GL/glu.h>
