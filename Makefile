@@ -2,8 +2,8 @@
 # A very simple makefile for compiling EVERTims
 #
 
-EVERTDIR = ../EVERT
-OSCDIR = ../OSC
+EVERTDIR = ../../EVERT/trunk
+OSCDIR = ../../OSC
 
 OSX = -D__OSX
 # OSX = -D__Linux

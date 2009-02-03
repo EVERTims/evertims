@@ -96,11 +96,17 @@ int main (int argc, char **argv)
     case 't':
       sscanf ( optarg, "%f", &threshold );
       break;
+    case '?':
+      cout << "Command line option is not specified!" << endl;
+      printUsage ();
+      break;
     default:
       printUsage ();
       break;
     }
   }
+  if (optind < argc)
+  	cout << "Abandoned command line parsing at " << argv[optind] << endl;
 
   Reader *re = new Reader ( material_file, input_socket, threshold );
   Solver *s = new Solver ( mindepth, maxdepth, graphics );
