@@ -30,7 +30,7 @@
 #include <vector>
 #include <iostream>
 
-#ifdef __OSX
+#ifdef __Darwin
     #include <OpenGL/gl.h>
     #include <GLUT/glut.h>
 #else
