@@ -2,7 +2,7 @@
 # A very simple makefile for compiling EVERT library
 #
 
-CXXFLAGS = -D__`uname` # -Wall -Wstrict-prototypes -O2 -x c 
+CXXFLAGS = -D__`uname` 
 
 TARGET = libevert.a
 
@@ -13,9 +13,6 @@ $(TARGET):	elBSP.o elBeam.o elListener.o elOrientedPoint.o elPathSolution.o \
 		ar -r $@ $^
 		ranlib $@
 
-#		libtool -static -o $@ $^
-
 clean:
 		rm -f $(TARGET) *.o *~ 
 
-# DO NOT DELETE
