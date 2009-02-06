@@ -312,6 +312,8 @@ void MarkusWriter::write(EL::PathSolution *solution)
 }
 
 
+#define ABS(x) ((x)>0 ? (x) : (-(x)))
+
 void VirchorWriter::write(EL::PathSolution *solution)
 {
   int numLines = 1;
@@ -322,12 +324,6 @@ void VirchorWriter::write(EL::PathSolution *solution)
     const EL::PathSolution::Path& path = solution->getPath(i);
 
     interesting = true;
-
-    //    int last = path.m_points.size();
-    //    if (path.m_points.size() != 4)
-    //      interesting = false;
-    //    if (path.m_points[last-2][2] > 1.2)
-    //      interesting = false;
 
     if (interesting)
       for (int j=0; j < path.m_points.size()-1; j++)
