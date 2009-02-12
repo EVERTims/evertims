@@ -2,13 +2,8 @@
 # A very simple makefile for compiling EVERTims
 #
 
-<<<<<<< .mine
 EVERTDIR = ../EVERT/trunk
 OSCDIR = ../OSC
-=======
-EVERTDIR = ../../EVERT/trunk
-OSCDIR = ../../OSC
->>>>>>> .r13
 
 # for OSX
 LDLIBS= -levert -lm -lpthread -framework OpenGL -framework glut 
