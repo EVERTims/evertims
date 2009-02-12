@@ -41,6 +41,11 @@
 #include <netdb.h>
 #include <unistd.h>
 
+#ifdef __Linux
+#include <string.h>
+#include <stdlib.h>
+#endif
+
 typedef int SOCKET;
 #define  SOCKADDR_IN struct sockaddr_in
 
