@@ -149,6 +149,7 @@ int main (int argc, char **argv)
   while (1)
   {
     s->update ();
+    usleep ( 2000 );
   }
 
   delete re;
