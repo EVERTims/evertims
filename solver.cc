@@ -29,6 +29,7 @@
 #include <sys/errno.h>
 #include <vector>
 #include <iostream>
+#include <time.h>
 
 #ifdef __Darwin
     #include <OpenGL/gl.h>
@@ -412,6 +413,7 @@ void *path_solver_function (void *data)
       solver->calculateNextSolution ();
       cout << "Thread " << pthread_self() << " finished calculation" << endl;
     }
+    usleep( 2000 );
   }
 }
 
