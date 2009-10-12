@@ -551,18 +551,40 @@ void PathSolution::solveRecursive(const Vector3& source,
 }
 
 
-void PathSolution::print ()
+float PathSolution::getLength(const Path& path)
+{
+  float len = 0;
+
+  for (int j=0; j < path.m_points.size()-1; j++)
+  {
+    const EL::Vector3& p0 = path.m_points[j];
+    const EL::Vector3& p1 = path.m_points[j+1];
+
+    len += (p1-p0).length();
+  }
+  return len;
+}
+
+
+void PathSolution::print (int minOrder, int maxOrder, int maxAmount)
 {
   int i, j, k;
   float reflectance[10];
 
+  int pathCount = 0;
+
   for (j = 0; j < numPaths (); j++)
   {
-    for (k = 0; k < 10; k++) reflectance[k] = 1.0;
-
     Path path = getPath (j);
+    if (pathCount >= maxAmount)
+      break;
+    if ((path.m_order < minOrder) || (path.m_order > maxOrder))
+      continue;
+    pathCount++;
+
     printf ("%d (", path.m_points.size () - 2 );
 
+    for (k = 0; k < 10; k++) reflectance[k] = 1.0;
     for (i = 0; i < path.m_points.size () - 1; i++)
     {
       printf ("[%.5f %.5f %.5f]-", 

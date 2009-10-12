@@ -48,7 +48,7 @@ class PathSolution
 public:
 	struct Path
 	{
-		int							m_order;
+		int				m_order;
 		std::vector<Vector3>		m_points;
 		std::vector<const Polygon*>	m_polygons;
 	};
@@ -72,8 +72,10 @@ public:
 	void			renderPath (const Path& path) const;
 	bool			save	   (char *filename, 
 					    char *modelname);
-	void                    print      (void);
+	void                    print      (int minOrder, int maxOrder, int maxAmount);
+	float                   getLength  (const Path& path);
 	inline bool             getChanged (void)                       { return m_changed; }
+
  private:
 	PathSolution	(const PathSolution&);	// prohibit
 	const PathSolution&	operator=		(const PathSolution&);	// prohibit
