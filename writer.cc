@@ -22,7 +22,8 @@
  *
  ***********************************************************************/
 
-#define SPEED_OF_SOUND 340
+#define SPEED_OF_SOUND 340.0
+#define MAX_RESPONSE_TIME 2.0
 #define SAMPLE_RATE    22050
 
 #include "writer.h"
@@ -392,7 +393,7 @@ void VirchorWriter::write(EL::PathSolution *solution)
 void PrintWriter::write(EL::PathSolution *solution)
 {
   int numLines = 0;
-  ReverbEstimator r(SAMPLE_RATE, solution);
+  ReverbEstimator r(SAMPLE_RATE, solution, SPEED_OF_SOUND, MAX_RESPONSE_TIME);
 
   solution->print(m_minOrder, m_maxOrder, m_maxAmount);
 
@@ -402,7 +403,8 @@ void PrintWriter::write(EL::PathSolution *solution)
 
   for (int i=0; i<10; i++)
     {
-      r->getMinMax(i, minValue, minTime, maxValue, maxTime);
+      r.getMaxMin(i, minValue, minTime, maxValue, maxTime);
+      printf("%d. band: first %f at %f, last %f at %f\n", i, maxValue, maxTime, minValue, minTime );
     }
 }
 
