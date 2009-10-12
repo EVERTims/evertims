@@ -125,10 +125,10 @@ int main (int argc, char **argv)
     s->addWriter (vw);
   }
 
-  MarkusWriter *mw;
+  AuralizationWriter *mw;
   if (auralization_addr)
   {
-    mw = new MarkusWriter(auralization_addr);
+    mw = new AuralizationWriter(auralization_addr);
     mw->connect();
     s->addWriter (mw);
   }

@@ -2,8 +2,8 @@
 # A very simple makefile for compiling EVERTims
 #
 
-EVERTDIR = ../EVERT/trunk
-OSCDIR = ../OSC
+EVERTDIR = ../../EVERT/trunk
+OSCDIR = ../../OSC
 
 # for OSX
 LDLIBS= -levert -lm -lpthread -framework OpenGL -framework glut 
@@ -25,7 +25,7 @@ APPS=ims
 
 ALL:		$(APPS)
 
-ims:		main.o solver.o writer.o reader.o socket.o \
+ims:		main.o solver.o writer.o reader.o socket.o reverbEstimate.o \
 		$(OSCDIR)/OSC-client.o $(OSCDIR)/OSC-timetag.o 
 		g++ $(CXXFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
