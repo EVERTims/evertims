@@ -41,6 +41,7 @@ public:
   Writer (char *addr);
   ~Writer () { disconnect(); };
 
+  void parseOrder(char *s);
   bool match ( const char* id );
 
   void connect ();
@@ -49,10 +50,13 @@ public:
   virtual const char* getType() { return "Base"; };
   virtual void write (EL::PathSolution *solution) { return; };
 
- protected:
-
+protected:
   Socket *m_socket;
   char m_writeBuf[BUF_SIZE];
+
+  int  m_minOrder;
+  int  m_maxOrder;
+  int  m_maxAmount;
 
 private:
   char *m_host;
@@ -60,12 +64,12 @@ private:
   regex_t m_preq;
 };
 
-class MarkusWriter : public Writer
+class AuralizationWriter : public Writer
 {
  public:
-  MarkusWriter (char *host);
+  AuralizationWriter (char *host);
 
-  virtual const char* getType() { return "Markus"; };
+  virtual const char* getType() { return "Auralization"; };
   void write (EL::PathSolution *solution);
 
  private:

@@ -22,6 +22,9 @@
  *
  ***********************************************************************/
 
+#define SPEED_OF_SOUND 340
+#define SAMPLE_RATE    22050
+
 #include "writer.h"
 #include "OSC-client.h"
 
@@ -29,11 +32,36 @@
 #include "elPolygon.h"
 #include "elListener.h"
 
+#include "reverbEstimate.h"
+
 #include <iostream>
 
 using namespace std;
 
-Writer::Writer (char *addr)
+void Writer::parseOrder(char *s)
+{
+  char *maxStart = 0;
+  char *amountStart = 0;
+
+  maxStart = strchr(s, '-');
+  if (maxStart)
+    m_maxOrder = atoi(maxStart+1);
+  if (maxStart != s)
+    m_minOrder = atoi(s);
+  
+  if (!m_maxOrder)
+    m_maxOrder = m_minOrder + (1024*1024);
+
+  amountStart = strchr(s, ',');
+  if (amountStart)
+    m_maxAmount = atoi(amountStart+1);
+  
+}
+
+Writer::Writer (char *addr):
+  m_minOrder(0),
+  m_maxOrder(1024 * 1024),
+  m_maxAmount(1024 * 1024)
 {
   char *s = strchr(addr, '/');
 
@@ -42,6 +70,13 @@ Writer::Writer (char *addr)
       m_pattern = addr;
       *s = '\0';
       m_host = s+1;
+      s = strchr(addr, '(');
+      if (s)
+	{
+	  s = s + 1;
+	  *(s-1) = '\0';
+	  parseOrder(s);
+	}
     }
   else
     {
@@ -58,7 +93,8 @@ Writer::Writer (char *addr)
       cout << "Regcomp error: " << errbuf << endl;
     }
 
-  cout << "Initializing new writer. Path pattern = " << m_pattern << ". Host = " << m_host << endl;
+  cout << "Initializing new writer. Path pattern = " << m_pattern << ". Order: " << m_minOrder << " - " << m_maxOrder;
+  cout << ". Amount: " << m_maxAmount << ". Host = " << m_host << endl;
 }
 
 bool Writer::match ( const char* id )
@@ -84,14 +120,14 @@ void Writer::disconnect ()
 }
 
 
-MarkusWriter::MarkusWriter (char *addr): 
+AuralizationWriter::AuralizationWriter (char *addr): 
   Writer(addr)
 {
   OSC_initBuffer(&m_oscbuf, BUF_SIZE, m_writeBuf);
   OSC_resetBuffer(&m_oscbuf);
 }
 
-std::string MarkusWriter::getPathName(const EL::PathSolution::Path& p)
+std::string AuralizationWriter::getPathName(const EL::PathSolution::Path& p)
 {
   std::string pathName;
 
@@ -106,7 +142,7 @@ std::string MarkusWriter::getPathName(const EL::PathSolution::Path& p)
   return pathName;
 }  
 
-int MarkusWriter::getPathIDandState(const EL::PathSolution::Path& p, enum PathState& state)
+int AuralizationWriter::getPathIDandState(const EL::PathSolution::Path& p, enum PathState& state)
 {
   std::string pathName = getPathName(p);
 
@@ -117,24 +153,9 @@ int MarkusWriter::getPathIDandState(const EL::PathSolution::Path& p, enum PathSt
   return m_pathMap[pathName].m_id;
 }
 
-float MarkusWriter::getPathLength(const EL::PathSolution::Path& path)
-{
-  float len = 0;
-
-  for (int j=0; j < path.m_points.size()-1; j++)
-  {
-    const EL::Vector3& p0 = path.m_points[j];
-    const EL::Vector3& p1 = path.m_points[j+1];
-
-    len += (p1-p0).length();
-  }
-
-  return len;
-}
-
 #define OSC_SAFE(OPERATION) if (OSC_freeSpaceInBuffer(&m_oscbuf) <= 4) cout << "OSC buffer full. Please increase!" << endl; else OPERATION
 
-void MarkusWriter::createSourceMessage(const EL::Source& source)
+void AuralizationWriter::createSourceMessage(const EL::Source& source)
 {
   const EL::Vector3& p = source.getPosition();
   const std::string& name = source.getName();
@@ -149,7 +170,7 @@ void MarkusWriter::createSourceMessage(const EL::Source& source)
   free(cptr);
 }
 
-void MarkusWriter::createListenerMessage(const EL::Listener& listener)
+void AuralizationWriter::createListenerMessage(const EL::Listener& listener)
 {
   const EL::Vector3& p = listener.getPosition();
   const std::string& name = listener.getName();
@@ -164,7 +185,7 @@ void MarkusWriter::createListenerMessage(const EL::Listener& listener)
   free(cptr);
 }
 
-void MarkusWriter::createReflectionMessage(int pathID, 
+void AuralizationWriter::createReflectionMessage(int pathID, 
 					   enum PathState state,
 					   const EL::Vector3& p0, 
 					   const EL::Vector3& pN, 
@@ -197,13 +218,13 @@ void MarkusWriter::createReflectionMessage(int pathID,
     
 }
 
-void MarkusWriter::createInvisMessage( int pathID )
+void AuralizationWriter::createInvisMessage( int pathID )
 {
   OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/out", ",i");)
   OSC_SAFE(OSC_writeIntArg(&m_oscbuf, pathID);)
 }
 
-int MarkusWriter::getNewID()
+int AuralizationWriter::getNewID()
 {
   static int s_next = 0;
   int id;
@@ -221,7 +242,7 @@ int MarkusWriter::getNewID()
   return id;
 }
 
-void  MarkusWriter::markExistingPaths (EL::PathSolution *solution)
+void  AuralizationWriter::markExistingPaths (EL::PathSolution *solution)
 {
   string pathName;
 
@@ -229,9 +250,17 @@ void  MarkusWriter::markExistingPaths (EL::PathSolution *solution)
        it != m_pathMap.end(); it++)
     it->second.m_state = FADE_OUT;
 
+  int pathCount = 0;
   for (int i=0; i < solution->numPaths(); i++)
   {
     const EL::PathSolution::Path& path = solution->getPath(i);
+
+    if (pathCount >= m_maxAmount)
+      break;
+    if ((path.m_order < m_minOrder) || (path.m_order > m_maxOrder))
+      continue;
+    pathCount++;
+
     pathName = getPathName ( path );
     
     map<std::string, struct PathNode>::iterator it = m_pathMap.find ( pathName );
@@ -245,7 +274,7 @@ void  MarkusWriter::markExistingPaths (EL::PathSolution *solution)
   }
 }
 
-void MarkusWriter::releaveLeftOverPaths()
+void AuralizationWriter::releaveLeftOverPaths()
 {
   for (map<std::string, struct PathNode>::iterator it = m_pathMap.begin();
        it != m_pathMap.end(); it++)
@@ -257,7 +286,7 @@ void MarkusWriter::releaveLeftOverPaths()
     }
 }
 
-void MarkusWriter::write(EL::PathSolution *solution)
+void AuralizationWriter::write(EL::PathSolution *solution)
 {
   int pathID;
   float len;
@@ -285,11 +314,19 @@ void MarkusWriter::write(EL::PathSolution *solution)
   m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
   OSC_resetBuffer(&m_oscbuf);
 
+  int pathCount = 0;
   for (int i=0; i < solution->numPaths (); i++)
   {
     const EL::PathSolution::Path& path = solution->getPath(i);
+
+    if (pathCount >= m_maxAmount)
+      break;
+    if ((path.m_order < m_minOrder) || (path.m_order > m_maxOrder))
+      continue;
+    pathCount++;
+
     pathID = getPathIDandState ( path, state );
-    len = getPathLength ( path );
+    len = solution->getLength (path);
     
     const EL::Vector3& p0 = path.m_points[1];
     const EL::Vector3& pN = path.m_points[path.m_points.size () - 2];
@@ -318,10 +355,17 @@ void VirchorWriter::write(EL::PathSolution *solution)
 {
   int numLines = 1;
   bool interesting;
+  int pathCount = 0;
 
   for (int i=0; i < solution->numPaths(); i++)
   {
     const EL::PathSolution::Path& path = solution->getPath(i);
+
+    if (pathCount >= m_maxAmount)
+      break;
+    if ((path.m_order < m_minOrder) || (path.m_order > m_maxOrder))
+      continue;
+    pathCount++;
 
     interesting = true;
 
@@ -348,7 +392,17 @@ void VirchorWriter::write(EL::PathSolution *solution)
 void PrintWriter::write(EL::PathSolution *solution)
 {
   int numLines = 0;
+  ReverbEstimator r(SAMPLE_RATE, solution);
 
-  solution->print();
+  solution->print(m_minOrder, m_maxOrder, m_maxAmount);
+
+  double minValue, minTime;
+  double maxValue, maxTime;
+  int band;
+
+  for (int i=0; i<10; i++)
+    {
+      r->getMinMax(i, minValue, minTime, maxValue, maxTime);
+    }
 }
 
