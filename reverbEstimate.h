@@ -43,7 +43,7 @@ class Response
 
   void  SchroederIntegrate();
   float search           (double val = -0.00001);
-  void  getMinMax(double& minValue, double& maxValue);
+  void  getMaxMin(double& maxValue, double& maxTime, double& minValue, double& minTime);
 
 private:
   double m_samplingFrequency;
@@ -56,11 +56,11 @@ class ReverbEstimator
 {
 public:
   ReverbEstimator (double samplingFrequency, EL::PathSolution *solution, double speedOfSound, double maxTime);
-  ~ReverbEstimator () { };
+  ~ReverbEstimator ();
   
-  void getMinMax(int band, double& minValue, double& minPosition double& maxValue, double& maxPosition);
+  void getMaxMin(int band, double& maxValue, double& maxTime, double& minValue, double& minTime);
 
-  double getEstimate60(int band, double startDecay, double endDecay);
+  float getEstimate60(int band, double startDecay, double endDecay);
 
 private:
   Response* m_SchroederPlots[MAX_BANDS];

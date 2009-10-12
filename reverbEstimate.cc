@@ -23,6 +23,7 @@
  ***********************************************************************/
 
 #include "reverbEstimate.h"
+#include "elPolygon.h"
 
 #define SPEED_OF_SOUND 340
 
@@ -75,10 +76,29 @@ float Response::search           (double val)
   return (float)idx / m_samplingFrequency;
 }
 
-void Response::getMinMax(double& minValue, double& maxValue)
+void Response::getMaxMin(double& maxValue, double &maxTime, double& minValue, double& minTime)
 {
-  minValue = m_signal[0];
-  maxValue = m_signal[m_length-1];
+  int idx;
+
+  for (idx = 1; idx < m_length; idx++)
+    if ( m_signal[idx] != m_signal[idx-1] )
+      break;
+
+  if (idx < m_length)
+    {
+      maxValue = m_signal[idx];
+      maxTime  = idx * m_samplingFrequency;
+    }
+
+  for (idx = m_length - 1; idx >= 0; idx--)
+    if ( m_signal[idx] != m_signal[idx+1] )
+      break;
+
+  if (idx >= 0)
+    {
+      minValue = m_signal[idx];
+      minTime  = idx * m_samplingFrequency;
+    }
 }
 
 ReverbEstimator::ReverbEstimator (double samplingFrequency, EL::PathSolution *solution, double speedOfSound, double maxTime)
@@ -92,6 +112,7 @@ ReverbEstimator::ReverbEstimator (double samplingFrequency, EL::PathSolution *so
   double time;
   float reflectance[MAX_BANDS];
 
+  /*
   for (int i = 0; i < solution->numPaths(); i++)
     {
       const EL::PathSolution::Path& path = solution->getPath(i);
@@ -107,36 +128,37 @@ ReverbEstimator::ReverbEstimator (double samplingFrequency, EL::PathSolution *so
 	  for (int k = 0; k < MAX_BANDS; k++) reflectance[k] *= ( 1 - m.absorption[k] );
 	}
       for (int k = 0; k < MAX_BANDS; k++) 
-	m_schroederPlots.addItem(time, reflectance[k] / len);
+	m_SchroederPlots[k]->addItem(time, reflectance[k] / len);
     }
   for (int k = 0; k < MAX_BANDS; k++) 
-    m_schroederPlots.SchroederIntegrate();
+    m_SchroederPlots[k]->SchroederIntegrate();
+  */
 }
 
 
 ReverbEstimator::~ReverbEstimator() 
 { 
   for (int i = 0; i < MAX_BANDS; i++)
-    delete m_SchroedePlots[i];
+    delete m_SchroederPlots[i];
 }
 
 float ReverbEstimator::getEstimate60(int band, double startDecay, double endDecay)
 {
-  Response* r = m_schroederPlots[band];
+  Response* r = m_SchroederPlots[band];
 
   float realStart = r->search();
   float startTime = r->search(startDecay);
   float endTime   = r->search(endDecay);
 
-  float totalDecay realStart + (60 * (endTime-startTime)/(endDecay - startDecay));
+  float totalDecay = realStart + (60 * (endTime-startTime)/(endDecay - startDecay));
 
   return totalDecay;
 }
 
-void ReverbEstimator::getMinMax(int band, double& minValue, double& maxValue)
+void ReverbEstimator::getMaxMin(int band, double& maxValue, double& maxTime, double& minValue, double& minTime)
 {
-  Response* r = m_schroederPlots[band];
+  Response* r = m_SchroederPlots[band];
 
-  r->getMinMax(minValue, maxValue);
+  r->getMaxMin(maxValue, maxTime, minValue, minTime);
 }
 
