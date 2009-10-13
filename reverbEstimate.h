@@ -45,6 +45,8 @@ class Response
   float search           (double val = -0.00001);
   void  getMaxMin(double& maxValue, double& maxTime, double& minValue, double& minTime);
 
+  void print(char* name);
+
 private:
   double m_samplingFrequency;
   int m_length;
@@ -60,7 +62,7 @@ public:
   
   void getMaxMin(int band, double& maxValue, double& maxTime, double& minValue, double& minTime);
 
-  float getEstimate60(int band, double startDecay, double endDecay);
+  float getEstimateR60(int band, double startDecay, double endDecay);
 
 private:
   Response* m_SchroederPlots[MAX_BANDS];

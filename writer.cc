@@ -399,12 +399,14 @@ void PrintWriter::write(EL::PathSolution *solution)
 
   double minValue, minTime;
   double maxValue, maxTime;
-  int band;
 
   for (int i=0; i<10; i++)
     {
       r.getMaxMin(i, minValue, minTime, maxValue, maxTime);
-      printf("%d. band: first %f at %f, last %f at %f\n", i, maxValue, maxTime, minValue, minTime );
+      double startR60 = minValue * 1.1;
+      double endR60   = maxValue * 0.9;
+      double R60      = r.getEstimateR60(i, startR60, endR60);
+      printf("%d. band: first %f at %f, last %f at %f. R60 = %f\n", i, maxValue, maxTime, minValue, minTime, R60 );
     }
 }
 

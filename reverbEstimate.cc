@@ -25,6 +25,9 @@
 #include "reverbEstimate.h"
 #include "elPolygon.h"
 
+#include <iostream>
+#include <fstream>
+
 #define SPEED_OF_SOUND 340
 
 Response::Response(double samplingFrequency, double lengthInSeconds):
@@ -61,7 +64,14 @@ void Response::SchroederIntegrate()
   while (idx) 
     {
       sum += m_signal[idx];
-      m_signal[idx] = sum;
+      m_signal[idx--] = sum;
+    }
+
+  idx = m_length;
+  while (idx) 
+    {
+      m_signal[idx] = 10 * log10(m_signal[idx] / sum);
+      idx--;
     }
 }
 
@@ -87,7 +97,7 @@ void Response::getMaxMin(double& maxValue, double &maxTime, double& minValue, do
   if (idx < m_length)
     {
       maxValue = m_signal[idx];
-      maxTime  = idx * m_samplingFrequency;
+      maxTime  = (double)idx / m_samplingFrequency;
     }
 
   for (idx = m_length - 1; idx >= 0; idx--)
@@ -97,8 +107,20 @@ void Response::getMaxMin(double& maxValue, double &maxTime, double& minValue, do
   if (idx >= 0)
     {
       minValue = m_signal[idx];
-      minTime  = idx * m_samplingFrequency;
+      minTime  = (double)idx / m_samplingFrequency;
     }
+}
+
+void Response::print(char *name)
+{
+  std::ofstream outs;
+
+  outs.open (name);
+
+  for (int i = 0; i < m_length; i++)
+    outs << m_signal[i] << std::endl;
+
+  outs.close();
 }
 
 ReverbEstimator::ReverbEstimator (double samplingFrequency, EL::PathSolution *solution, double speedOfSound, double maxTime)
@@ -112,7 +134,6 @@ ReverbEstimator::ReverbEstimator (double samplingFrequency, EL::PathSolution *so
   double time;
   float reflectance[MAX_BANDS];
 
-  /*
   for (int i = 0; i < solution->numPaths(); i++)
     {
       const EL::PathSolution::Path& path = solution->getPath(i);
@@ -128,11 +149,14 @@ ReverbEstimator::ReverbEstimator (double samplingFrequency, EL::PathSolution *so
 	  for (int k = 0; k < MAX_BANDS; k++) reflectance[k] *= ( 1 - m.absorption[k] );
 	}
       for (int k = 0; k < MAX_BANDS; k++) 
-	m_SchroederPlots[k]->addItem(time, reflectance[k] / len);
+	m_SchroederPlots[k]->addItem(time, reflectance[k]);  // Should I divide this by len ?
     }
+  //  m_SchroederPlots[0]->print("energy.txt");
+
   for (int k = 0; k < MAX_BANDS; k++) 
     m_SchroederPlots[k]->SchroederIntegrate();
-  */
+
+  //  m_SchroederPlots[0]->print("schroeder.txt");
 }
 
 
@@ -142,13 +166,19 @@ ReverbEstimator::~ReverbEstimator()
     delete m_SchroederPlots[i];
 }
 
-float ReverbEstimator::getEstimate60(int band, double startDecay, double endDecay)
+float ReverbEstimator::getEstimateR60(int band, double startDecay, double endDecay)
 {
   Response* r = m_SchroederPlots[band];
 
+  std::cout << "Starting to search the region: " << startDecay << " - " << endDecay << std::endl;
+
   float realStart = r->search();
+  std::cout << "realStart = " << realStart << std::endl;
+
   float startTime = r->search(startDecay);
+  std::cout << "startTime = " << startTime << std::endl;
   float endTime   = r->search(endDecay);
+  std::cout << "endTime = " << endTime << std::endl;
 
   float totalDecay = realStart + (60 * (endTime-startTime)/(endDecay - startDecay));
 
