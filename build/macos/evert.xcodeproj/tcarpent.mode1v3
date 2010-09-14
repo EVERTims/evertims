@@ -350,7 +350,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F8E4909E123FA4F80019176F</string>
+										<string>F8E490F2123FABA20019176F</string>
 										<key>history</key>
 										<array>
 											<string>F8E49092123FA4F80019176F</string>
@@ -364,7 +364,7 @@
 											<string>F8E4909A123FA4F80019176F</string>
 											<string>F8E4909B123FA4F80019176F</string>
 											<string>F8E4909C123FA4F80019176F</string>
-											<string>F8E4909D123FA4F80019176F</string>
+											<string>F8E4909E123FA4F80019176F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -376,14 +376,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1324, 743}}</string>
+								<string>{{0, 0}, {1324, 741}}</string>
 								<key>RubberWindowFrame</key>
 								<string>1440 46 1600 854 1440 0 1600 900 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>743pt</string>
+							<string>741pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -396,14 +396,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 748}, {1324, 65}}</string>
+								<string>{{0, 746}, {1324, 67}}</string>
 								<key>RubberWindowFrame</key>
 								<string>1440 46 1600 854 1440 0 1600 900 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>65pt</string>
+							<string>67pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -422,9 +422,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F8E49047123FA2270019176F</string>
+				<string>F8E490F3123FABA20019176F</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>F8E49048123FA2270019176F</string>
+				<string>F8E490F4123FABA20019176F</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -545,7 +545,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>306160888.677926</real>
+	<real>306162594.958619</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -562,7 +562,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>F8E490F0123FABA00019176F</string>
 		<string>F8E48D9C123E2FED0019176F</string>
 		<string>/Users/tcarpent/SRC/MISC_SCR/evert/build/macos/evert.xcodeproj</string>
 	</array>
@@ -644,7 +644,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F8E48D9C123E2FED0019176F</string>
-				<string>F8E49049123FA2270019176F</string>
+				<string>F8E490EE123FABA00019176F</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1238,22 +1238,40 @@
 			<string>538 42 401 187 0 0 1280 1002 </string>
 		</dict>
 		<dict>
+			<key>FirstTimeWindowDisplayed</key>
+			<false/>
 			<key>Identifier</key>
 			<string>windowTool.projectFormatConflicts</string>
+			<key>IsVertical</key>
+			<true/>
 			<key>Layout</key>
 			<array>
 				<dict>
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
+							<key>ContentConfiguration</key>
+							<dict>
+								<key>PBXProjectModuleGUID</key>
+								<string>F8E490EF123FABA00019176F</string>
+							</dict>
+							<key>GeometryConfiguration</key>
+							<dict>
+								<key>Frame</key>
+								<string>{{0, 0}, {472, 302}}</string>
+								<key>RubberWindowFrame</key>
+								<string>1461 555 472 322 1440 0 1600 900 </string>
+							</dict>
 							<key>Module</key>
 							<string>XCProjectFormatConflictsModule</string>
 							<key>Proportion</key>
-							<string>100%</string>
+							<string>302pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>100%</string>
+					<string>302pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -1263,11 +1281,21 @@
 				<string>XCProjectFormatConflictsModule</string>
 			</array>
 			<key>StatusbarIsVisible</key>
-			<integer>0</integer>
+			<false/>
+			<key>TableOfContents</key>
+			<array>
+				<string>F8E490F0123FABA00019176F</string>
+				<string>F8E490F1123FABA00019176F</string>
+				<string>F8E490EF123FABA00019176F</string>
+			</array>
 			<key>WindowContentMinSize</key>
 			<string>450 300</string>
 			<key>WindowString</key>
-			<string>50 850 472 307 0 0 1440 877</string>
+			<string>1461 555 472 322 1440 0 1600 900 </string>
+			<key>WindowToolGUID</key>
+			<string>F8E490F0123FABA00019176F</string>
+			<key>WindowToolIsVisible</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

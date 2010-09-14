@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -192,7 +192,7 @@
 		F8E48D4F123E2F960019176F /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = F8E48D52123E2F960019176F /* Build configuration list for PBXProject "evert" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = F8E48D4D123E2F960019176F;
 			productRefGroup = F8E48D63123E2FC20019176F /* Products */;
