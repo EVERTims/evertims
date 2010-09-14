@@ -62,19 +62,13 @@
 			PBXWorkspaceStateSaveDate = 306161048;
 		};
 		perUserProjectItems = {
-			F8E48E45123E330E0019176F = F8E48E45123E330E0019176F /* PBXTextBookmark */;
-			F8E48E46123E330E0019176F = F8E48E46123E330E0019176F /* PBXBookmark */;
-			F8E48E47123E330E0019176F = F8E48E47123E330E0019176F /* PBXTextBookmark */;
-			F8E490D9123FA6580019176F /* XCBuildMessageTextBookmark */ = F8E490D9123FA6580019176F /* XCBuildMessageTextBookmark */;
-			F8E490DA123FA6580019176F /* PBXTextBookmark */ = F8E490DA123FA6580019176F /* PBXTextBookmark */;
-			F8E490DB123FA6670019176F /* PBXTextBookmark */ = F8E490DB123FA6670019176F /* PBXTextBookmark */;
-			F8E490DC123FA6670019176F /* PBXTextBookmark */ = F8E490DC123FA6670019176F /* PBXTextBookmark */;
 			F8E490DD123FA6670019176F /* PBXTextBookmark */ = F8E490DD123FA6670019176F /* PBXTextBookmark */;
-			F8E490DE123FA6670019176F /* PBXTextBookmark */ = F8E490DE123FA6670019176F /* PBXTextBookmark */;
-			F8E490DF123FA6670019176F /* PBXTextBookmark */ = F8E490DF123FA6670019176F /* PBXTextBookmark */;
-			F8E490E2123FA68F0019176F /* PBXTextBookmark */ = F8E490E2123FA68F0019176F /* PBXTextBookmark */;
-			F8E490E6123FA6A20019176F /* PBXTextBookmark */ = F8E490E6123FA6A20019176F /* PBXTextBookmark */;
-			F8E490E7123FA6A60019176F /* PBXTextBookmark */ = F8E490E7123FA6A60019176F /* PBXTextBookmark */;
+			F8E490FB123FABC50019176F /* PBXTextBookmark */ = F8E490FB123FABC50019176F /* PBXTextBookmark */;
+			F8E490FC123FABC50019176F /* PBXTextBookmark */ = F8E490FC123FABC50019176F /* PBXTextBookmark */;
+			F8E490FD123FABC50019176F /* PBXTextBookmark */ = F8E490FD123FABC50019176F /* PBXTextBookmark */;
+			F8E490FE123FABC50019176F /* PBXTextBookmark */ = F8E490FE123FABC50019176F /* PBXTextBookmark */;
+			F8E490FF123FABC50019176F /* PBXTextBookmark */ = F8E490FF123FABC50019176F /* PBXTextBookmark */;
+			F8E49100123FABC50019176F /* PBXTextBookmark */ = F8E49100123FABC50019176F /* PBXTextBookmark */;
 		};
 		sourceControlManager = F8E48DDF123E31890019176F /* Source Control */;
 		userBuildSettings = {
@@ -127,61 +121,11 @@
 		sourceDirectories = (
 		);
 	};
-	F8E48DF5123E31AF0019176F /* main.cc */ = {
-		isa = PBXFileReference;
-		fileEncoding = 4;
-		lastKnownFileType = sourcecode.cpp.cpp;
-		name = main.cc;
-		path = /Users/tcarpent/SRC/MISC_SCR/evertims/build/macos/main.cc;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1075, 2432}}";
-			sepNavSelRange = "{762, 0}";
-			sepNavVisRange = "{1352, 811}";
-		};
-	};
-	F8E48DF6123E31AF0019176F /* reader.cc */ = {
-		isa = PBXFileReference;
-		fileEncoding = 4;
-		lastKnownFileType = sourcecode.cpp.cpp;
-		name = reader.cc;
-		path = /Users/tcarpent/SRC/MISC_SCR/evertims/build/macos/reader.cc;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1075, 6000}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1198}";
-		};
-	};
-	F8E48E45123E330E0019176F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F8E48DF6123E31AF0019176F /* reader.cc */;
-		name = "reader.cc: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1198;
-		vrLoc = 0;
-	};
-	F8E48E46123E330E0019176F /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = F8E48DF5123E31AF0019176F /* main.cc */;
-	};
-	F8E48E47123E330E0019176F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F8E48DF5123E31AF0019176F /* main.cc */;
-		name = "main.cc: 13";
-		rLen = 0;
-		rLoc = 762;
-		rType = 0;
-		vrLen = 811;
-		vrLoc = 1352;
-	};
 	F8E490B2123FA5C20019176F /* evertims.common.xcconfig */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1235, 2304}}";
-			sepNavSelRange = "{2933, 0}";
-			sepNavVisRange = "{1786, 2010}";
+			sepNavIntBoundsRect = "{{0, 0}, {1235, 2240}}";
+			sepNavSelRange = "{2148, 0}";
+			sepNavVisRange = "{0, 1965}";
 		};
 	};
 	F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */ = {
@@ -193,9 +137,23 @@
 	};
 	F8E490B4123FA5C20019176F /* evertims.release.xcconfig */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1235, 912}}";
-			sepNavSelRange = "{838, 0}";
-			sepNavVisRange = "{0, 1313}";
+			sepNavIntBoundsRect = "{{0, 0}, {1235, 864}}";
+			sepNavSelRange = "{507, 0}";
+			sepNavVisRange = "{399, 2012}";
+		};
+	};
+	F8E490B5123FA6260019176F /* LICENSE */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1235, 696}}";
+			sepNavSelRange = "{389, 0}";
+			sepNavVisRange = "{0, 1137}";
+		};
+	};
+	F8E490BC123FA6380019176F /* reader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1235, 1344}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1329}";
 		};
 	};
 	F8E490C0123FA6380019176F /* writer.h */ = {
@@ -204,45 +162,6 @@
 			sepNavSelRange = "{1073, 0}";
 			sepNavVisRange = "{1036, 89}";
 		};
-	};
-	F8E490D9123FA6580019176F /* XCBuildMessageTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "ElPathSolution.h: No such file or directory";
-		fRef = F8E490C0123FA6380019176F /* writer.h */;
-		fallbackIsa = XCBuildMessageTextBookmark;
-		rLen = 1;
-		rLoc = 27;
-		rType = 1;
-	};
-	F8E490DA123FA6580019176F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F8E490C0123FA6380019176F /* writer.h */;
-		name = "writer.h: 28";
-		rLen = 0;
-		rLoc = 1073;
-		rType = 0;
-		vrLen = 89;
-		vrLoc = 1036;
-	};
-	F8E490DB123FA6670019176F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F8E490B4123FA5C20019176F /* evertims.release.xcconfig */;
-		name = "evertims.release.xcconfig: 23";
-		rLen = 0;
-		rLoc = 838;
-		rType = 0;
-		vrLen = 1313;
-		vrLoc = 0;
-	};
-	F8E490DC123FA6670019176F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */;
-		name = "evertims.debug.xcconfig: 20";
-		rLen = 0;
-		rLoc = 631;
-		rType = 0;
-		vrLen = 1720;
-		vrLoc = 0;
 	};
 	F8E490DD123FA6670019176F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -254,54 +173,64 @@
 		vrLen = 1331;
 		vrLoc = 0;
 	};
-	F8E490DE123FA6670019176F /* PBXTextBookmark */ = {
+	F8E490FB123FABC50019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B5123FA6260019176F /* LICENSE */;
+		name = "LICENSE: 9";
+		rLen = 0;
+		rLoc = 389;
+		rType = 0;
+		vrLen = 1137;
+		vrLoc = 0;
+	};
+	F8E490FC123FABC50019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490BC123FA6380019176F /* reader.h */;
+		name = "reader.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1329;
+		vrLoc = 0;
+	};
+	F8E490FD123FABC50019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B4123FA5C20019176F /* evertims.release.xcconfig */;
+		name = "evertims.release.xcconfig: 15";
+		rLen = 0;
+		rLoc = 507;
+		rType = 0;
+		vrLen = 2012;
+		vrLoc = 399;
+	};
+	F8E490FE123FABC50019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */;
+		name = "evertims.debug.xcconfig: 20";
+		rLen = 0;
+		rLoc = 631;
+		rType = 0;
+		vrLen = 1720;
+		vrLoc = 0;
+	};
+	F8E490FF123FABC50019176F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = F8E490B2123FA5C20019176F /* evertims.common.xcconfig */;
-		name = "evertims.common.xcconfig: 69";
-		rLen = 15;
-		rLoc = 2823;
+		name = "evertims.common.xcconfig: 49";
+		rLen = 0;
+		rLoc = 2148;
 		rType = 0;
-		vrLen = 2010;
-		vrLoc = 1786;
+		vrLen = 1828;
+		vrLoc = 995;
 	};
-	F8E490DF123FA6670019176F /* PBXTextBookmark */ = {
+	F8E49100123FABC50019176F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = F8E490B2123FA5C20019176F /* evertims.common.xcconfig */;
-		name = "evertims.common.xcconfig: 64";
+		name = "evertims.common.xcconfig: 49";
 		rLen = 0;
-		rLoc = 2574;
+		rLoc = 2148;
 		rType = 0;
-		vrLen = 2010;
-		vrLoc = 1786;
-	};
-	F8E490E2123FA68F0019176F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F8E490B2123FA5C20019176F /* evertims.common.xcconfig */;
-		name = "evertims.common.xcconfig: 56";
-		rLen = 0;
-		rLoc = 2312;
-		rType = 0;
-		vrLen = 2010;
-		vrLoc = 1786;
-	};
-	F8E490E6123FA6A20019176F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F8E490C0123FA6380019176F /* writer.h */;
-		name = "writer.h: 28";
-		rLen = 0;
-		rLoc = 1073;
-		rType = 0;
-		vrLen = 89;
-		vrLoc = 1036;
-	};
-	F8E490E7123FA6A60019176F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = F8E490B2123FA5C20019176F /* evertims.common.xcconfig */;
-		name = "evertims.common.xcconfig: 70";
-		rLen = 0;
-		rLoc = 2933;
-		rType = 0;
-		vrLen = 2010;
-		vrLoc = 1786;
+		vrLen = 1965;
+		vrLoc = 0;
 	};
 }

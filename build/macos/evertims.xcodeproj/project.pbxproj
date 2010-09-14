@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -180,7 +180,7 @@
 		F8E48DDB123E31890019176F /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = F8E48DDE123E31890019176F /* Build configuration list for PBXProject "evertims" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = F8E48DD9123E31890019176F;
 			productRefGroup = F8E48DEF123E319D0019176F /* Products */;

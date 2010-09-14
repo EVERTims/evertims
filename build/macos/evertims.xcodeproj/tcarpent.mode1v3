@@ -256,6 +256,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -294,19 +296,15 @@
 								<string>F8E490B1123FA5B10019176F</string>
 								<string>F8E490B0123FA5AC0019176F</string>
 								<string>F8E48E14123E31D80019176F</string>
-								<string>F8E490CD123FA6460019176F</string>
 								<string>F8E48DF4123E31A20019176F</string>
-								<string>F8E48DEF123E319D0019176F</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>F8E490A4123FA5980019176F</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>9</integer>
-									<integer>8</integer>
-									<integer>7</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -341,8 +339,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -360,13 +356,15 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F8E490E7123FA6A60019176F</string>
+										<string>F8E49100123FABC50019176F</string>
 										<key>history</key>
 										<array>
-											<string>F8E490DB123FA6670019176F</string>
-											<string>F8E490DC123FA6670019176F</string>
 											<string>F8E490DD123FA6670019176F</string>
-											<string>F8E490DE123FA6670019176F</string>
+											<string>F8E490FB123FABC50019176F</string>
+											<string>F8E490FC123FABC50019176F</string>
+											<string>F8E490FD123FABC50019176F</string>
+											<string>F8E490FE123FABC50019176F</string>
+											<string>F8E490FF123FABC50019176F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -547,7 +545,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>306161318.14210403</real>
+	<real>306162629.40847403</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -564,6 +562,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>F8E490F7123FABB00019176F</string>
 		<string>F8E48E34123E32280019176F</string>
 		<string>/Users/tcarpent/SRC/MISC_SCR/evertims/build/macos/evertims.xcodeproj</string>
 	</array>
@@ -1249,22 +1248,40 @@
 			<string>538 42 401 187 0 0 1280 1002 </string>
 		</dict>
 		<dict>
+			<key>FirstTimeWindowDisplayed</key>
+			<false/>
 			<key>Identifier</key>
 			<string>windowTool.projectFormatConflicts</string>
+			<key>IsVertical</key>
+			<true/>
 			<key>Layout</key>
 			<array>
 				<dict>
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
+							<key>ContentConfiguration</key>
+							<dict>
+								<key>PBXProjectModuleGUID</key>
+								<string>F8E490F6123FABB00019176F</string>
+							</dict>
+							<key>GeometryConfiguration</key>
+							<dict>
+								<key>Frame</key>
+								<string>{{0, 0}, {472, 302}}</string>
+								<key>RubberWindowFrame</key>
+								<string>1461 555 472 322 1440 0 1600 900 </string>
+							</dict>
 							<key>Module</key>
 							<string>XCProjectFormatConflictsModule</string>
 							<key>Proportion</key>
-							<string>100%</string>
+							<string>302pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>100%</string>
+					<string>302pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -1274,11 +1291,21 @@
 				<string>XCProjectFormatConflictsModule</string>
 			</array>
 			<key>StatusbarIsVisible</key>
-			<integer>0</integer>
+			<false/>
+			<key>TableOfContents</key>
+			<array>
+				<string>F8E490F7123FABB00019176F</string>
+				<string>F8E490F8123FABB00019176F</string>
+				<string>F8E490F6123FABB00019176F</string>
+			</array>
 			<key>WindowContentMinSize</key>
 			<string>450 300</string>
 			<key>WindowString</key>
-			<string>50 850 472 307 0 0 1440 877</string>
+			<string>1461 555 472 322 1440 0 1600 900 </string>
+			<key>WindowToolGUID</key>
+			<string>F8E490F7123FABB00019176F</string>
+			<key>WindowToolIsVisible</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
