@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F8E49065123FA25F0019176F /* elAABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E4904D123FA25F0019176F /* elAABB.h */; };
+		F8E49066123FA25F0019176F /* elBeam.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E4904E123FA25F0019176F /* elBeam.cc */; };
+		F8E49067123FA25F0019176F /* elBeam.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E4904F123FA25F0019176F /* elBeam.h */; };
+		F8E49068123FA25F0019176F /* elBSP.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E49050123FA25F0019176F /* elBSP.cc */; };
+		F8E49069123FA25F0019176F /* elBSP.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E49051123FA25F0019176F /* elBSP.h */; };
+		F8E4906A123FA25F0019176F /* elDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E49052123FA25F0019176F /* elDefs.h */; };
+		F8E4906B123FA25F0019176F /* elListener.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E49053123FA25F0019176F /* elListener.cc */; };
+		F8E4906C123FA25F0019176F /* elListener.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E49054123FA25F0019176F /* elListener.h */; };
+		F8E4906D123FA25F0019176F /* elOrientedPoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E49055123FA25F0019176F /* elOrientedPoint.cc */; };
+		F8E4906E123FA25F0019176F /* elOrientedPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E49056123FA25F0019176F /* elOrientedPoint.h */; };
+		F8E4906F123FA25F0019176F /* elPathSolution.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E49057123FA25F0019176F /* elPathSolution.cc */; };
+		F8E49070123FA25F0019176F /* elPathSolution.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E49058123FA25F0019176F /* elPathSolution.h */; };
+		F8E49071123FA25F0019176F /* elPolygon.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E49059123FA25F0019176F /* elPolygon.cc */; };
+		F8E49072123FA25F0019176F /* elPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E4905A123FA25F0019176F /* elPolygon.h */; };
+		F8E49073123FA25F0019176F /* elRay.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E4905B123FA25F0019176F /* elRay.cc */; };
+		F8E49074123FA25F0019176F /* elRay.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E4905C123FA25F0019176F /* elRay.h */; };
+		F8E49075123FA25F0019176F /* elRoom.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E4905D123FA25F0019176F /* elRoom.cc */; };
+		F8E49076123FA25F0019176F /* elRoom.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E4905E123FA25F0019176F /* elRoom.h */; };
+		F8E49077123FA25F0019176F /* elSource.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E4905F123FA25F0019176F /* elSource.cc */; };
+		F8E49078123FA25F0019176F /* elSource.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E49060123FA25F0019176F /* elSource.h */; };
+		F8E49079123FA25F0019176F /* elVector.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E49061123FA25F0019176F /* elVector.cc */; };
+		F8E4907A123FA25F0019176F /* elVector.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E49062123FA25F0019176F /* elVector.h */; };
+		F8E4907B123FA25F0019176F /* material.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E49063123FA25F0019176F /* material.cc */; };
+		F8E4907C123FA25F0019176F /* material.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E49064123FA25F0019176F /* material.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F8E48D62123E2FC20019176F /* libevert.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libevert.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E4904A123FA2540019176F /* evert.common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evert.common.xcconfig; sourceTree = "<group>"; };
+		F8E4904B123FA2540019176F /* evert.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evert.debug.xcconfig; sourceTree = "<group>"; };
+		F8E4904C123FA2540019176F /* evert.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evert.release.xcconfig; sourceTree = "<group>"; };
+		F8E4904D123FA25F0019176F /* elAABB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elAABB.h; path = ../../src/elAABB.h; sourceTree = SOURCE_ROOT; };
+		F8E4904E123FA25F0019176F /* elBeam.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elBeam.cc; path = ../../src/elBeam.cc; sourceTree = SOURCE_ROOT; };
+		F8E4904F123FA25F0019176F /* elBeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elBeam.h; path = ../../src/elBeam.h; sourceTree = SOURCE_ROOT; };
+		F8E49050123FA25F0019176F /* elBSP.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elBSP.cc; path = ../../src/elBSP.cc; sourceTree = SOURCE_ROOT; };
+		F8E49051123FA25F0019176F /* elBSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elBSP.h; path = ../../src/elBSP.h; sourceTree = SOURCE_ROOT; };
+		F8E49052123FA25F0019176F /* elDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elDefs.h; path = ../../src/elDefs.h; sourceTree = SOURCE_ROOT; };
+		F8E49053123FA25F0019176F /* elListener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elListener.cc; path = ../../src/elListener.cc; sourceTree = SOURCE_ROOT; };
+		F8E49054123FA25F0019176F /* elListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elListener.h; path = ../../src/elListener.h; sourceTree = SOURCE_ROOT; };
+		F8E49055123FA25F0019176F /* elOrientedPoint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elOrientedPoint.cc; path = ../../src/elOrientedPoint.cc; sourceTree = SOURCE_ROOT; };
+		F8E49056123FA25F0019176F /* elOrientedPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elOrientedPoint.h; path = ../../src/elOrientedPoint.h; sourceTree = SOURCE_ROOT; };
+		F8E49057123FA25F0019176F /* elPathSolution.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elPathSolution.cc; path = ../../src/elPathSolution.cc; sourceTree = SOURCE_ROOT; };
+		F8E49058123FA25F0019176F /* elPathSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elPathSolution.h; path = ../../src/elPathSolution.h; sourceTree = SOURCE_ROOT; };
+		F8E49059123FA25F0019176F /* elPolygon.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elPolygon.cc; path = ../../src/elPolygon.cc; sourceTree = SOURCE_ROOT; };
+		F8E4905A123FA25F0019176F /* elPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elPolygon.h; path = ../../src/elPolygon.h; sourceTree = SOURCE_ROOT; };
+		F8E4905B123FA25F0019176F /* elRay.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elRay.cc; path = ../../src/elRay.cc; sourceTree = SOURCE_ROOT; };
+		F8E4905C123FA25F0019176F /* elRay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elRay.h; path = ../../src/elRay.h; sourceTree = SOURCE_ROOT; };
+		F8E4905D123FA25F0019176F /* elRoom.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elRoom.cc; path = ../../src/elRoom.cc; sourceTree = SOURCE_ROOT; };
+		F8E4905E123FA25F0019176F /* elRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elRoom.h; path = ../../src/elRoom.h; sourceTree = SOURCE_ROOT; };
+		F8E4905F123FA25F0019176F /* elSource.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elSource.cc; path = ../../src/elSource.cc; sourceTree = SOURCE_ROOT; };
+		F8E49060123FA25F0019176F /* elSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elSource.h; path = ../../src/elSource.h; sourceTree = SOURCE_ROOT; };
+		F8E49061123FA25F0019176F /* elVector.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = elVector.cc; path = ../../src/elVector.cc; sourceTree = SOURCE_ROOT; };
+		F8E49062123FA25F0019176F /* elVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = elVector.h; path = ../../src/elVector.h; sourceTree = SOURCE_ROOT; };
+		F8E49063123FA25F0019176F /* material.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = material.cc; path = ../../src/material.cc; sourceTree = SOURCE_ROOT; };
+		F8E49064123FA25F0019176F /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material.h; path = ../../src/material.h; sourceTree = SOURCE_ROOT; };
+		F8E4908D123FA4860019176F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../doc/LICENSE; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8E48D60123E2FC20019176F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F8E48D4D123E2F960019176F = {
+			isa = PBXGroup;
+			children = (
+				F8E49046123FA21F0019176F /* Build Settings */,
+				F8E49045123FA2110019176F /* Documentation */,
+				F8E48D67123E2FCB0019176F /* Sources */,
+				F8E48D63123E2FC20019176F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F8E48D63123E2FC20019176F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8E48D62123E2FC20019176F /* libevert.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8E48D67123E2FCB0019176F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F8E4904D123FA25F0019176F /* elAABB.h */,
+				F8E4904E123FA25F0019176F /* elBeam.cc */,
+				F8E4904F123FA25F0019176F /* elBeam.h */,
+				F8E49050123FA25F0019176F /* elBSP.cc */,
+				F8E49051123FA25F0019176F /* elBSP.h */,
+				F8E49052123FA25F0019176F /* elDefs.h */,
+				F8E49053123FA25F0019176F /* elListener.cc */,
+				F8E49054123FA25F0019176F /* elListener.h */,
+				F8E49055123FA25F0019176F /* elOrientedPoint.cc */,
+				F8E49056123FA25F0019176F /* elOrientedPoint.h */,
+				F8E49057123FA25F0019176F /* elPathSolution.cc */,
+				F8E49058123FA25F0019176F /* elPathSolution.h */,
+				F8E49059123FA25F0019176F /* elPolygon.cc */,
+				F8E4905A123FA25F0019176F /* elPolygon.h */,
+				F8E4905B123FA25F0019176F /* elRay.cc */,
+				F8E4905C123FA25F0019176F /* elRay.h */,
+				F8E4905D123FA25F0019176F /* elRoom.cc */,
+				F8E4905E123FA25F0019176F /* elRoom.h */,
+				F8E4905F123FA25F0019176F /* elSource.cc */,
+				F8E49060123FA25F0019176F /* elSource.h */,
+				F8E49061123FA25F0019176F /* elVector.cc */,
+				F8E49062123FA25F0019176F /* elVector.h */,
+				F8E49063123FA25F0019176F /* material.cc */,
+				F8E49064123FA25F0019176F /* material.h */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		F8E49045123FA2110019176F /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				F8E4908D123FA4860019176F /* LICENSE */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+		F8E49046123FA21F0019176F /* Build Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F8E4904A123FA2540019176F /* evert.common.xcconfig */,
+				F8E4904B123FA2540019176F /* evert.debug.xcconfig */,
+				F8E4904C123FA2540019176F /* evert.release.xcconfig */,
+			);
+			name = "Build Settings";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F8E48D5E123E2FC20019176F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8E49065123FA25F0019176F /* elAABB.h in Headers */,
+				F8E49067123FA25F0019176F /* elBeam.h in Headers */,
+				F8E49069123FA25F0019176F /* elBSP.h in Headers */,
+				F8E4906A123FA25F0019176F /* elDefs.h in Headers */,
+				F8E4906C123FA25F0019176F /* elListener.h in Headers */,
+				F8E4906E123FA25F0019176F /* elOrientedPoint.h in Headers */,
+				F8E49070123FA25F0019176F /* elPathSolution.h in Headers */,
+				F8E49072123FA25F0019176F /* elPolygon.h in Headers */,
+				F8E49074123FA25F0019176F /* elRay.h in Headers */,
+				F8E49076123FA25F0019176F /* elRoom.h in Headers */,
+				F8E49078123FA25F0019176F /* elSource.h in Headers */,
+				F8E4907A123FA25F0019176F /* elVector.h in Headers */,
+				F8E4907C123FA25F0019176F /* material.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F8E48D61123E2FC20019176F /* libevert */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8E48D66123E2FC30019176F /* Build configuration list for PBXNativeTarget "libevert" */;
+			buildPhases = (
+				F8E48D5E123E2FC20019176F /* Headers */,
+				F8E48D5F123E2FC20019176F /* Sources */,
+				F8E48D60123E2FC20019176F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libevert;
+			productName = evert;
+			productReference = F8E48D62123E2FC20019176F /* libevert.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8E48D4F123E2F960019176F /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F8E48D52123E2F960019176F /* Build configuration list for PBXProject "evert" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 0;
+			mainGroup = F8E48D4D123E2F960019176F;
+			productRefGroup = F8E48D63123E2FC20019176F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8E48D61123E2FC20019176F /* libevert */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8E48D5F123E2FC20019176F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8E49066123FA25F0019176F /* elBeam.cc in Sources */,
+				F8E49068123FA25F0019176F /* elBSP.cc in Sources */,
+				F8E4906B123FA25F0019176F /* elListener.cc in Sources */,
+				F8E4906D123FA25F0019176F /* elOrientedPoint.cc in Sources */,
+				F8E4906F123FA25F0019176F /* elPathSolution.cc in Sources */,
+				F8E49071123FA25F0019176F /* elPolygon.cc in Sources */,
+				F8E49073123FA25F0019176F /* elRay.cc in Sources */,
+				F8E49075123FA25F0019176F /* elRoom.cc in Sources */,
+				F8E49077123FA25F0019176F /* elSource.cc in Sources */,
+				F8E49079123FA25F0019176F /* elVector.cc in Sources */,
+				F8E4907B123FA25F0019176F /* material.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F8E48D50123E2F960019176F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		F8E48D51123E2F960019176F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		F8E48D64123E2FC30019176F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8E4904B123FA2540019176F /* evert.debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		F8E48D65123E2FC30019176F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8E4904C123FA2540019176F /* evert.release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8E48D52123E2F960019176F /* Build configuration list for PBXProject "evert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8E48D50123E2F960019176F /* Debug */,
+				F8E48D51123E2F960019176F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8E48D66123E2FC30019176F /* Build configuration list for PBXNativeTarget "libevert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8E48D64123E2FC30019176F /* Debug */,
+				F8E48D65123E2FC30019176F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8E48D4F123E2F960019176F /* Project object */;
+}
