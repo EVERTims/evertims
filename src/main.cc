@@ -36,8 +36,8 @@ using namespace std;
 
 void printUsage ()
 {
-  cout << "Usage:\t\t./ims [-s inputport] [-v Virchorhost:port]";
-  cout << "[-m markusHost:port] [-g]" << endl;
+  cout << "Usage:\t\t./ims [-s inputport] [-v visualizationHost:port]";
+  cout << "[-a auralizationHost:port] [-g]" << endl;
 }
 
 int main (int argc, char **argv)

@@ -25,7 +25,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = F8E490CD123FA6460019176F /* evert.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = F8E48D62123E2FC20019176F /* libevert.a */;
+			remoteGlobalIDString = F8E48D62123E2FC20019176F;
 			remoteInfo = libevert;
 		};
 /* End PBXContainerItemProxy section */
