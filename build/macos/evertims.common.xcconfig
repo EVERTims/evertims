@@ -1,0 +1,139 @@
+//**********************************************************************************
+//  FILE DESCRIPTION																
+//----------------------------------------------------------------------------------
+//!
+//  @file       evertims.common.xconfig
+//  @brief      Xcode Config file 
+//  @author     Thibaut Carpentier
+//  @version    2.0.0
+//  @date       28/05/2010
+//
+//  @details
+//  @n
+//
+//**********************************************************************************
+
+//**********************************************************************************
+// COMMON DEFINITIONS
+//**********************************************************************************
+ARCHS                           = $(ARCHS_STANDARD_32_BIT)
+MACOSX_SDK_10_4                 = $(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk
+MACOSX_SDK_10_5                 = $(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk
+MACOSX_SDK_10_6                 = $(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk
+COPYRIGHT_TAG                   = Copyright © 2010
+ORGANIZATION_NAME               = Ircam
+EXECUTABLE_PREFIX               =   
+GCC_VERSION                     = 4.2
+GCC_VERSION[arch=i386]          = 4.2
+GCC_VERSION[arch=ppc]           = 4.2
+SDKROOT                         = $(MACOSX_SDK_10_5)
+SDKROOT[arch=i386]              = $(MACOSX_SDK_10_5)
+SDKROOT[arch=ppc]               = $(MACOSX_SDK_10_5)
+MACOSX_DEPLOYMENT_TARGET        = 10.4
+
+//**********************************************************************************
+// VERSION
+//**********************************************************************************
+PRODUCT_VERSION_MAJOR           = 1
+PRODUCT_VERSION_MINOR           = 0
+PRODUCT_VERSION_RELEASE         = 0
+PRODUCT_VERSION                 = $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_RELEASE)
+
+//**********************************************************************************
+// PATHS
+//**********************************************************************************
+// Headers paths
+SRC_PATH                    =   $(SRCROOT)/../../src/**
+EVERT_PATH                  =   $(SRCROOT)/../../../evert/src/**
+
+HEADER_SEARCH_PATHS         =   $(SRC_PATH) $(EVERT_PATH)
+
+// Library paths
+EVERT_LIB_PATH              =   $(SRCROOT)/../../../evert/lib
+
+LIBRARY_SEARCH_PATHS        =   $(EVERT_LIB_PATH)
+
+// Framework paths
+FRAMEWORK_SEARCH_PATHS      =   
+
+// Other paths
+DELIVERY_PATH               =   $(SRCROOT)/../../bin
+INFOPLIST_FILE              =   $(SRCROOT)/evertims.plist
+
+//**********************************************************************************
+// PREPROCESSOR
+//**********************************************************************************
+__EVERTIMS_VERSION_MAJOR__=$(PRODUCT_VERSION_MAJOR)
+__EVERTIMS_VERSION_MINOR__=$(PRODUCT_VERSION_MINOR) 
+__EVERTIMS_VERSION_RELEASE__=$(PRODUCT_VERSION_RELEASE)  
+EVERTIMS_MACROS = __Darwin __EVERTIMS_VERSION_MAJOR__ __EVERTIMS_VERSION_MINOR__ __EVERTIMS_VERSION_RELEASE__
+
+
+
+//**********************************************************************************
+//**********************************************************************************
+//**********************************************************************************
+//**********************************************************************************
+//**********************************************************************************
+// YOU PROBABLY WONT NEED TO CHANGE WHAT COMES NEXT
+
+ALWAYS_SEARCH_USER_PATHS        =   YES
+BUILD_DIR                       =   $(SRCROOT)/build
+PROJECT_TEMP_DIR                =   $(BUILD_DIR)
+CONFIGURATION_TEMP_DIR          =   $(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+OBJROOT                         =   $(BUILD_DIR)
+SYMROOT                         =   $(DELIVERY_PATH)
+DEPLOYMENT_LOCATION             =   NO
+DEPLOYMENT_POSTPROCESSING       =   NO
+CONFIGURATION_BUILD_DIR         =   $(DELIVERY_PATH)
+DSTROOT                         =   $(DELIVERY_PATH)
+// (This next path is relative to DSTROOT)
+INSTALL_PATH = /
+DYLIB_CURRENT_VERSION           =   $(PRODUCT_VERSION)
+DYLIB_COMPATIBILITY_VERSION     =   $(PRODUCT_VERSION)
+FRAMEWORK_VERSION               =   $(PRODUCT_VERSION)
+
+//**********************************************************************************
+// Special Files
+//**********************************************************************************
+GENERATE_PKGINFO_FILE   =   YES
+INFOPLIST_PREPROCESS    =   YES
+
+//**********************************************************************************
+// Packaging & Deployment
+//**********************************************************************************
+SKIP_INSTALL                                        =   YES
+COPY_PHASE_STRIP                                    =   YES
+STRIP_INSTALLED_PRODUCT                             =   YES
+STRIP_STYLE                                         =   All Symbols
+STANDARD_C_PLUS_PLUS_LIBRARY_TYPE                   =   dynamic
+PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR    =   YES
+PREBINDING                                          =   NO
+
+//**********************************************************************************
+// GCC Code Generation
+//**********************************************************************************
+GCC_PRECOMPILE_PREFIX_HEADER                =   YES
+GCC_FAST_OBJC_DISPATCH                      =   YES
+GCC_AUTO_VECTORIZATION                      =   YES
+GCC_ENABLE_SSE3_EXTENSIONS                  =   YES
+GCC_STRICT_ALIASING                         =   YES
+GCC_FAST_MATH                               =   YES
+GCC_STRICT_ALIASING                         =   YES
+GCC_THREADSAFE_STATICS                      =   YES
+GCC_UNROLL_LOOPS                            =   YES
+GCC_AUTO_VECTORIZATION                      =   NO
+GCC_MODEL_TUNING                            =   G5
+GCC_ALTIVEC_EXTENSIONS                      =   YES
+GCC_ENABLE_ASM_KEYWORD                      =   YES
+GCC_ENABLE_BUILTIN_FUNCTIONS                =   YES
+GCC_ENABLE_CPP_EXCEPTIONS                   =   YES
+GCC_ENABLE_CPP_RTTI                         =   YES
+GCC_USE_GCC3_PFE_SUPPORT                    =   YES
+GCC_SYMBOLS_PRIVATE_EXTERN                  =   NO
+GCC_AUTO_VECTORIZATION                      =   YES
+GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS   =   YES
+OTHER_CFLAGS                                =   -falign-loops=16 
+OTHER_CPLUSPLUSFLAGS                        =   $(OTHER_CFLAGS)
+
+

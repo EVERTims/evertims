@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F8E48E19123E31EB0019176F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E48E18123E31EB0019176F /* OpenGL.framework */; };
+		F8E48E1D123E31FC0019176F /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E48E1C123E31FC0019176F /* GLUT.framework */; };
+		F8E490BA123FA62F0019176F /* OSC-client.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E490B8123FA62F0019176F /* OSC-client.c */; };
+		F8E490BB123FA62F0019176F /* OSC-timetag.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E490B9123FA62F0019176F /* OSC-timetag.c */; };
+		F8E490C7123FA6380019176F /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C1123FA6380019176F /* main.cc */; };
+		F8E490C8123FA6380019176F /* reader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C2123FA6380019176F /* reader.cc */; };
+		F8E490C9123FA6380019176F /* reverbEstimate.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C3123FA6380019176F /* reverbEstimate.cc */; };
+		F8E490CA123FA6380019176F /* socket.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C4123FA6380019176F /* socket.cc */; };
+		F8E490CB123FA6380019176F /* solver.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C5123FA6380019176F /* solver.cc */; };
+		F8E490CC123FA6380019176F /* writer.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C6123FA6380019176F /* writer.cc */; };
+		F8E490E3123FA69C0019176F /* libevert.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E490D5123FA6460019176F /* libevert.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F8E490D4123FA6460019176F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8E490CD123FA6460019176F /* evert.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8E48D62123E2FC20019176F /* libevert.a */;
+			remoteInfo = libevert;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F8E48DEE123E319D0019176F /* ims */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ims; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E48E18123E31EB0019176F /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		F8E48E1C123E31FC0019176F /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
+		F8E490B2123FA5C20019176F /* evertims.common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evertims.common.xcconfig; sourceTree = "<group>"; };
+		F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evertims.debug.xcconfig; sourceTree = "<group>"; };
+		F8E490B4123FA5C20019176F /* evertims.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evertims.release.xcconfig; sourceTree = "<group>"; };
+		F8E490B5123FA6260019176F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../doc/LICENSE; sourceTree = SOURCE_ROOT; };
+		F8E490B6123FA62F0019176F /* OSC-client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OSC-client.h"; path = "../../src/OSC/OSC-client.h"; sourceTree = SOURCE_ROOT; };
+		F8E490B7123FA62F0019176F /* OSC-timetag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OSC-timetag.h"; path = "../../src/OSC/OSC-timetag.h"; sourceTree = SOURCE_ROOT; };
+		F8E490B8123FA62F0019176F /* OSC-client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "OSC-client.c"; path = "../../src/OSC/OSC-client.c"; sourceTree = SOURCE_ROOT; };
+		F8E490B9123FA62F0019176F /* OSC-timetag.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "OSC-timetag.c"; path = "../../src/OSC/OSC-timetag.c"; sourceTree = SOURCE_ROOT; };
+		F8E490BC123FA6380019176F /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reader.h; path = ../../src/reader.h; sourceTree = SOURCE_ROOT; };
+		F8E490BD123FA6380019176F /* reverbEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reverbEstimate.h; path = ../../src/reverbEstimate.h; sourceTree = SOURCE_ROOT; };
+		F8E490BE123FA6380019176F /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = socket.h; path = ../../src/socket.h; sourceTree = SOURCE_ROOT; };
+		F8E490BF123FA6380019176F /* solver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = solver.h; path = ../../src/solver.h; sourceTree = SOURCE_ROOT; };
+		F8E490C0123FA6380019176F /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = writer.h; path = ../../src/writer.h; sourceTree = SOURCE_ROOT; };
+		F8E490C1123FA6380019176F /* main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cc; path = ../../src/main.cc; sourceTree = SOURCE_ROOT; };
+		F8E490C2123FA6380019176F /* reader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = reader.cc; path = ../../src/reader.cc; sourceTree = SOURCE_ROOT; };
+		F8E490C3123FA6380019176F /* reverbEstimate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = reverbEstimate.cc; path = ../../src/reverbEstimate.cc; sourceTree = SOURCE_ROOT; };
+		F8E490C4123FA6380019176F /* socket.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = socket.cc; path = ../../src/socket.cc; sourceTree = SOURCE_ROOT; };
+		F8E490C5123FA6380019176F /* solver.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = solver.cc; path = ../../src/solver.cc; sourceTree = SOURCE_ROOT; };
+		F8E490C6123FA6380019176F /* writer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = writer.cc; path = ../../src/writer.cc; sourceTree = SOURCE_ROOT; };
+		F8E490CD123FA6460019176F /* evert.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = evert.xcodeproj; path = ../../../evert/build/macos/evert.xcodeproj; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8E48DEC123E319D0019176F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8E490E3123FA69C0019176F /* libevert.a in Frameworks */,
+				F8E48E19123E31EB0019176F /* OpenGL.framework in Frameworks */,
+				F8E48E1D123E31FC0019176F /* GLUT.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F8E48DD9123E31890019176F = {
+			isa = PBXGroup;
+			children = (
+				F8E490B1123FA5B10019176F /* Build Settings */,
+				F8E490B0123FA5AC0019176F /* Documentation */,
+				F8E48E14123E31D80019176F /* Dependencies */,
+				F8E48DF4123E31A20019176F /* Sources */,
+				F8E48DEF123E319D0019176F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F8E48DEF123E319D0019176F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8E48DEE123E319D0019176F /* ims */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8E48DF4123E31A20019176F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F8E490BC123FA6380019176F /* reader.h */,
+				F8E490BD123FA6380019176F /* reverbEstimate.h */,
+				F8E490BE123FA6380019176F /* socket.h */,
+				F8E490BF123FA6380019176F /* solver.h */,
+				F8E490C0123FA6380019176F /* writer.h */,
+				F8E490C1123FA6380019176F /* main.cc */,
+				F8E490C2123FA6380019176F /* reader.cc */,
+				F8E490C3123FA6380019176F /* reverbEstimate.cc */,
+				F8E490C4123FA6380019176F /* socket.cc */,
+				F8E490C5123FA6380019176F /* solver.cc */,
+				F8E490C6123FA6380019176F /* writer.cc */,
+				F8E490AC123FA5A10019176F /* OSC */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		F8E48E14123E31D80019176F /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				F8E490CD123FA6460019176F /* evert.xcodeproj */,
+				F8E48E18123E31EB0019176F /* OpenGL.framework */,
+				F8E48E1C123E31FC0019176F /* GLUT.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		F8E490AC123FA5A10019176F /* OSC */ = {
+			isa = PBXGroup;
+			children = (
+				F8E490B6123FA62F0019176F /* OSC-client.h */,
+				F8E490B7123FA62F0019176F /* OSC-timetag.h */,
+				F8E490B8123FA62F0019176F /* OSC-client.c */,
+				F8E490B9123FA62F0019176F /* OSC-timetag.c */,
+			);
+			name = OSC;
+			sourceTree = "<group>";
+		};
+		F8E490B0123FA5AC0019176F /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				F8E490B5123FA6260019176F /* LICENSE */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+		F8E490B1123FA5B10019176F /* Build Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F8E490B2123FA5C20019176F /* evertims.common.xcconfig */,
+				F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */,
+				F8E490B4123FA5C20019176F /* evertims.release.xcconfig */,
+			);
+			name = "Build Settings";
+			sourceTree = "<group>";
+		};
+		F8E490CE123FA6460019176F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8E490D5123FA6460019176F /* libevert.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F8E48DED123E319D0019176F /* ims */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8E48DF3123E319E0019176F /* Build configuration list for PBXNativeTarget "ims" */;
+			buildPhases = (
+				F8E48DEB123E319D0019176F /* Sources */,
+				F8E48DEC123E319D0019176F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ims;
+			productName = ims;
+			productReference = F8E48DEE123E319D0019176F /* ims */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8E48DDB123E31890019176F /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F8E48DDE123E31890019176F /* Build configuration list for PBXProject "evertims" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 0;
+			mainGroup = F8E48DD9123E31890019176F;
+			productRefGroup = F8E48DEF123E319D0019176F /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F8E490CE123FA6460019176F /* Products */;
+					ProjectRef = F8E490CD123FA6460019176F /* evert.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F8E48DED123E319D0019176F /* ims */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F8E490D5123FA6460019176F /* libevert.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libevert.a;
+			remoteRef = F8E490D4123FA6460019176F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8E48DEB123E319D0019176F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8E490BA123FA62F0019176F /* OSC-client.c in Sources */,
+				F8E490BB123FA62F0019176F /* OSC-timetag.c in Sources */,
+				F8E490C7123FA6380019176F /* main.cc in Sources */,
+				F8E490C8123FA6380019176F /* reader.cc in Sources */,
+				F8E490C9123FA6380019176F /* reverbEstimate.cc in Sources */,
+				F8E490CA123FA6380019176F /* socket.cc in Sources */,
+				F8E490CB123FA6380019176F /* solver.cc in Sources */,
+				F8E490CC123FA6380019176F /* writer.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F8E48DDC123E31890019176F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		F8E48DDD123E31890019176F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		F8E48DF1123E319E0019176F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		F8E48DF2123E319E0019176F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8E490B4123FA5C20019176F /* evertims.release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8E48DDE123E31890019176F /* Build configuration list for PBXProject "evertims" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8E48DDC123E31890019176F /* Debug */,
+				F8E48DDD123E31890019176F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8E48DF3123E319E0019176F /* Build configuration list for PBXNativeTarget "ims" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8E48DF1123E319E0019176F /* Debug */,
+				F8E48DF2123E319E0019176F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8E48DDB123E31890019176F /* Project object */;
+}

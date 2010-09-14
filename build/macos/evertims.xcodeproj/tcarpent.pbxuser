@@ -1,0 +1,307 @@
+// !$*UTF8*$!
+{
+	F8E48DDB123E31890019176F /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = F8E48DF0123E319D0019176F /* ims */;
+		activeTarget = F8E48DED123E319D0019176F /* ims */;
+		addToTargets = (
+			F8E48DED123E319D0019176F /* ims */,
+		);
+		codeSenseManager = F8E48DE0123E31890019176F /* Code sense */;
+		executables = (
+			F8E48DF0123E319D0019176F /* ims */,
+		);
+		ignoreBreakpointsInProjectsDict = {
+		};
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1057,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1017,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 306161048;
+			PBXWorkspaceStateSaveDate = 306161048;
+		};
+		perUserProjectItems = {
+			F8E48E45123E330E0019176F = F8E48E45123E330E0019176F /* PBXTextBookmark */;
+			F8E48E46123E330E0019176F = F8E48E46123E330E0019176F /* PBXBookmark */;
+			F8E48E47123E330E0019176F = F8E48E47123E330E0019176F /* PBXTextBookmark */;
+			F8E490D9123FA6580019176F /* XCBuildMessageTextBookmark */ = F8E490D9123FA6580019176F /* XCBuildMessageTextBookmark */;
+			F8E490DA123FA6580019176F /* PBXTextBookmark */ = F8E490DA123FA6580019176F /* PBXTextBookmark */;
+			F8E490DB123FA6670019176F /* PBXTextBookmark */ = F8E490DB123FA6670019176F /* PBXTextBookmark */;
+			F8E490DC123FA6670019176F /* PBXTextBookmark */ = F8E490DC123FA6670019176F /* PBXTextBookmark */;
+			F8E490DD123FA6670019176F /* PBXTextBookmark */ = F8E490DD123FA6670019176F /* PBXTextBookmark */;
+			F8E490DE123FA6670019176F /* PBXTextBookmark */ = F8E490DE123FA6670019176F /* PBXTextBookmark */;
+			F8E490DF123FA6670019176F /* PBXTextBookmark */ = F8E490DF123FA6670019176F /* PBXTextBookmark */;
+			F8E490E2123FA68F0019176F /* PBXTextBookmark */ = F8E490E2123FA68F0019176F /* PBXTextBookmark */;
+			F8E490E6123FA6A20019176F /* PBXTextBookmark */ = F8E490E6123FA6A20019176F /* PBXTextBookmark */;
+			F8E490E7123FA6A60019176F /* PBXTextBookmark */ = F8E490E7123FA6A60019176F /* PBXTextBookmark */;
+		};
+		sourceControlManager = F8E48DDF123E31890019176F /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	F8E48DDF123E31890019176F /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	F8E48DE0123E31890019176F /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	F8E48DED123E319D0019176F /* ims */ = {
+		activeExec = 0;
+		executables = (
+			F8E48DF0123E319D0019176F /* ims */,
+		);
+	};
+	F8E48DF0123E319D0019176F /* ims */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = ims;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	F8E48DF5123E31AF0019176F /* main.cc */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = main.cc;
+		path = /Users/tcarpent/SRC/MISC_SCR/evertims/build/macos/main.cc;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1075, 2432}}";
+			sepNavSelRange = "{762, 0}";
+			sepNavVisRange = "{1352, 811}";
+		};
+	};
+	F8E48DF6123E31AF0019176F /* reader.cc */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = reader.cc;
+		path = /Users/tcarpent/SRC/MISC_SCR/evertims/build/macos/reader.cc;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1075, 6000}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1198}";
+		};
+	};
+	F8E48E45123E330E0019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E48DF6123E31AF0019176F /* reader.cc */;
+		name = "reader.cc: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1198;
+		vrLoc = 0;
+	};
+	F8E48E46123E330E0019176F /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = F8E48DF5123E31AF0019176F /* main.cc */;
+	};
+	F8E48E47123E330E0019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E48DF5123E31AF0019176F /* main.cc */;
+		name = "main.cc: 13";
+		rLen = 0;
+		rLoc = 762;
+		rType = 0;
+		vrLen = 811;
+		vrLoc = 1352;
+	};
+	F8E490B2123FA5C20019176F /* evertims.common.xcconfig */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1235, 2304}}";
+			sepNavSelRange = "{2933, 0}";
+			sepNavVisRange = "{1786, 2010}";
+		};
+	};
+	F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1235, 696}}";
+			sepNavSelRange = "{631, 0}";
+			sepNavVisRange = "{0, 1720}";
+		};
+	};
+	F8E490B4123FA5C20019176F /* evertims.release.xcconfig */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1235, 912}}";
+			sepNavSelRange = "{838, 0}";
+			sepNavVisRange = "{0, 1313}";
+		};
+	};
+	F8E490C0123FA6380019176F /* writer.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 2208}}";
+			sepNavSelRange = "{1073, 0}";
+			sepNavVisRange = "{1036, 89}";
+		};
+	};
+	F8E490D9123FA6580019176F /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "ElPathSolution.h: No such file or directory";
+		fRef = F8E490C0123FA6380019176F /* writer.h */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 27;
+		rType = 1;
+	};
+	F8E490DA123FA6580019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490C0123FA6380019176F /* writer.h */;
+		name = "writer.h: 28";
+		rLen = 0;
+		rLoc = 1073;
+		rType = 0;
+		vrLen = 89;
+		vrLoc = 1036;
+	};
+	F8E490DB123FA6670019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B4123FA5C20019176F /* evertims.release.xcconfig */;
+		name = "evertims.release.xcconfig: 23";
+		rLen = 0;
+		rLoc = 838;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 0;
+	};
+	F8E490DC123FA6670019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */;
+		name = "evertims.debug.xcconfig: 20";
+		rLen = 0;
+		rLoc = 631;
+		rType = 0;
+		vrLen = 1720;
+		vrLoc = 0;
+	};
+	F8E490DD123FA6670019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490C0123FA6380019176F /* writer.h */;
+		name = "writer.h: 17";
+		rLen = 0;
+		rLoc = 856;
+		rType = 0;
+		vrLen = 1331;
+		vrLoc = 0;
+	};
+	F8E490DE123FA6670019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B2123FA5C20019176F /* evertims.common.xcconfig */;
+		name = "evertims.common.xcconfig: 69";
+		rLen = 15;
+		rLoc = 2823;
+		rType = 0;
+		vrLen = 2010;
+		vrLoc = 1786;
+	};
+	F8E490DF123FA6670019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B2123FA5C20019176F /* evertims.common.xcconfig */;
+		name = "evertims.common.xcconfig: 64";
+		rLen = 0;
+		rLoc = 2574;
+		rType = 0;
+		vrLen = 2010;
+		vrLoc = 1786;
+	};
+	F8E490E2123FA68F0019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B2123FA5C20019176F /* evertims.common.xcconfig */;
+		name = "evertims.common.xcconfig: 56";
+		rLen = 0;
+		rLoc = 2312;
+		rType = 0;
+		vrLen = 2010;
+		vrLoc = 1786;
+	};
+	F8E490E6123FA6A20019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490C0123FA6380019176F /* writer.h */;
+		name = "writer.h: 28";
+		rLen = 0;
+		rLoc = 1073;
+		rType = 0;
+		vrLen = 89;
+		vrLoc = 1036;
+	};
+	F8E490E7123FA6A60019176F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8E490B2123FA5C20019176F /* evertims.common.xcconfig */;
+		name = "evertims.common.xcconfig: 70";
+		rLen = 0;
+		rLoc = 2933;
+		rType = 0;
+		vrLen = 2010;
+		vrLoc = 1786;
+	};
+}

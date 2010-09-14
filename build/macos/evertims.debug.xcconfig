@@ -1,0 +1,40 @@
+//**********************************************************************************
+//  FILE DESCRIPTION																
+//----------------------------------------------------------------------------------
+//!
+//  @file       evertims.debug.xconfig
+//  @brief      Xcode Config file for Debug configuration
+//  @author     Thibaut Carpentier
+//  @version    2.0.0
+//  @date       28/05/2010
+//
+//  @details
+//  @n
+//
+//**********************************************************************************
+
+#include "evertims.common.xcconfig"
+
+PRODUCT_NAME                    = $(TARGET_NAME)_debug
+
+//**********************************************************************************
+// PREPROCESSOR
+//**********************************************************************************
+GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1 $(EVERTIMS_MACROS)
+
+//**********************************************************************************
+// OPTIONS SPECIFIC FOR DEBUG CONFIGURATION
+//**********************************************************************************
+ONLY_ACTIVE_ARCH                            =   YES
+ZERO_LINK                                   =   NO
+GCC_ENABLE_FIX_AND_CONTINUE                 =   YES
+GCC_OPTIMIZATION_LEVEL                      =   0
+GCC_GENERATE_DEBUGGING_SYMBOLS              =   YES
+ZERO_LINK                                   =   YES
+DEBUG_INFORMATION_FORMAT                    =   dwarf-with-dsym
+GCC_DEBUGGING_SYMBOLS                       =   full
+
+//**********************************************************************************
+// WARNINGS
+//********************************************************************************** 
+WARNING_CFLAGS                              =   -Wall
