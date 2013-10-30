@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F8E48E19123E31EB0019176F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E48E18123E31EB0019176F /* OpenGL.framework */; };
-		F8E48E1D123E31FC0019176F /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E48E1C123E31FC0019176F /* GLUT.framework */; };
 		F8E490BA123FA62F0019176F /* OSC-client.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E490B8123FA62F0019176F /* OSC-client.c */; };
 		F8E490BB123FA62F0019176F /* OSC-timetag.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E490B9123FA62F0019176F /* OSC-timetag.c */; };
 		F8E490C7123FA6380019176F /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C1123FA6380019176F /* main.cc */; };
@@ -17,23 +15,10 @@
 		F8E490CA123FA6380019176F /* socket.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C4123FA6380019176F /* socket.cc */; };
 		F8E490CB123FA6380019176F /* solver.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C5123FA6380019176F /* solver.cc */; };
 		F8E490CC123FA6380019176F /* writer.cc in Sources */ = {isa = PBXBuildFile; fileRef = F8E490C6123FA6380019176F /* writer.cc */; };
-		F8E490E3123FA69C0019176F /* libevert.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E490D5123FA6460019176F /* libevert.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F8E490D4123FA6460019176F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8E490CD123FA6460019176F /* evert.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8E48D62123E2FC20019176F;
-			remoteInfo = libevert;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		F8E48DEE123E319D0019176F /* ims */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ims; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8E48E18123E31EB0019176F /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
-		F8E48E1C123E31FC0019176F /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
+		F8E48DEE123E319D0019176F /* ims_debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ims_debug; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E490B2123FA5C20019176F /* evertims.common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evertims.common.xcconfig; sourceTree = "<group>"; };
 		F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evertims.debug.xcconfig; sourceTree = "<group>"; };
 		F8E490B4123FA5C20019176F /* evertims.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evertims.release.xcconfig; sourceTree = "<group>"; };
@@ -53,7 +38,6 @@
 		F8E490C4123FA6380019176F /* socket.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = socket.cc; path = ../../src/socket.cc; sourceTree = SOURCE_ROOT; };
 		F8E490C5123FA6380019176F /* solver.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = solver.cc; path = ../../src/solver.cc; sourceTree = SOURCE_ROOT; };
 		F8E490C6123FA6380019176F /* writer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = writer.cc; path = ../../src/writer.cc; sourceTree = SOURCE_ROOT; };
-		F8E490CD123FA6460019176F /* evert.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = evert.xcodeproj; path = ../../../evert/build/macos/evert.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +45,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8E490E3123FA69C0019176F /* libevert.a in Frameworks */,
-				F8E48E19123E31EB0019176F /* OpenGL.framework in Frameworks */,
-				F8E48E1D123E31FC0019176F /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +65,7 @@
 		F8E48DEF123E319D0019176F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F8E48DEE123E319D0019176F /* ims */,
+				F8E48DEE123E319D0019176F /* ims_debug */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,9 +92,6 @@
 		F8E48E14123E31D80019176F /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				F8E490CD123FA6460019176F /* evert.xcodeproj */,
-				F8E48E18123E31EB0019176F /* OpenGL.framework */,
-				F8E48E1C123E31FC0019176F /* GLUT.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -147,14 +125,6 @@
 			name = "Build Settings";
 			sourceTree = "<group>";
 		};
-		F8E490CE123FA6460019176F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F8E490D5123FA6460019176F /* libevert.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,7 +141,7 @@
 			);
 			name = ims;
 			productName = ims;
-			productReference = F8E48DEE123E319D0019176F /* ims */;
+			productReference = F8E48DEE123E319D0019176F /* ims_debug */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -181,32 +151,20 @@
 			isa = PBXProject;
 			buildConfigurationList = F8E48DDE123E31890019176F /* Build configuration list for PBXProject "evertims" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
 			mainGroup = F8E48DD9123E31890019176F;
 			productRefGroup = F8E48DEF123E319D0019176F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F8E490CE123FA6460019176F /* Products */;
-					ProjectRef = F8E490CD123FA6460019176F /* evert.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F8E48DED123E319D0019176F /* ims */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F8E490D5123FA6460019176F /* libevert.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libevert.a;
-			remoteRef = F8E490D4123FA6460019176F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F8E48DEB123E319D0019176F /* Sources */ = {

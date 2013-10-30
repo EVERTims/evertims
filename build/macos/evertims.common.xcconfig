@@ -16,26 +16,29 @@
 //**********************************************************************************
 // COMMON DEFINITIONS
 //**********************************************************************************
-ARCHS                           = $(ARCHS_STANDARD_32_BIT)
 MACOSX_SDK_10_4                 = $(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk
 MACOSX_SDK_10_5                 = $(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk
 MACOSX_SDK_10_6                 = $(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk
-COPYRIGHT_TAG                   = Copyright © 2010
+MACOSX_SDK_10_7                 = $(DEVELOPER_SDK_DIR)/MacOSX10.7.sdk
+MACOSX_SDK_10_8                 = $(DEVELOPER_SDK_DIR)/MacOSX10.8.sdk
+
+COPYRIGHT_TAG                   = Copyright © 2009-2013
 ORGANIZATION_NAME               = Ircam
-EXECUTABLE_PREFIX               =   
-GCC_VERSION                     = 4.2
-GCC_VERSION[arch=i386]          = 4.2
-GCC_VERSION[arch=ppc]           = 4.2
-SDKROOT                         = $(MACOSX_SDK_10_5)
-SDKROOT[arch=i386]              = $(MACOSX_SDK_10_5)
-SDKROOT[arch=ppc]               = $(MACOSX_SDK_10_5)
-MACOSX_DEPLOYMENT_TARGET        = 10.4
+EXECUTABLE_PREFIX               =
+
+GCC_VERSION                     = com.apple.compilers.llvm.clang.1_0     ///< for Xcode 4
+//GCC_VERSION                     = 4.2                                 ///< for Xcode 3.2
+
+SDKROOT                         = $(MACOSX_SDK_10_8)
+
+MACOSX_DEPLOYMENT_TARGET        = 10.5
+VALID_ARCHS                     = i386 x86_64
 
 //**********************************************************************************
 // VERSION
 //**********************************************************************************
 PRODUCT_VERSION_MAJOR           = 1
-PRODUCT_VERSION_MINOR           = 0
+PRODUCT_VERSION_MINOR           = 1
 PRODUCT_VERSION_RELEASE         = 0
 PRODUCT_VERSION                 = $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_RELEASE)
 
@@ -63,9 +66,10 @@ INFOPLIST_FILE              =   $(SRCROOT)/evertims.plist
 //**********************************************************************************
 // PREPROCESSOR
 //**********************************************************************************
-__EVERTIMS_VERSION_MAJOR__=$(PRODUCT_VERSION_MAJOR)
-__EVERTIMS_VERSION_MINOR__=$(PRODUCT_VERSION_MINOR) 
-__EVERTIMS_VERSION_RELEASE__=$(PRODUCT_VERSION_RELEASE)  
+__EVERTIMS_VERSION_MAJOR__      =   $(PRODUCT_VERSION_MAJOR)
+__EVERTIMS_VERSION_MINOR__      =   $(PRODUCT_VERSION_MINOR)
+__EVERTIMS_VERSION_RELEASE__    =   $(PRODUCT_VERSION_RELEASE)
+
 EVERTIMS_MACROS = __Darwin __EVERTIMS_VERSION_MAJOR__ __EVERTIMS_VERSION_MINOR__ __EVERTIMS_VERSION_RELEASE__
 
 
@@ -113,27 +117,100 @@ PREBINDING                                          =   NO
 //**********************************************************************************
 // GCC Code Generation
 //**********************************************************************************
-GCC_PRECOMPILE_PREFIX_HEADER                =   YES
+GCC_PRECOMPILE_PREFIX_HEADER                =   NO
 GCC_FAST_OBJC_DISPATCH                      =   YES
-GCC_AUTO_VECTORIZATION                      =   YES
 GCC_ENABLE_SSE3_EXTENSIONS                  =   YES
+GCC_ENABLE_SSE41_EXTENSIONS                 =   YES
+GCC_ENABLE_SSE42_EXTENSIONS                 =   YES
+
+/// The speed increase with the fast math option is not THAT relevant
+/// However the loss of precision may be an issue especially for the RAT.
+/// So let's switch if off
+GCC_FAST_MATH                               =   NO
+
 GCC_STRICT_ALIASING                         =   YES
-GCC_FAST_MATH                               =   YES
-GCC_STRICT_ALIASING                         =   YES
-GCC_THREADSAFE_STATICS                      =   YES
+GCC_THREADSAFE_STATICS                      =   NO
+
+/// yes, please unroll the loops
 GCC_UNROLL_LOOPS                            =   YES
-GCC_AUTO_VECTORIZATION                      =   NO
 GCC_MODEL_TUNING                            =   G5
 GCC_ALTIVEC_EXTENSIONS                      =   YES
 GCC_ENABLE_ASM_KEYWORD                      =   YES
-GCC_ENABLE_BUILTIN_FUNCTIONS                =   YES
+
+/// it's difficult to say whether builtin or no builtin are the most efficient
+/// it seems to depend on which kind of operations
+GCC_ENABLE_BUILTIN_FUNCTIONS                =   NO
+
+/// yes, we need some exceptions handling. important functions are declared throw()
+/// to make sure the compiler can optimize anyway
 GCC_ENABLE_CPP_EXCEPTIONS                   =   YES
+
+/// yes, we need some dynamic cast, from time to time.
 GCC_ENABLE_CPP_RTTI                         =   YES
 GCC_USE_GCC3_PFE_SUPPORT                    =   YES
-GCC_SYMBOLS_PRIVATE_EXTERN                  =   NO
+
+GCC_SYMBOLS_PRIVATE_EXTERN                  =   YES
+GCC_INLINES_ARE_PRIVATE_EXTERN              =   YES
+
 GCC_AUTO_VECTORIZATION                      =   YES
 GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS   =   YES
-OTHER_CFLAGS                                =   -falign-loops=16 
+OTHER_CFLAGS                                =   // -falign-loops=16 ///< this is deprecated with clang
 OTHER_CPLUSPLUSFLAGS                        =   $(OTHER_CFLAGS)
+SEPARATE_STRIP                              =   NO
+DEAD_CODE_STRIPPING                         =   YES
 
+ZERO_LINK                                   =   NO
+
+//**********************************************************************************
+// WARNINGS
+//**********************************************************************************
+WARNING_CFLAGS                              =   -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -Wno-reorder -Wno-unused-value -Wno-unused
+GCC_WARN_64_TO_32_BIT_CONVERSION            =   YES
+GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS         =   YES
+GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO       =   YES
+GCC_WARN_ABOUT_MISSING_NEWLINE              =   YES
+GCC_WARN_ABOUT_MISSING_PROTOTYPES           =   YES
+GCC_WARN_ABOUT_POINTER_SIGNEDNESS           =   YES
+GCC_WARN_ABOUT_RETURN_TYPE                  =   YES
+GCC_WARN_CHECK_SWITCH_STATEMENTS            =   YES
+GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS     =   YES
+GCC_WARN_FOUR_CHARACTER_CONSTANTS           =   NO
+GCC_WARN_UNKNOWN_PRAGMAS                    =   NO
+GCC_WARN_UNUSED_FUNCTION                    =   NO
+GCC_WARN_UNUSED_PARAMETER                   =   NO
+GCC_WARN_UNUSED_VALUE                       =   NO
+GCC_WARN_UNUSED_VARIABLE                    =   NO
+
+
+//**********************************************************************************
+// CLANG
+//**********************************************************************************
+COMBINE_HIDPI_IMAGES                        =   YES
+
+//**********************************************************************************
+// CLANG Static Analyzer
+//**********************************************************************************
+RUN_CLANG_STATIC_ANALYZER                               =   NO
+
+CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION               =   YES
+
+CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER                =   YES
+CLANG_ANALYZER_SECURITY_INSECUREAPI_GETPW_GETS          =   YES
+CLANG_ANALYZER_SECURITY_INSECUREAPI_MKSTEMP             =   YES
+CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND                =   YES
+CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY              =   YES
+CLANG_ANALYZER_SECURITY_INSECUREAPI_UNCHECKEDRETURN     =   YES
+CLANG_ANALYZER_SECURITY_INSECUREAPI_VFORK               =   YES
+CLANG_ANALYZER_SECURITY_KEYCHAIN_API                    =   YES
+
+CLANG_ANALYZER_DEADCODE_DEADSTORES                      =   YES
+CLANG_ANALYZER_GCD                                      =   YES
+CLANG_ANALYZER_MALLOC                                   =   YES
+
+CLANG_WARN_CXX0X_EXTENSIONS                             =   NO
+CLANG_WARN__EXIT_TIME_DESTRUCTORS                       =   NO
+GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO                   =   YES
+GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS                       =   YES
+GCC_WARN_NON_VIRTUAL_DESTRUCTOR                         =   YES
+CLANG_WARN__DUPLICATE_METHOD_MATCH                      =   YES
 
