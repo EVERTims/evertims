@@ -34,7 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F8E48D62123E2FC20019176F /* libevert.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libevert.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E48D62123E2FC20019176F /* libevert_debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libevert_debug.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E4904A123FA2540019176F /* evert.common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evert.common.xcconfig; sourceTree = "<group>"; };
 		F8E4904B123FA2540019176F /* evert.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evert.debug.xcconfig; sourceTree = "<group>"; };
 		F8E4904C123FA2540019176F /* evert.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evert.release.xcconfig; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		F8E48D63123E2FC20019176F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F8E48D62123E2FC20019176F /* libevert.a */,
+				F8E48D62123E2FC20019176F /* libevert_debug.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,7 +183,7 @@
 			);
 			name = libevert;
 			productName = evert;
-			productReference = F8E48D62123E2FC20019176F /* libevert.a */;
+			productReference = F8E48D62123E2FC20019176F /* libevert_debug.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -193,7 +193,11 @@
 			isa = PBXProject;
 			buildConfigurationList = F8E48D52123E2F960019176F /* Build configuration list for PBXProject "evert" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
 			mainGroup = F8E48D4D123E2F960019176F;
 			productRefGroup = F8E48D63123E2FC20019176F /* Products */;
 			projectDirPath = "";

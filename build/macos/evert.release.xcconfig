@@ -18,36 +18,19 @@
 PRODUCT_NAME                    = $(TARGET_NAME)
 
 //**********************************************************************************
+// BUILD ARCHITECTURE
+//**********************************************************************************
+ARCHS                           = i386 
+ONLY_ACTIVE_ARCH                = NO
+
+//**********************************************************************************
 // PREPROCESSOR
 //**********************************************************************************
 GCC_PREPROCESSOR_DEFINITIONS = NDEBUG=1 $(EVERT_MACROS)
 
-
 //**********************************************************************************
 // OPTIONS SPECIFIC FOR RELEASE CONFIGURATION
 //**********************************************************************************
-ONLY_ACTIVE_ARCH                            =   NO
-ZERO_LINK                                   =   NO
-GCC_ENABLE_FIX_AND_CONTINUE                 =   NO
 GCC_OPTIMIZATION_LEVEL                      =   3
 GCC_GENERATE_DEBUGGING_SYMBOLS              =   NO
-
-//**********************************************************************************
-// WARNINGS
-//**********************************************************************************
-WARNING_CFLAGS                              =   -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -Wno-reorder -Wno-unused-value -Wno-unused
-GCC_WARN_64_TO_32_BIT_CONVERSION            =   YES
-GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS         =   YES
-GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO       =   YES
-GCC_WARN_ABOUT_MISSING_NEWLINE              =   NO
-GCC_WARN_ABOUT_MISSING_PROTOTYPES           =   YES
-GCC_WARN_ABOUT_POINTER_SIGNEDNESS           =   YES
-GCC_WARN_ABOUT_RETURN_TYPE                  =   YES
-GCC_WARN_CHECK_SWITCH_STATEMENTS            =   YES
-GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS     =   NO
-GCC_WARN_FOUR_CHARACTER_CONSTANTS           =   NO
-GCC_WARN_UNKNOWN_PRAGMAS                    =   NO
-GCC_WARN_UNUSED_FUNCTION                    =   NO
-GCC_WARN_UNUSED_PARAMETER                   =   NO
-GCC_WARN_UNUSED_VALUE                       =   NO
-GCC_WARN_UNUSED_VARIABLE                    =   NO
+LLVM_LTO                                    =   NO

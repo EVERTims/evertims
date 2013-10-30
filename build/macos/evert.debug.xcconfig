@@ -18,6 +18,12 @@
 PRODUCT_NAME                    = $(TARGET_NAME)_debug
 
 //**********************************************************************************
+// BUILD ARCHITECTURE
+//**********************************************************************************
+ARCHS                           = i386
+ONLY_ACTIVE_ARCH                = NO
+
+//**********************************************************************************
 // PREPROCESSOR
 //**********************************************************************************
 GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1 $(EVERT_MACROS)
@@ -25,16 +31,13 @@ GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1 $(EVERT_MACROS)
 //**********************************************************************************
 // OPTIONS SPECIFIC FOR DEBUG CONFIGURATION
 //**********************************************************************************
-ONLY_ACTIVE_ARCH                            =   YES
-ZERO_LINK                                   =   NO
-GCC_ENABLE_FIX_AND_CONTINUE                 =   YES
 GCC_OPTIMIZATION_LEVEL                      =   0
 GCC_GENERATE_DEBUGGING_SYMBOLS              =   YES
-ZERO_LINK                                   =   YES
 DEBUG_INFORMATION_FORMAT                    =   dwarf-with-dsym
 GCC_DEBUGGING_SYMBOLS                       =   full
+LLVM_LTO                                    =   NO
 
 //**********************************************************************************
 // WARNINGS
-//********************************************************************************** 
+//**********************************************************************************
 WARNING_CFLAGS                              =   -Wall
