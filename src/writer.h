@@ -18,7 +18,10 @@
  * The Writer class for EVERTims
  *
  * (C) 2007 Lauri Savioja
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2007-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ***********************************************************************/
 
@@ -112,10 +115,10 @@ class AuralizationWriter : public Writer
   std::vector<int> m_releaved;
 };
 
-class VirchorWriter : public Writer
+class VisualizationWriter : public Writer
 {
  public:
-  VirchorWriter (char *host): Writer(host), m_numLines(0) {};
+  VisualizationWriter (char *host): Writer(host), m_numLines(0) {};
 
   virtual const char* getType() { return "VirChor"; };
   void write (EL::PathSolution *solution);

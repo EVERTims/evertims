@@ -20,6 +20,9 @@
  * (C) 2009 Lauri Savioja
  * Helsinki University of Technology  
  *
+ * (C) 2009-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
+ *
  ***********************************************************************/
 
 #ifndef _REVERB_ESTIM_H

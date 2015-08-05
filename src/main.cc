@@ -18,7 +18,10 @@
  * The EVERTims
  *
  * (C) 2007 Lauri Savioja
- * Helsinki University of Technology  
+ * Helsinki University of Technology 
+ *
+ * (C) 2007-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ***********************************************************************/
 
@@ -42,14 +45,14 @@ void printUsage ()
 
 int main (int argc, char **argv)
 {
-  char room_file[256];
-  char material_file[256];
-  bool graphics = false;
-  int input_socket = 1979;
-  char *auralization_addr = 0;
-  char *virchor_addr = 0;
-  char *print_addr = 0;
-  char tmp[256];
+  char  room_file[256];
+  char  material_file[256];
+  bool  graphics = false;
+  int   input_socket = 1979;
+  char  *auralization_addr = 0;
+  char  *virchor_addr = 0;
+  char  *print_addr = 0;
+  char  tmp[256];
   float threshold = 0.1;
 
   strcpy (room_file, "sigyn.room");
@@ -117,10 +120,10 @@ int main (int argc, char **argv)
   re->start ();
   cout << "Reader object started." << endl;
 
-  VirchorWriter *vw;
+  VisualizationWriter *vw;
   if (virchor_addr)
   {
-    vw = new VirchorWriter(virchor_addr);
+    vw = new VisualizationWriter(virchor_addr);
     vw->connect();
     s->addWriter (vw);
   }

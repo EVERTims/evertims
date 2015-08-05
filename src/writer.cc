@@ -20,6 +20,9 @@
  * (C) 2007 Lauri Savioja
  * Helsinki University of Technology 
  *
+ * (C) 2007-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
+ *
  ***********************************************************************/
 
 #define SPEED_OF_SOUND 340.0
@@ -352,7 +355,7 @@ void AuralizationWriter::write(EL::PathSolution *solution)
 
 #define ABS(x) ((x)>0 ? (x) : (-(x)))
 
-void VirchorWriter::write(EL::PathSolution *solution)
+void VisualizationWriter::write(EL::PathSolution *solution)
 {
   int numLines = 1;
   bool interesting;

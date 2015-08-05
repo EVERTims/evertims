@@ -20,6 +20,9 @@
  * (C) 2007 Lauri Savioja, Rami Ajaj
  * Helsinki University of Technology CNRS / Limsi 
  *
+ * (C) 2007-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
+ *
  ***********************************************************************/
 
 #ifndef __SOCKET_HPP

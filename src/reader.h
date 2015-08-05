@@ -18,7 +18,10 @@
  * The Reader class for EVERTims
  *
  * (C) 2007 Lauri Savioja
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2007-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ***********************************************************************/
 

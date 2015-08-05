@@ -18,7 +18,10 @@
  * The socket handling for EVERTims
  *
  * (C) 2007 Lauri Savioja, Rami Ajaj
- * Helsinki University of Technology and  CNRS / Limsi 
+ * Helsinki University of Technology and  CNRS / Limsi
+ *
+ * (C) 2007-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ***********************************************************************/
 

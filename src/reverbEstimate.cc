@@ -18,7 +18,10 @@
  * The Reverberation estimation class implementation for EVERTims
  *
  * (C) 2009 Lauri Savioja
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2007-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ***********************************************************************/
 
