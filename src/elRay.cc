@@ -16,7 +16,10 @@
  * For details, see the LICENSE file
  *
  * (C) 2004-2005 Samuli Laine
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2008-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ************************************************************************/
 

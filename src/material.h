@@ -18,7 +18,10 @@
  * The Material and MaterialFile class for EVERT
  *
  * (C) 2007 Lauri Savioja, Samuel Siltanen
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2008-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ***********************************************************************/
 

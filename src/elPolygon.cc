@@ -16,10 +16,14 @@
  * For details, see the LICENSE file
  *
  * (C) 2004-2005 Samuli Laine
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2008-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ************************************************************************/
 
+#include <stdio.h>
 #include "elPolygon.h"
 #include "elAABB.h"
 #include "elBeam.h"
@@ -649,7 +653,7 @@ Polygon::ClipResult Polygon::clip(const Beam& beam)
 
 void Polygon::print() const
 { 
-  printf ("%d vertexes: ", m_points.size()); 
+  printf ("%d vertexes: ", m_points.size());
 
   for (int i=0;i<m_points.size();i++) 
     printf("[%f,%f,%f]", m_points[i][0], m_points[i][1], m_points[i][2]); 

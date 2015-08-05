@@ -4,9 +4,9 @@
 //!
 //  @file       evert.common.xconfig
 //  @brief      Xcode Config file 
-//  @author     Thibaut Carpentier
-//  @version    2.0.0
-//  @date       28/05/2010
+//  @author     Thibaut Carpentier, Markus Noisternig
+//  @version    2.0.1
+//  @date       04/08/2015
 //
 //  @details
 //  @n
@@ -21,24 +21,26 @@ MACOSX_SDK_10_5                 = $(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk
 MACOSX_SDK_10_6                 = $(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk
 MACOSX_SDK_10_7                 = $(DEVELOPER_SDK_DIR)/MacOSX10.7.sdk
 MACOSX_SDK_10_8                 = $(DEVELOPER_SDK_DIR)/MacOSX10.8.sdk
+MACOSX_SDK_10_9                 = $(DEVELOPER_SDK_DIR)/MacOSX10.9.sdk
+MACOSX_SDK_10_10                 = $(DEVELOPER_SDK_DIR)/MacOSX10.10.sdk
 
-COPYRIGHT_TAG                   = Copyright © 2010-2013
+COPYRIGHT_TAG                   = Copyright © 2010-2015
 ORGANIZATION_NAME               = Ircam
 EXECUTABLE_PREFIX               =
 
 GCC_VERSION                     = com.apple.compilers.llvm.clang.1_0     ///< for Xcode 4
 //GCC_VERSION                     = 4.2                                 ///< for Xcode 3.2
 
-SDKROOT                         = $(MACOSX_SDK_10_8)
+SDKROOT                         = $(MACOSX_SDK_10_10)
 
-MACOSX_DEPLOYMENT_TARGET        = 10.5
+MACOSX_DEPLOYMENT_TARGET        = 10.7
 VALID_ARCHS                     = i386 x86_64
 
 //**********************************************************************************
 // VERSION
 //**********************************************************************************
-PRODUCT_VERSION_MAJOR           = 1
-PRODUCT_VERSION_MINOR           = 1
+PRODUCT_VERSION_MAJOR           = 2
+PRODUCT_VERSION_MINOR           = 0
 PRODUCT_VERSION_RELEASE         = 0
 PRODUCT_VERSION                 = $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_RELEASE)
 

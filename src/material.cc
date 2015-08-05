@@ -18,10 +18,14 @@
  * The MaterialFile class for EVERT
  *
  * (C) 2007 Lauri Savioja
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2008-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ***********************************************************************/
 
+#include <stdio.h>
 #include <iostream>
 
 #include "material.h"

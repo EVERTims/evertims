@@ -16,7 +16,10 @@
  * For details, see the LICENSE file
  *
  * (C) 2004-2005 Samuli Laine
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2008-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ************************************************************************/
 
@@ -45,8 +48,8 @@ extern bool stop_signal;
 // static const float EPS_SIMILAR_PATHS			= 0.00001f;
 // static const float EPS_DEGENERATE_POLYGON_AREA	= 0.0001f;
 
-static const float EPS_SIMILAR_PATHS= 1.0e-5;
-static const float EPS_DEGENERATE_POLYGON_AREA        = 1.0e-8;
+static const float EPS_SIMILAR_PATHS            = 1.0e-5;
+static const float EPS_DEGENERATE_POLYGON_AREA  = 1.0e-8;
 
 //static const float EPS_SIMILAR_PATHS			= 0.00000000001f;
 //static const float EPS_DEGENERATE_POLYGON_AREA	= 0.000000000001f;

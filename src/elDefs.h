@@ -18,7 +18,10 @@
  * For details, see the LICENSE file
  *
  * (C) 2004-2005 Samuli Laine
- * Helsinki University of Technology  
+ * Helsinki University of Technology
+ *
+ * (C) 2008-2015 Markus Noisternig
+ * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ************************************************************************/
 
@@ -144,7 +147,7 @@ template <class T> inline const T& max2 (const T& a, const T& b)
 
 inline float frand(void)
 {
-	return (float)rand() / (float)RAND_MAX;
+	return (float)arc4random() / (float)RAND_MAX;
 }
 
 //------------------------------------------------------------------------
