@@ -23,17 +23,18 @@ MACOSX_SDK_10_7                 = $(DEVELOPER_SDK_DIR)/MacOSX10.7.sdk
 MACOSX_SDK_10_8                 = $(DEVELOPER_SDK_DIR)/MacOSX10.8.sdk
 MACOSX_SDK_10_9                 = $(DEVELOPER_SDK_DIR)/MacOSX10.9.sdk
 MACOSX_SDK_10_10                 = $(DEVELOPER_SDK_DIR)/MacOSX10.10.sdk
+MACOSX_SDK_10_11                 = $(DEVELOPER_SDK_DIR)/MacOSX10.11.sdk
 
-COPYRIGHT_TAG                   = Copyright © 2010-2015
+COPYRIGHT_TAG                   = Copyright © 2010-2016
 ORGANIZATION_NAME               = Ircam
 EXECUTABLE_PREFIX               =
 
 GCC_VERSION                     = com.apple.compilers.llvm.clang.1_0     ///< for Xcode 4
 //GCC_VERSION                     = 4.2                                 ///< for Xcode 3.2
 
-SDKROOT                         = $(MACOSX_SDK_10_10)
+SDKROOT                         = $(MACOSX_SDK_10_11)
 
-MACOSX_DEPLOYMENT_TARGET        = 10.7
+MACOSX_DEPLOYMENT_TARGET        = 10.11
 VALID_ARCHS                     = i386 x86_64
 
 //**********************************************************************************
