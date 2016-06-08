@@ -143,7 +143,10 @@ int main (int argc, char **argv)
     s->addWriter (pw);
   }
 
-  while (!re->geometryInitialized ()) ;
+  while (!re->geometryInitialized ())
+  {
+      usleep ( 2000 ); // for mac, else calculation never starts...
+  }
   cout << "Got some geometry!" << endl;
 
   //  s->readRoomDescription (room_file, materials_file);
