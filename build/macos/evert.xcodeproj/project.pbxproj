@@ -191,6 +191,8 @@
 /* Begin PBXProject section */
 		F8E48D4F123E2F960019176F /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = F8E48D52123E2F960019176F /* Build configuration list for PBXProject "evert" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -249,6 +251,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8E4904B123FA2540019176F /* evert.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 			};
 			name = Debug;
 		};
@@ -256,6 +259,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8E4904C123FA2540019176F /* evert.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 			};
 			name = Release;
 		};

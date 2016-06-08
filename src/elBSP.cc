@@ -281,7 +281,7 @@ namespace
 {
 	struct RecursionEntry
 	{
-		unsigned int* ptr;
+		uintptr_t*    ptr;
 		float		  dEnter;
 		float		  dExit;
 	};
@@ -388,7 +388,7 @@ static BSP::TempNode* constructRecursive(const Polygon** polygons, int numPolygo
 
 //------------------------------------------------------------------------
 
-static unsigned int* convertRecursive(BSP::TempNode* node, unsigned int* list)
+static uintptr_t* convertRecursive(BSP::TempNode* node, uintptr_t* list)
 {
 	if (node->m_splitAxis < 0)
 	{
@@ -400,14 +400,14 @@ static unsigned int* convertRecursive(BSP::TempNode* node, unsigned int* list)
 		}
 		*list++ = (node->m_numPolygons << 2) | 3;
 		for (int i=0; i < node->m_numPolygons; i++)
-			*list++ = (unsigned int)node->m_polygons[i];
+			*list++ = (uintptr_t)node->m_polygons[i];
 		return list;
 	}
 
 	// inside node
-	unsigned int* pRight = convertRecursive(node->m_children[0], list+2);
-	list[0] = ((unsigned int)pRight) + node->m_splitAxis;
-	list[1] = *((unsigned int*)&node->m_splitPos);
+	uintptr_t* pRight = convertRecursive(node->m_children[0], list+2);
+	list[0] = ((uintptr_t)pRight) + node->m_splitAxis;
+	list[1] = *((uintptr_t*)&node->m_splitPos);
 	return convertRecursive(node->m_children[1], pRight);
 }
 
@@ -428,9 +428,9 @@ BSP::~BSP(void)
 
 //------------------------------------------------------------------------
 
-static void convertHierarchy(BSP::TempNode* root, unsigned int* list)
+static void convertHierarchy(BSP::TempNode* root, uintptr_t* list)
 {
-	unsigned int* end  = convertRecursive(root, list);
+	uintptr_t* end  = convertRecursive(root, list);
 	//printf("list size: %d bytes (%.2f Mb)\n", (end-list)*4, (float)(end-list)*4.f/1024.f/1024.f);
 }
 
@@ -490,7 +490,7 @@ void BSP::constructHierarchy(const Polygon** polygons, int numPolygons)
 	delete[] g_items;
 
 	// convert
-	m_list = new unsigned int[g_listSize];
+	m_list = new uintptr_t[g_listSize];
 	convertHierarchy(m_hierarchy, m_list);
 
 	// delete the temp hierarchy
@@ -595,7 +595,7 @@ EL_FORCE_INLINE static bool isectPolygonsAny(const Polygon** list, int numPolygo
 
 //------------------------------------------------------------------------
 
-EL_FORCE_INLINE static bool rayCastListAny(unsigned int* listOrig, float dEnterOrig, float dExitOrig)
+EL_FORCE_INLINE static bool rayCastListAny(uintptr_t* listOrig, float dEnterOrig, float dExitOrig)
 {
 	if (dEnterOrig < 0.f) dEnterOrig = 0.f;
 	if (dExitOrig  > 1.f) dExitOrig  = 1.f;
@@ -610,10 +610,10 @@ EL_FORCE_INLINE static bool rayCastListAny(unsigned int* listOrig, float dEnterO
 	while (stack != g_recursionStack)
 	{
 		--stack;
-		unsigned int* list   = stack->ptr;
+		uintptr_t* list   = stack->ptr;
 		float dEnter		 = stack->dEnter;
 		float dExit			 = stack->dExit;
-		unsigned int pRight	 = *list++;
+		uintptr_t pRight	 = *list++;
 
 label_skipstack:
 
@@ -631,7 +631,7 @@ label_skipstack:
 		int   a = pRight&3;
 		float d = getSplitDistance(*((float*)list), a);
 
-		unsigned int* ch[2] = { list+1, (unsigned int*)(pRight-a) };
+		uintptr_t* ch[2] = { list+1, (uintptr_t*)(pRight-a) };
 		if (g_dirsgn[a])
 			swap(ch[1], ch[0]);
 
@@ -699,7 +699,7 @@ EL_FORCE_INLINE static const Polygon* isectPolygons(const Polygon** list, int nu
 
 //------------------------------------------------------------------------
 
-EL_FORCE_INLINE static const Polygon* rayCastList(unsigned int* listOrig, float dEnterOrig, float dExitOrig)
+EL_FORCE_INLINE static const Polygon* rayCastList(uintptr_t* listOrig, float dEnterOrig, float dExitOrig)
 {
 	if (dEnterOrig < 0.f) dEnterOrig = 0.f;
 	if (dExitOrig  > 1.f) dExitOrig  = 1.f;
@@ -714,10 +714,10 @@ EL_FORCE_INLINE static const Polygon* rayCastList(unsigned int* listOrig, float 
 	while (stack != g_recursionStack)
 	{
 		--stack;
-		unsigned int* list   = stack->ptr;
+		uintptr_t* list   = stack->ptr;
 		float dEnter		 = stack->dEnter;
 		float dExit			 = stack->dExit;
-		unsigned int pRight	 = *list++;
+		uintptr_t pRight	 = *list++;
 
 label_skipstack:
 
@@ -735,7 +735,7 @@ label_skipstack:
 		int   a = pRight&3;
 		float d = getSplitDistance(*((float*)list), a);
 
-		unsigned int* ch[2] = { list+1, (unsigned int*)(pRight-a) };
+		uintptr_t* ch[2] = { list+1, (uintptr_t*)(pRight-a) };
 		if (g_dirsgn[a])
 			swap(ch[1], ch[0]);
 
@@ -792,9 +792,9 @@ EL_FORCE_INLINE static bool intersectAABBFrustum(const Vector3& m,
 	return true;
 }
 
-static void beamCastRecursive(unsigned int* list)
+static void beamCastRecursive(uintptr_t* list)
 {
-	unsigned int pRight	 = *list++;
+	uintptr_t pRight = *list++;
 
 	if (g_beamBeam->numPleqs() && 
 	    !intersectAABBFrustum(g_beamMid, g_beamDiag, 
@@ -805,7 +805,7 @@ static void beamCastRecursive(unsigned int* list)
 	// leaf?
 	if ((pRight & 3) == 3)
 	{
-		int numTriangles = pRight>>2;
+		uintptr_t numTriangles = pRight>>2;
 		for (int i=0; i < numTriangles; i++)
 		{
 			const Polygon* poly = (const Polygon*)(*list++);
@@ -823,7 +823,7 @@ static void beamCastRecursive(unsigned int* list)
 	unsigned int axis	  = pRight & 3;
 	float		 splitPos = *((float*)list);
 
-	unsigned int* ch[2] = { list+1, (unsigned int*)(pRight-axis) };
+	uintptr_t* ch[2] = { list+1, (uintptr_t*)(pRight-axis) };
 
 	float om = g_beamMid[axis];
 	float od = g_beamDiag[axis];
@@ -843,7 +843,7 @@ static void beamCastRecursive(unsigned int* list)
 void BSP::beamCast(const Beam& beam, std::vector<const Polygon*>& result) const
 {
 	g_beamMid  = .5f*(m_aabb.m_mn + m_aabb.m_mx);
-	g_beamDiag = .5f*(m_aabb.m_mx - m_aabb.m_mn);
+    g_beamDiag = .5f*(m_aabb.m_mx - m_aabb.m_mn);
 	g_beamBeam = &beam;
 	g_beamResult = &result;
 
