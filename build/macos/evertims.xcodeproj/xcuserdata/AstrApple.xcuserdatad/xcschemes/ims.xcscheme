@@ -67,7 +67,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-d 1 -D 2 -m /Users/AstrApple/Projects/EVERTims/evertims-git/evertims/evertims/resources/materials.dat"
+            argument = "-d 1 -D 2 -m $(SRCROOT)/../../resources/materials.dat"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -149,6 +149,8 @@
 /* Begin PBXProject section */
 		F8E48DDB123E31890019176F /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = F8E48DDE123E31890019176F /* Build configuration list for PBXProject "evertims" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -188,14 +190,18 @@
 		F8E48DDC123E31890019176F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		F8E48DDD123E31890019176F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -203,6 +209,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 			};
 			name = Debug;
 		};
@@ -210,6 +217,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F8E490B4123FA5C20019176F /* evertims.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 			};
 			name = Release;
 		};
