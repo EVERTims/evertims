@@ -64,6 +64,7 @@ public:
 					bool			invert			(void);
 	EL_FORCE_INLINE float			det				(void) const;
 					void			rotate			(float radians, const Vector3& aboutThis);
+                    const Vector3   toEuler			(void) const;
 
 private:
 	float							matrix[3][3];
@@ -183,7 +184,7 @@ EL_FORCE_INLINE void			Matrix3::operator*=	(float f)						{ for(int i=0;i<3;i++)
 EL_FORCE_INLINE void			Matrix3::identity	(void)							{ for(int i=0;i<3;i++) for(int j=0;j<3;j++) matrix[i][j] = (i == j) ? float(1) : float(0); }
 EL_FORCE_INLINE void			Matrix3::transpose	(void)							{ swap(matrix[1][0], matrix[0][1]); swap(matrix[2][0], matrix[0][2]); swap(matrix[2][1], matrix[1][2]); }
 EL_FORCE_INLINE float			Matrix3::det		(void) const					{ return matrix[0][0] * (matrix[1][1]*matrix[2][2] - matrix[2][1]*matrix[1][2]) + matrix[0][1] * (matrix[2][0]*matrix[1][2] - matrix[1][0]*matrix[2][2]) + matrix[0][2] * (matrix[1][0]*matrix[2][1] - matrix[2][0]*matrix[1][1]); }
-
+    
 //------------------------------------------------------------------------
 
 EL_FORCE_INLINE bool			operator==	(const Matrix3x4& m1, const Matrix3x4& m2)	{ for(int i=0;i<3;i++) for(int j=0;j<4;j++) if(m1[i][j] != m2[i][j]) return false; return true; }

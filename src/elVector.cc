@@ -124,6 +124,18 @@ void Matrix3x4::rotate(float radians, const Vector3& aboutThis)
 
 //------------------------------------------------------------------------
 
+const Vector3 Matrix3::toEuler(void) const
+{
+    // return a the rotation component of the Matrix as a Vector3(rot_x,rot_y,rot_z) euler
+    float rx = (float)atan2(matrix[2][1], matrix[2][2]);
+    float ry = (float)atan2(-matrix[2][0], sqrt(pow(matrix[2][1],2) + pow(matrix[2][2],2)));
+    float rz = (float)atan2(matrix[1][0], matrix[0][0]);
+    Vector3 euler = Vector3(rx, ry, rz);
+    return euler;
+}
+
+//------------------------------------------------------------------------
+
 Vector4 EL::getPlaneEquation(const Vector3& a, const Vector3& b, const Vector3& c)
 {
 	float	x1 = b.x - a.x;
