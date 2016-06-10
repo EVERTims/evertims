@@ -51,7 +51,8 @@ public:
   void disconnect ();
 
   virtual const char* getType() { return "Base"; };
-  virtual void write (EL::PathSolution *solution) { return; };
+  virtual void writeMajor (EL::PathSolution *solution) { return; };
+  virtual void writeMinor (EL::PathSolution *solution) { return; };
 
 protected:
   Socket *m_socket;
@@ -73,7 +74,8 @@ class AuralizationWriter : public Writer
   AuralizationWriter (char *host);
 
   virtual const char* getType() { return "Auralization"; };
-  void write (EL::PathSolution *solution);
+  void writeMajor (EL::PathSolution *solution);
+  void writeMinor (EL::PathSolution *solution);
 
  private:
 
@@ -121,7 +123,8 @@ class VisualizationWriter : public Writer
   VisualizationWriter (char *host): Writer(host), m_numLines(0) {};
 
   virtual const char* getType() { return "VirChor"; };
-  void write (EL::PathSolution *solution);
+  void writeMajor (EL::PathSolution *solution);
+  void writeMinor (EL::PathSolution *solution);
 
  private:
   int m_numLines;
@@ -134,7 +137,8 @@ class PrintWriter : public Writer
   PrintWriter (char *addr): Writer(addr) {};
 
   virtual const char* getType() { return "Print"; };
-  void write (EL::PathSolution *solution);
+  void writeMajor (EL::PathSolution *solution);
+  void writeMinor (EL::PathSolution *solution);
 };
 
 #endif

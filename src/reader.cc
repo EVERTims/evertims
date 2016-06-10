@@ -42,9 +42,10 @@ using namespace std;
 
 pthread_t update_thread;
 
-Reader::Reader (const char* material_filename, int input_port, float threshold):
+Reader::Reader (const char* material_filename, int input_port, float threshold_loc, float threshold_rot):
   m_input_port (input_port),
-  m_threshold ( threshold * threshold )  // Comparison is to the square of the distance
+  m_threshold_loc ( threshold_loc * threshold_loc ),  // Comparison is to the square of the distance
+  m_threshold_rot ( threshold_rot )
 {
   m_materials.readFile(material_filename);
 }
@@ -91,7 +92,7 @@ void Reader::createElementList()
   }
 }
 
-void parsePosition(std::string msg, std::string& id, EL::Vector3& pos)
+void parsePosition(std::string msg, std::string& id, EL::Vector3& pos, EL::Matrix3& ori)
 {
   char idBuf[512];
 
@@ -113,11 +114,14 @@ void parsePosition(std::string msg, std::string& id, EL::Vector3& pos)
   p0 = p0*SCALER;
   p1 = p1*SCALER;
   p2 = p2*SCALER;
+    
+  ori = EL::Matrix3(m00, m01, m02, m10, m11, m12, m20, m21, m22);
+  const EL::Vector3 eul = ori.toEuler();
 
   std::cout << id << " moved ";
   // from: [" << pos[0] << "," << pos[1] << "," << pos[2] << "]";
   pos.set( p0, p1, p2 );
-  std::cout << " to: [" << pos[0] << "," << pos[1] << "," << pos[2] << "]" << std::endl;
+  std::cout << " to: [" << pos[0] << "," << pos[1] << "," << pos[2] << "]" << " , [" << eul[0] << "," << eul[1] << "," << eul[2] << "]" << std::endl;
 }
 
 void parseFace(std::string msg, 
@@ -226,8 +230,9 @@ void Reader::parseListener ( std::string& msg )
 {
   std::string id;
   EL::Vector3 pos;
+  EL::Matrix3 ori;
 
-  parsePosition(msg, id, pos);
+  parsePosition(msg, id, pos, ori);
   //  pos[0] = 1.64*SCALER;  pos[1] = 8.27*SCALER;  pos[2] = 2.20*SCALER;
 
   std::map<std::string, EL::Listener>::iterator l = m_listeners.find(id);
@@ -237,15 +242,25 @@ void Reader::parseListener ( std::string& msg )
     {
       // Yes, we do. So let us check if it moved enough 
       EL::Listener& listener = l->second;
-      if ( ( pos - listener.getPosition() ).lengthSqr() > m_threshold )
+      if ( ( pos - listener.getPosition() ).lengthSqr() > m_threshold_loc )
 	{
 	  // OK, it did, and we have to update all the solution nodes of this source
 	  listener.setPosition ( pos );
 
 	  for (std::map<std::string, EL::Source>::iterator s = m_sources.begin();
 	       s != m_sources.end(); s++)
-	    m_solver->markListenerMovement ( s->second, listener );
+	    m_solver->markListenerMovementMajor ( s->second, listener );
 	}
+      // It did not move enough to resimulate propagation, but did it rotate so that we must update the auralization client?
+      if ( ( ori.toEuler() - listener.getOrientation().toEuler() ).lengthSqr() > m_threshold_rot )
+    {
+       // OK it did and we just have to notify the auralization client (no solution update required)
+       listener.setOrientation( ori );
+        
+        for (std::map<std::string, EL::Source>::iterator s = m_sources.begin();
+             s != m_sources.end(); s++)
+            m_solver->markListenerMovementMinor ( s->second, listener );
+    }
     }
   // No. We got to create a new listener and solution nodes.
   else
@@ -269,8 +284,9 @@ void Reader::parseSource ( std::string& msg )
 {
   std::string id;
   EL::Vector3 pos;
+  EL::Matrix3 ori;
 
-  parsePosition(msg, id, pos);
+  parsePosition(msg, id, pos, ori);
   //  pos[0] = 0.0*SCALER;  pos[1] = -1.0*SCALER;  pos[2] = 1.50*SCALER;
 
   std::map<std::string, EL::Source>::iterator s = m_sources.find(id);
@@ -279,14 +295,14 @@ void Reader::parseSource ( std::string& msg )
   if ( s != m_sources.end() )
     {
       // Yes, we do. So let us check if the source really moved enough 
-      if ( ( pos - s->second.getPosition() ).lengthSqr() > m_threshold )
+      if ( ( pos - s->second.getPosition() ).lengthSqr() > m_threshold_loc )
 	{
 	  // OK, it did, and we have to update all the solution nodes of this source
 	  s->second.setPosition ( pos );
 
 	  for (std::map<std::string, EL::Listener>::iterator l = m_listeners.begin();
 	       l != m_listeners.end(); l++)
-	    m_solver->markSourceMovement ( s->second, l->second );
+	    m_solver->markSourceMovementMajor ( s->second, l->second );
 	}
     }
   // No. We got to create a new source and solution nodes. Cool!

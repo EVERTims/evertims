@@ -177,14 +177,21 @@ void AuralizationWriter::createSourceMessage(const EL::Source& source)
 void AuralizationWriter::createListenerMessage(const EL::Listener& listener)
 {
   const EL::Vector3& p = listener.getPosition();
+  const EL::Vector3& eul = listener.getOrientation().toEuler();
+  cout << "listener pos: " << p[0] << " rot: " << eul[0] << " , " << eul[1] << " , " << eul[2] << endl;
   const std::string& name = listener.getName();
   char *cptr = strdup(name.c_str());
-
-  OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/listener", ",sfff");)
+  // add header to OSC msg
+  OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/listener", ",sffffff");)
   OSC_SAFE(OSC_writeStringArg(&m_oscbuf, cptr);)
+  // add position information to OSC msg
   OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[0]);)
   OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[1]);)
   OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[2]);)
+  // add orientation information to OSC msg
+  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[0]);)
+  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[1]);)
+  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[2]);)
 
   free(cptr);
 }
@@ -290,7 +297,7 @@ void AuralizationWriter::releaveLeftOverPaths()
     }
 }
 
-void AuralizationWriter::write(EL::PathSolution *solution)
+void AuralizationWriter::writeMajor(EL::PathSolution *solution)
 {
   int pathID;
   float len;
@@ -352,10 +359,31 @@ void AuralizationWriter::write(EL::PathSolution *solution)
   printf ( "Sent!\n" );
 }
 
+void AuralizationWriter::writeMinor(EL::PathSolution *solution)
+{
+    const EL::Listener& listener = solution->getListener();
+    OSCTimeTag tt;
+    int error;
+    
+    error = OSC_openBundle(&m_oscbuf, tt);
+    if (error)
+        printf("OSC error: %s\n", OSC_errorMessage);
+    
+    createListenerMessage ( listener );
+    
+    error = OSC_closeBundle(&m_oscbuf);
+    if (error)
+        printf("OSC error: %s\n", OSC_errorMessage);
+    
+    m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
+    OSC_resetBuffer(&m_oscbuf);
+    
+    printf ( "Sent!\n" );
+}
 
 #define ABS(x) ((x)>0 ? (x) : (-(x)))
 
-void VisualizationWriter::write(EL::PathSolution *solution)
+void VisualizationWriter::writeMajor(EL::PathSolution *solution)
 {
   int numLines = 1;
   bool interesting;
@@ -393,7 +421,11 @@ void VisualizationWriter::write(EL::PathSolution *solution)
   m_numLines = numLines;
 }
 
-void PrintWriter::write(EL::PathSolution *solution)
+void VisualizationWriter::writeMinor(EL::PathSolution *solution)
+{
+}
+
+void PrintWriter::writeMajor(EL::PathSolution *solution)
 {
   int numLines = 0;
   ReverbEstimator r(SAMPLE_RATE, solution, SPEED_OF_SOUND, MAX_RESPONSE_TIME);
@@ -413,3 +445,6 @@ void PrintWriter::write(EL::PathSolution *solution)
     }
 }
 
+void PrintWriter::writeMinor(EL::PathSolution *solution)
+{
+}

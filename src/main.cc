@@ -53,7 +53,8 @@ int main (int argc, char **argv)
   char  *virchor_addr = 0;
   char  *print_addr = 0;
   char  tmp[256];
-  float threshold = 0.1;
+  float threshold_loc = 0.1;
+  float threshold_rot = 0.1;
 
   strcpy (room_file, "sigyn.room");
   strcpy (material_file, "materials.dat");
@@ -97,7 +98,7 @@ int main (int argc, char **argv)
       print_addr = strdup(tmp);
       break;
     case 't':
-      sscanf ( optarg, "%f", &threshold );
+      sscanf ( optarg, "%f", &threshold_loc );
       break;
     case '?':
       cout << "Command line option is not specified!" << endl;
@@ -111,7 +112,7 @@ int main (int argc, char **argv)
   if (optind < argc)
   	cout << "Abandoned command line parsing at " << argv[optind] << endl;
 
-  Reader *re = new Reader ( material_file, input_socket, threshold );
+  Reader *re = new Reader ( material_file, input_socket, threshold_loc, threshold_rot);
   Solver *s = new Solver ( mindepth, maxdepth, graphics );
 
   s->attachReader (re);

@@ -56,7 +56,8 @@ public:
 
   struct SolutionNode
   {
-    enum Status          m_listener_status;
+    enum Status          m_listener_status_major;
+    enum Status          m_listener_status_minor;
     enum Status          m_geom_or_source_status;
     bool                 m_to_send;
     // double buffering for the source and listener
@@ -66,6 +67,7 @@ public:
 
     EL::Vector3          m_new_source_position;
     EL::Vector3          m_new_listener_position;
+    EL::Matrix3          m_new_listener_orientation;
     EL::PathSolution     *m_solution;
     std::vector<Writer *> m_writers;
   };
@@ -97,8 +99,9 @@ public:
 
   void markGeometryChanged  ();
   void createNewSolutionNode ( const EL::Source& source, const EL::Listener& listener );
-  void markSourceMovement   ( const EL::Source& source, const EL::Listener& listener );
-  void markListenerMovement ( const EL::Source& source, const EL::Listener& listener );
+  void markSourceMovementMajor   ( const EL::Source& source, const EL::Listener& listener );
+  void markListenerMovementMajor ( const EL::Source& source, const EL::Listener& listener );
+  void markListenerMovementMinor ( const EL::Source& source, const EL::Listener& listener );
 
 private:
   void createNewSolution    ( int depth, const EL::Source &source, const EL::Listener& listener );

@@ -42,7 +42,7 @@ class Solver;
 class Reader
 {
 public:
-  Reader (const char *material_file, int input_socket, float threshold );
+  Reader (const char *material_file, int input_socket, float threshold_loc, float threshold_rot );
 
   void start ();
 
@@ -69,7 +69,8 @@ public:
 
 private:
   int m_input_port;
-  float m_threshold;
+  float m_threshold_loc;
+  float m_threshold_rot;
 
   MaterialFile m_materials;
   std::map<std::string, EL::Room::Element> emap;

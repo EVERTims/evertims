@@ -66,7 +66,7 @@ Solver::Solver (int mindepth, int maxdepth, bool graphics) :
   /*
   for (int idx=0 ; idx < MAX_NUM_SOLUTIONS ; idx++)
     {
-      m_solutionNodes[idx].m_listener_status = UPDATED;
+      m_solutionNodes[idx].m_listener_status_major = UPDATED;
       m_solutionNodes[idx].m_geom_or_source_status = CHANGED;
       m_solutionNodes[idx].m_to_send = false;
       m_solutionNodes[idx].m_source = EL::Source();
@@ -169,7 +169,7 @@ void Solver::createNewSolutionNode ( const EL::Source& source, const EL::Listene
       cerr << "Too many solution nodes!!! (go and increase the MAX_NUM_SOLUTIONS constant or find the bug causing me to be here." << endl;
       return;
     }
-  m_solutionNodes[idx].m_listener_status = UPDATED;
+  m_solutionNodes[idx].m_listener_status_major = UPDATED;
   m_solutionNodes[idx].m_geom_or_source_status = CHANGED;
   m_solutionNodes[idx].m_to_send = false;
   for (int i=0;i<2;i++) m_solutionNodes[idx].m_source[i] = source;
@@ -213,7 +213,7 @@ void Solver::mapAvailableSolutionNodes ()
   m_lastMappedSolutionNode = i - 1;
 }
 
-void Solver::markSourceMovement( const EL::Source& source, const EL::Listener& listener )
+void Solver::markSourceMovementMajor( const EL::Source& source, const EL::Listener& listener )
 {
   std::string id = solutionID ( source, listener );
 
@@ -235,7 +235,7 @@ void Solver::markSourceMovement( const EL::Source& source, const EL::Listener& l
     }
 }
 
-void Solver::markListenerMovement( const EL::Source& source, const EL::Listener& listener )
+void Solver::markListenerMovementMajor( const EL::Source& source, const EL::Listener& listener )
 {
   std::string id = solutionID ( source, listener );
 
@@ -248,8 +248,18 @@ void Solver::markListenerMovement( const EL::Source& source, const EL::Listener&
   if ( it != m_solutionNodeMap.end() )
     {
       it->second->m_new_listener_position = p;
-      it->second->m_listener_status = CHANGED;
+      it->second->m_listener_status_major = CHANGED;
     }
+}
+
+void Solver::markListenerMovementMinor( const EL::Source& source, const EL::Listener& listener )
+{
+    std::string id = solutionID ( source, listener );
+    t_solutionNodeIterator it = m_solutionNodeMap.find(id);
+    
+    const EL::Matrix3& ori = listener.getOrientation();
+    it->second->m_new_listener_orientation = ori;
+    it->second->m_listener_status_minor = CHANGED;
 }
 
 void Solver::interruptCalculation()
@@ -328,7 +338,7 @@ void Solver::update ()
       if (m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_geom_or_source_status == IN_PROCESS)
 	m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_geom_or_source_status = UPDATED;
       m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_to_send = true;
-      m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_listener_status = CHANGED;
+      m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_listener_status_major = CHANGED;
       m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_current = 
 	(m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_current + 1)&1;
       
@@ -381,10 +391,10 @@ void Solver::update ()
     if (it->second->m_solution) 
       {
 	//	cout << "Ready to update solution: " << solutionID ( it->second->m_solution ) << endl;
-	if (it->second->m_listener_status == CHANGED)
+	if (it->second->m_listener_status_major == CHANGED)
 	  {
 	    cout << "Updating the solution: " << solutionID ( it->second->m_solution ) << endl;
-	    it->second->m_listener_status = UPDATED;
+	    it->second->m_listener_status_major = UPDATED;
 	    it->second->m_listener[it->second->m_current].setPosition ( it->second->m_new_listener_position );
 	    it->second->m_solution->update ();
 	    it->second->m_to_send = true;
@@ -396,10 +406,24 @@ void Solver::update ()
 		 w != it->second->m_writers.end(); w++)
 	      {
 		cout << "Sending the solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << endl;
-		(*w)->write ( it->second->m_solution );
+		(*w)->writeMajor ( it->second->m_solution );
 		it->second->m_to_send = false;
 	      }
 	  }
+     if (it->second->m_listener_status_minor == CHANGED)
+      {
+        it->second->m_listener_status_minor = UPDATED;
+        it->second->m_listener[it->second->m_current].setOrientation ( it->second->m_new_listener_orientation );
+        // Update output to the Auralization writer (only) of the solution node (writeReduce methods of other writers are dummies)
+        for (std::vector<Writer *>::iterator w = it->second->m_writers.begin();
+             w != it->second->m_writers.end(); w++)
+          {
+              cout << "Sending additional info on solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << endl;
+              (*w)->writeMinor ( it->second->m_solution );
+              it->second->m_to_send = false;
+          }
+
+      }
       }
   m_ready_to_draw = true;
 }
