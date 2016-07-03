@@ -55,6 +55,10 @@
 #include <vector>
 #include <cstdlib>
 
+#if defined(__Linux)
+#    include <bsd/stdlib.h>
+#endif
+
 #if defined(_MSC_VER)
 #	pragma warning(pop)
 #endif
