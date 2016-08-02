@@ -177,21 +177,31 @@ void AuralizationWriter::createSourceMessage(const EL::Source& source)
 void AuralizationWriter::createListenerMessage(const EL::Listener& listener)
 {
   const EL::Vector3& p = listener.getPosition();
+  const EL::Matrix3& mRot = listener.getOrientation();
   const EL::Vector3& eul = listener.getOrientation().toEuler();
   cout << "listener pos: " << p[0] << " rot: " << eul[0] << " , " << eul[1] << " , " << eul[2] << endl;
   const std::string& name = listener.getName();
   char *cptr = strdup(name.c_str());
   // add header to OSC msg
-  OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/listener", ",sffffff");)
+  OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/listener", ",sffffffffffff");)
   OSC_SAFE(OSC_writeStringArg(&m_oscbuf, cptr);)
   // add position information to OSC msg
   OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[0]);)
   OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[1]);)
   OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[2]);)
   // add orientation information to OSC msg
-  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[0]);)
-  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[1]);)
-  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[2]);)
+  //  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[0]);)
+  //  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[1]);)
+  //  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[2]);)
+
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            // WARNING: trying to access mRot[i][j] will not return the full matrix here
+            OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, mRot.getRow(i)[j]);)
+        }
+    }
 
   free(cptr);
 }
@@ -206,9 +216,9 @@ void AuralizationWriter::createReflectionMessage(int pathID,
 
 {
   if ( state == FADE_IN )
-    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/in", ",iiffffffffffffffff");)
+    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/in" , ",iifffffffffffffffff");)
   else
-    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/upd", ",iiffffffffffffffff");)
+    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/upd", ",iifffffffffffffffff");)
 
   OSC_SAFE(OSC_writeIntArg(&m_oscbuf, pathID);)
 
@@ -224,7 +234,7 @@ void AuralizationWriter::createReflectionMessage(int pathID,
 
   OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, len);)
 
-  for (int i=0;i<9;i++)
+  for (int i=0;i<10;i++)
     OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, 1-reflectance[i]);)
     
 }
