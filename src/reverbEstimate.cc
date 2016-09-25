@@ -38,6 +38,8 @@ Response::Response(double samplingFrequency, double lengthInSeconds):
   m_length((int)(lengthInSeconds * samplingFrequency))
 {
   m_signal = new double[m_length];
+    // dpq: init array to zeros (since += is used aftewards
+    for( int i = 0; i < m_length; i++) m_signal[i] = 0.0;
 }
 
 Response::~Response()
@@ -55,8 +57,9 @@ void Response::setItem(double time, double value)
 void Response::addItem(double time, double value)
 {
   int idx = time * m_samplingFrequency;
-  if (idx < m_length)
+    if (idx < m_length){
     m_signal[idx] += value;
+    }
 }
 
 void Response::SchroederIntegrate()
@@ -73,7 +76,10 @@ void Response::SchroederIntegrate()
   idx = m_length;
   while (idx) 
     {
-      m_signal[idx] = 10 * log10(m_signal[idx] / sum);
+        if (m_signal[idx] != 0){ // DPQ: avoid adding -Inf values to m_signal when (guess here:) processing solution
+        m_signal[idx] = 10 * log10(m_signal[idx] / sum);
+        }
+     
       idx--;
     }
 }

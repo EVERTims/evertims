@@ -179,7 +179,7 @@ void AuralizationWriter::createListenerMessage(const EL::Listener& listener)
   const EL::Vector3& p = listener.getPosition();
   const EL::Matrix3& mRot = listener.getOrientation();
   const EL::Vector3& eul = listener.getOrientation().toEuler();
-  cout << "listener pos: " << p[0] << " rot: " << eul[0] << " , " << eul[1] << " , " << eul[2] << endl;
+  cout << "listener pos: (" << p[0] << ", " << p[1] << ", " << p[2] << ") rot: (" << eul[0] << ", " << eul[1] << ", " << eul[2] << ")" << endl;
   const std::string& name = listener.getName();
   char *cptr = strdup(name.c_str());
   // add header to OSC msg
@@ -366,6 +366,31 @@ void AuralizationWriter::writeMajor(EL::PathSolution *solution)
     OSC_resetBuffer(&m_oscbuf);
   }
 
+    
+    // SEND R60
+    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/r60" , ",ffffffffff");)
+    
+    ReverbEstimator r(SAMPLE_RATE, solution, SPEED_OF_SOUND, MAX_RESPONSE_TIME);
+    
+    solution->print(m_minOrder, m_maxOrder, m_maxAmount);
+    
+    double minValue, minTime;
+    double maxValue, maxTime;
+    
+    for (int i=0; i<10; i++)
+    {
+        r.getMaxMin(i, minValue, minTime, maxValue, maxTime);
+        double startR60 = minValue * 1.1;
+        double endR60   = maxValue * 0.9;
+        double R60      = r.getEstimateR60(i, startR60, endR60);
+        printf("%d. band: first %f at %f, last %f at %f. R60 = %f\n", i, maxValue, maxTime, minValue, minTime, R60 );
+        OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, (float)R60);)
+    }
+    
+    m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
+    OSC_resetBuffer(&m_oscbuf);
+    
+    
   printf ( "Sent!\n" );
 }
 
@@ -437,22 +462,23 @@ void VisualizationWriter::writeMinor(EL::PathSolution *solution)
 
 void PrintWriter::writeMajor(EL::PathSolution *solution)
 {
-  int numLines = 0;
-  ReverbEstimator r(SAMPLE_RATE, solution, SPEED_OF_SOUND, MAX_RESPONSE_TIME);
+//  int numLines = 0;
+//  ReverbEstimator r(SAMPLE_RATE, solution, SPEED_OF_SOUND, MAX_RESPONSE_TIME);
+//
+//  solution->print(m_minOrder, m_maxOrder, m_maxAmount);
+//
+//  double minValue, minTime;
+//  double maxValue, maxTime;
+//
+//  for (int i=0; i<10; i++)
+//    {
+//      r.getMaxMin(i, minValue, minTime, maxValue, maxTime);
+//      double startR60 = minValue * 1.1;
+//      double endR60   = maxValue * 0.9;
+//      double R60      = r.getEstimateR60(i, startR60, endR60);
+//      printf("%d. band: first %f at %f, last %f at %f. R60 = %f\n", i, maxValue, maxTime, minValue, minTime, R60 );
+//    }
 
-  solution->print(m_minOrder, m_maxOrder, m_maxAmount);
-
-  double minValue, minTime;
-  double maxValue, maxTime;
-
-  for (int i=0; i<10; i++)
-    {
-      r.getMaxMin(i, minValue, minTime, maxValue, maxTime);
-      double startR60 = minValue * 1.1;
-      double endR60   = maxValue * 0.9;
-      double R60      = r.getEstimateR60(i, startR60, endR60);
-      printf("%d. band: first %f at %f, last %f at %f. R60 = %f\n", i, maxValue, maxTime, minValue, minTime, R60 );
-    }
 }
 
 void PrintWriter::writeMinor(EL::PathSolution *solution)
