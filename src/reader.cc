@@ -268,6 +268,7 @@ void Reader::parseListener ( std::string& msg )
       EL::Listener listener;
 
       listener.setPosition ( pos );
+      listener.setOrientation( ori );
       listener.setName ( id );
 
       m_listeners[id] = listener;
