@@ -41,47 +41,51 @@ class Solver;
 
 class Reader
 {
+    
 public:
-  Reader (const char *material_file, int input_socket, float threshold_loc, float threshold_rot );
-
-  void start ();
-
-  void updateElements(const std::string& id, 
-		      const EL::Room::Element& element);
-  void createElementList();
-
-  void initializeMembers(EL::Room& room);
-  void getRoom(EL::Room& room);
-
-  EL_FORCE_INLINE MaterialFile& getMaterials() { return m_materials; };
-
-  EL_FORCE_INLINE void attachSolver (Solver *solver) { m_solver = solver; }
-  void signalSolver ();
-
-  EL_FORCE_INLINE bool geometryInitialized() { return m_geometry_initialized; };
-
-  Socket *initializeInputSocket() { return new Socket(m_input_port); };
-
-  void parseSource ( std::string& msg );
-  void parseListener ( std::string& msg );
-
-  void printSourcesAndListeners();
-
+    
+    Reader (const char *material_file, int input_socket, float threshold_loc, float threshold_rot );
+    
+    void start ();
+    
+    void updateElements(const std::string& id,
+                        const EL::Room::Element& element);
+    void createElementList();
+    
+    void initializeMembers(EL::Room& room);
+    void getRoom(EL::Room& room);
+    
+    EL_FORCE_INLINE MaterialFile& getMaterials() { return m_materials; };
+    
+    EL_FORCE_INLINE void attachSolver (Solver *solver) { m_solver = solver; }
+    void signalSolver ();
+    
+    EL_FORCE_INLINE bool geometryInitialized() { return m_geometry_initialized; };
+    
+    Socket *initializeInputSocket() { return new Socket(m_input_port); };
+    
+    void parseSource ( std::string& msg );
+    void parseListener ( std::string& msg );
+    
+    void printSourcesAndListeners();
+    
+    
 private:
-  int m_input_port;
-  float m_threshold_loc;
-  float m_threshold_rot;
-
-  MaterialFile m_materials;
-  std::map<std::string, EL::Room::Element> emap;
-
-  std::vector<EL::Room::Element> m_elements;
-  std::map<std::string, EL::Listener> m_listeners;
-  std::map<std::string, EL::Source> m_sources;
-
-  bool m_geometry_initialized;
-
-  Solver *m_solver;
+    
+    int m_input_port;
+    float m_threshold_loc;
+    float m_threshold_rot;
+    
+    MaterialFile m_materials;
+    std::map<std::string, EL::Room::Element> emap;
+    
+    std::vector<EL::Room::Element> m_elements;
+    std::map<std::string, EL::Listener> m_listeners;
+    std::map<std::string, EL::Source> m_sources;
+    
+    bool m_geometry_initialized;
+    
+    Solver *m_solver;
 };
 
 #endif

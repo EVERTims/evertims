@@ -18,7 +18,7 @@
  * The Reverberation estimation class for EVERTims
  *
  * (C) 2009 Lauri Savioja
- * Helsinki University of Technology  
+ * Helsinki University of Technology
  *
  * (C) 2009-2015 Markus Noisternig
  * IRCAM-CNRS-UPMC UMR9912 STMS
@@ -28,47 +28,56 @@
 #ifndef _REVERB_ESTIM_H
 #define _REVERB_ESTIM_H
 
+#include <map>
+#include <cstring>
+
 #define MAX_BANDS 10
 
 #include "elPathSolution.h"
 
-#include <map>
-#include <cstring>
-
 class Response
 {
- public:
-  Response(double samplingFrequency, double lengthInSecond);
-  ~Response();
-
-  void setItem(double time, double value);
-  void addItem(double time, double value);
-
-  void  SchroederIntegrate();
-  float search           (double val = -0.00001);
-  void  getMaxMin(double& maxValue, double& maxTime, double& minValue, double& minTime);
-
-  void print(char* name);
-
+    
+public:
+    
+    Response(double samplingFrequency, double lengthInSecond);
+    ~Response();
+    
+    void setItem(double time, double value);
+    void addItem(double time, double value);
+    
+    void  SchroederIntegrate();
+    float search           (double val = -0.00001);
+    void  getMaxMin(double& maxValue, double& maxTime, double& minValue, double& minTime);
+    
+    void print(char* name);
+    
+    
 private:
-  double m_samplingFrequency;
-  int m_length;
-
-  double* m_signal;
+    
+    double m_samplingFrequency;
+    int m_length;
+    
+    double* m_signal;
 };
 
 class ReverbEstimator
 {
+    
 public:
-  ReverbEstimator (double samplingFrequency, EL::PathSolution *solution, double speedOfSound, double maxTime);
-  ~ReverbEstimator ();
-  
-  void getMaxMin(int band, double& maxValue, double& maxTime, double& minValue, double& minTime);
-
-  float getEstimateR60(int band, double startDecay, double endDecay);
-
+    
+    ReverbEstimator (double samplingFrequency, EL::PathSolution *solution, double speedOfSound, double maxTime);
+    ~ReverbEstimator ();
+    
+    void getMaxMin(int band, double& maxValue, double& maxTime, double& minValue, double& minTime);
+    
+    float getEstimateR60(int band, double startDecay, double endDecay);
+    
+    
 private:
-  Response* m_SchroederPlots[MAX_BANDS];
+    
+    Response* m_SchroederPlots[MAX_BANDS];
+    
 };
 
 #endif

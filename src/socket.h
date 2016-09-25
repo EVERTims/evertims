@@ -18,7 +18,7 @@
  * The socket handling for EVERTims
  *
  * (C) 2007 Lauri Savioja, Rami Ajaj
- * Helsinki University of Technology CNRS / Limsi 
+ * Helsinki University of Technology CNRS / Limsi
  *
  * (C) 2007-2015 Markus Noisternig
  * IRCAM-CNRS-UPMC UMR9912 STMS
@@ -61,21 +61,24 @@ WSADATA initialisation2_win32; // Variable permettant de récupérer la structur
 
 
 class Socket {
- public:
-  Socket(int port);
-  Socket(char *hostAndPort);
-
-  ~Socket();
-
-  int read(char *buf);
-  void write(int len, char *buf);
-
- private:
-  void openSocket();
-  
-  int m_socket_id; 
-  struct sockaddr_in m_sockaddr; 
+    
+public:
+    
+    Socket(int port);
+    Socket(char *hostAndPort);
+    
+    ~Socket();
+    
+    int read(char *buf);
+    void write(int len, char *buf);
+    
+    
+private:
+    
+    void openSocket();
+    
+    int m_socket_id;
+    struct sockaddr_in m_sockaddr;
 };
-
 
 #endif
