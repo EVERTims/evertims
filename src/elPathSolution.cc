@@ -41,7 +41,7 @@
 
 using namespace EL;
 
-extern bool stop_signal;
+bool stop_signal;
 
 //------------------------------------------------------------------------
 
