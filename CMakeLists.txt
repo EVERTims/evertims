@@ -17,6 +17,10 @@ set (EVERT_SOURCES
     src/elBeam.cc
     )
 
+find_package(OpenGL REQUIRED)
+include_directories(${OPENGL_INCLUDE_DIR})
+link_libraries(${OPENGL_LIBRARIES})
+
 add_library (${PROJECT} SHARED ${EVERT_SOURCES})
 
 add_definitions ("-D__${CMAKE_SYSTEM_NAME}")
@@ -25,6 +29,8 @@ file (WRITE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT}Config.cmake
 "\
 set (evert_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/evert)
 set (evert_LIBRARIES ${CMAKE_INSTALL_PREFIX}/lib/libevert${CMAKE_SHARED_LIBRARY_SUFFIX})")
+
+# target_compile_options(evert PRIVATE -stdlib=libstdc++)
 
 install(
     TARGETS ${PROJECT}
