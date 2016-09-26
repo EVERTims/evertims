@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-v &apos;listener_0/localhost:3862&apos;"
+            argument = "-v &apos;listener_1/localhost:3862&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -75,12 +75,12 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-p &apos;listener_0/&apos;"
+            argument = "-p &apos;listener_1/&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-a &apos;listener_1/localhost:3860&apos;"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

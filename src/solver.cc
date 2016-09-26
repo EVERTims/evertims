@@ -46,7 +46,7 @@
 
 using namespace std;
 
-bool stop_signal;
+extern bool stop_signal;
 bool calculate_signal;
 
 Solver::Solver (int mindepth, int maxdepth, bool graphics) :
@@ -296,8 +296,6 @@ void Solver::markGeometryChanged ()
 {
     cout << "Geometry has changed!.";
     
-    m_request_for_stop = true;
-    
     //    int next = ((m_current+1)&1);
     int next = (( m_current_room + 1 ) % 20);
     m_reader->getRoom ( m_room[next] );
@@ -309,6 +307,8 @@ void Solver::markGeometryChanged ()
     {
         it->second->m_geom_or_source_status = CHANGED;
     }
+
+    m_request_for_stop = true;
 }
 
 void Solver::update ()
