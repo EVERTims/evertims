@@ -31,24 +31,24 @@ using namespace EL;
 
 Listener::Listener(void)
 {
-	// empty
+    // empty
 }
 
-Listener::Listener(const Listener& s)
-:	OrientedPoint(s)
+Listener::Listener(const Listener& s):
+OrientedPoint(s)
 {
-	// empty
+    // empty
 }
 
 Listener::~Listener(void)
 {
-	// empty
+    // empty
 }
 
 const EL::Listener& Listener::operator=(const Listener& s)
 {
-	OrientedPoint::operator=(s);
-	return *this;
+    OrientedPoint::operator=(s);
+    return *this;
 }
 
 //------------------------------------------------------------------------

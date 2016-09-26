@@ -36,31 +36,24 @@ static const float EPS_EXPAND_BEAM = 1e-3f;
 
 //------------------------------------------------------------------------
 
-Beam::Beam(void)
+Beam::Beam(void) {}
+
+Beam::Beam(const Vector3& top, const Polygon& polygon):
+m_top( top ),
+m_polygon( polygon )
 {
-	// empty
+    m_polygon.expand (EPS_EXPAND_BEAM);
+    calculatePleqs();
 }
 
-Beam::Beam(const Vector3& top, const Polygon& polygon)
-:	m_top	 (top),
-	m_polygon(polygon)
+Beam::Beam(const Beam& beam):
+m_top (beam.m_top),
+m_polygon(beam.m_polygon),
+m_pleqs (beam.m_pleqs)
 {
-        m_polygon.expand (EPS_EXPAND_BEAM); 
-	calculatePleqs();
 }
 
-Beam::Beam(const Beam& beam)
-:	m_top	 (beam.m_top),
-	m_polygon(beam.m_polygon),
-	m_pleqs	 (beam.m_pleqs)
-{
-	// empty
-}
-
-Beam::~Beam(void)
-{
-	// empty
-}
+Beam::~Beam(void) {}
 
 const Beam& Beam::operator=(const Beam& beam)
 {
@@ -74,20 +67,20 @@ const Beam& Beam::operator=(const Beam& beam)
 
 void Beam::calculatePleqs(void)
 {
-	int n = m_polygon.numPoints();
-
-	m_pleqs.resize(n + 1);
-	Vector3 p1 = m_polygon[n-1];
-
-	float sign = dot(m_top, m_polygon.getPleq()) > 0.f ? -1.f : 1.f;
-
-	for (int i=0; i < n; i++)
-	{
-		Vector3 p0 = p1;
-		p1 = m_polygon[i];
-		m_pleqs[i+1] = sign * normalize(getPlaneEquation(m_top, p0, p1));
-	}
-	m_pleqs[0] = sign * m_polygon.getPleq();
+    int n = m_polygon.numPoints();
+    
+    m_pleqs.resize(n + 1);
+    Vector3 p1 = m_polygon[n-1];
+    
+    float sign = dot(m_top, m_polygon.getPleq()) > 0.f ? -1.f : 1.f;
+    
+    for( int i=0; i < n; i++ )
+    {
+        Vector3 p0 = p1;
+        p1 = m_polygon[i];
+        m_pleqs[i+1] = sign * normalize(getPlaneEquation(m_top, p0, p1));
+    }
+    m_pleqs[0] = sign * m_polygon.getPleq();
 }
 
 /*

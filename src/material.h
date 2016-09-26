@@ -42,12 +42,13 @@ public:
 class MaterialFile
 {
 public:
-  void         readFile    (const char* filename);
-  Material&    find        (const char* material_name);
-  void         addMaterial (const char* material_name, Material a);
+    
+  void readFile (const char* filename);
+  Material& find (const char* material_name);
+  void addMaterial (const char* material_name, Material a);
+    
 private:
   std::map<std::string, Material> m_lib;
 };
-
 
 #endif

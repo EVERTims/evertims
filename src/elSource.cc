@@ -31,24 +31,24 @@ using namespace EL;
 
 Source::Source(void)
 {
-	// empty
+    // empty
 }
 
 Source::Source(const Source& s)
 :	OrientedPoint(s)
 {
-	// empty
+    // empty
 }
 
 Source::~Source(void)
 {
-	// empty
+    // empty
 }
 
 const EL::Source& Source::operator=(const Source& s)
 {
-	OrientedPoint::operator=(s);
-	return *this;
+    OrientedPoint::operator=(s);
+    return *this;
 }
 
 //------------------------------------------------------------------------

@@ -26,7 +26,7 @@
  ************************************************************************/
 
 #if !defined (__ELDEFS_HPP)
-#	include "elDefs.h"
+    #include "elDefs.h"
 #endif
 
 #include <cmath>
@@ -43,65 +43,75 @@ class Matrix3x4;
 
 class Matrix3
 {
+    
 public:
-	EL_FORCE_INLINE					Matrix3			();
-	EL_FORCE_INLINE					Matrix3			(const Matrix3& m);
-	EL_FORCE_INLINE					Matrix3			(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22);
-	EL_FORCE_INLINE					Matrix3			(float m);
-	EL_FORCE_INLINE					~Matrix3		();
-	EL_FORCE_INLINE Matrix3&		operator=		(const Matrix3& m);
-	EL_FORCE_INLINE Vector3&		operator[]		(int i);
-       	EL_FORCE_INLINE const Vector3&	operator[]		(int i) const;
-	EL_FORCE_INLINE void			set				(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22);
-	EL_FORCE_INLINE const Vector3	getRow			(int i) const;
-	EL_FORCE_INLINE const Vector3	getColumn		(int i) const;
-	EL_FORCE_INLINE void			setRow			(int i, const Vector3& v);
-	EL_FORCE_INLINE void			setColumn		(int i, const Vector3& v);
-	EL_FORCE_INLINE void			operator*=		(const Matrix3& m);
-	EL_FORCE_INLINE void			operator*=		(float f);
-	EL_FORCE_INLINE void			identity		(void);
-	EL_FORCE_INLINE void			transpose		(void);
-					bool			invert			(void);
-	EL_FORCE_INLINE float			det				(void) const;
-					void			rotate			(float radians, const Vector3& aboutThis);
-                    const Vector3   toEuler			(void) const;
-
+    
+    EL_FORCE_INLINE	Matrix3 ();
+    EL_FORCE_INLINE	Matrix3 (const Matrix3& m);
+    EL_FORCE_INLINE	Matrix3 (float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22);
+    EL_FORCE_INLINE	Matrix3 (float m);
+    EL_FORCE_INLINE	~Matrix3 ();
+    EL_FORCE_INLINE Matrix3& operator= (const Matrix3& m);
+    EL_FORCE_INLINE Vector3& operator[] (int i);
+    EL_FORCE_INLINE const Vector3& operator[] (int i) const;
+    EL_FORCE_INLINE void set (float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22);
+    EL_FORCE_INLINE const Vector3 getRow (int i) const;
+    EL_FORCE_INLINE const Vector3 getColumn (int i) const;
+    EL_FORCE_INLINE void setRow (int i, const Vector3& v);
+    EL_FORCE_INLINE void setColumn (int i, const Vector3& v);
+    EL_FORCE_INLINE void operator*= (const Matrix3& m);
+    EL_FORCE_INLINE void operator*=	(float f);
+    EL_FORCE_INLINE void identity (void);
+    EL_FORCE_INLINE void transpose (void);
+    EL_FORCE_INLINE float det (void) const;
+    
+    bool invert			(void);
+    void rotate (float radians, const Vector3& aboutThis);
+    const Vector3 toEuler (void) const;
+    
+    
 private:
-	float							matrix[3][3];
+    
+    float							matrix[3][3];
+    
 };
 
 //------------------------------------------------------------------------
 
 class Matrix3x4
 {
+    
 public:
-	EL_FORCE_INLINE					Matrix3x4		(void);						
-	EL_FORCE_INLINE					Matrix3x4		(const Matrix3& m);	
-	EL_FORCE_INLINE					Matrix3x4		(const Matrix3x4& m);	
-	EL_FORCE_INLINE					Matrix3x4		(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23);
-	EL_FORCE_INLINE					~Matrix3x4		(void);
-	EL_FORCE_INLINE Matrix3x4&		operator=		(const Matrix3x4& m);
-	EL_FORCE_INLINE Vector4&		operator[]		(int i);
-	EL_FORCE_INLINE const Vector4&	operator[]		(int i) const;
-	EL_FORCE_INLINE void			set				(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23);
-	EL_FORCE_INLINE const Vector4	getRow			(int i) const;
-	EL_FORCE_INLINE const Vector3	getColumn		(int i) const;
-	EL_FORCE_INLINE void			setRow			(int i, const Vector4& v);
-	EL_FORCE_INLINE void			setColumn		(int i, const Vector3& v);
-	EL_FORCE_INLINE const Matrix3	getRotation		(void) const;
-	EL_FORCE_INLINE const Vector3	getTranslation	(void) const;
-	EL_FORCE_INLINE void			setRotation		(const Matrix3& m);
-	EL_FORCE_INLINE void			setTranslation	(const Vector3& v);
-	EL_FORCE_INLINE void			operator*=		(const Matrix3x4& m);
-	EL_FORCE_INLINE void			operator*=		(float f);
-	EL_FORCE_INLINE void			identity		(void);
-					bool			invert			(void);
-	EL_FORCE_INLINE	float			det				(void) const;
-					void			rotate			(float radians, const Vector3& aboutThis);
-	EL_FORCE_INLINE void			translate		(const Vector3& v);
-
+    
+    EL_FORCE_INLINE Matrix3x4 (void);
+    EL_FORCE_INLINE	Matrix3x4 (const Matrix3& m);
+    EL_FORCE_INLINE	Matrix3x4 (const Matrix3x4& m);
+    EL_FORCE_INLINE	Matrix3x4 (float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23);
+    EL_FORCE_INLINE	~Matrix3x4 (void);
+    EL_FORCE_INLINE Matrix3x4& operator= (const Matrix3x4& m);
+    EL_FORCE_INLINE Vector4& operator[] (int i);
+    EL_FORCE_INLINE const Vector4& operator[] (int i) const;
+    EL_FORCE_INLINE void set (float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23);
+    EL_FORCE_INLINE const Vector4 getRow (int i) const;
+    EL_FORCE_INLINE const Vector3 getColumn (int i) const;
+    EL_FORCE_INLINE void setRow (int i, const Vector4& v);
+    EL_FORCE_INLINE void setColumn (int i, const Vector3& v);
+    EL_FORCE_INLINE const Matrix3 getRotation (void) const;
+    EL_FORCE_INLINE const Vector3 getTranslation (void) const;
+    EL_FORCE_INLINE void setRotation (const Matrix3& m);
+    EL_FORCE_INLINE void setTranslation (const Vector3& v);
+    EL_FORCE_INLINE void operator*= (const Matrix3x4& m);
+    EL_FORCE_INLINE void operator*=	(float f);
+    EL_FORCE_INLINE void identity (void);
+    bool invert (void);
+    EL_FORCE_INLINE	float det (void) const;
+    void rotate (float radians, const Vector3& aboutThis);
+    EL_FORCE_INLINE void translate (const Vector3& v);
+    
+    
 private:
-	float							matrix[3][4];
+    
+    float							matrix[3][4];
 };
 
 //------------------------------------------------------------------------

@@ -34,63 +34,63 @@ using namespace std;
 
 void MaterialFile::readFile (const char* filename)
 {
-  FILE* f = fopen(filename, "r");
-  if (!f)
-  {
-    std::cerr << "No such material file: " << filename << std::endl;
-    return;
-  }
-
-  char name[256];
-  Material m;
-  
-  while(!feof(f))
-  {
-    for (int i=0; i < 10; i++)
-      fscanf(f, " %f", &m.absorption[i]);
-
-    fscanf(f, "%f", &m.diffusion[0]);
-    fscanf(f, "%s", &name);
-    //    std::cout << "name = " << name << m.absorption[0] << std::endl;
-
-    addMaterial(name, m);
-  }
-  fclose(f);
+    FILE* f = fopen(filename, "r");
+    if( !f )
+    {
+        std::cerr << "No such material file: " << filename << std::endl;
+        return;
+    }
+    
+    char name[256];
+    Material m;
+    
+    while( !feof(f) )
+    {
+        for (int i=0; i < 10; i++)
+            fscanf(f, " %f", &m.absorption[i]);
+        
+        fscanf(f, "%f", &m.diffusion[0]);
+        fscanf(f, "%s", &name);
+        //    std::cout << "name = " << name << m.absorption[0] << std::endl;
+        
+        addMaterial(name, m);
+    }
+    fclose(f);
 }
 
 
 //std::map<std::string, Material> MaterialFile::lib;
 
-Material& MaterialFile::find (const char* material_name) 
+Material& MaterialFile::find (const char* material_name)
 {
-  std::string name(material_name);
-  //  std::cout << "Looking for material: " << name;
-
-  std::map<std::string, Material>::iterator it = m_lib.find (name);
-  if (it != m_lib.end ())
-  {
-    //    std::cout << " and found it: " << it->second.absorption[0] << std::endl;
-    return it->second;
-  }
-  else
-  {    
-    std::cout << "Unknown material: " << name << std::endl;
-  }
+    std::string name(material_name);
+    //  std::cout << "Looking for material: " << name;
+    
+    std::map<std::string, Material>::iterator it = m_lib.find (name);
+    if( it != m_lib.end () )
+    {
+        //    std::cout << " and found it: " << it->second.absorption[0] << std::endl;
+        return it->second;
+    }
+    else
+    {
+        std::cout << "Unknown material: " << name << std::endl;
+    }
 }
 
 void MaterialFile::addMaterial (const char *material_name, Material a)
 {
-  std::string name(material_name);
-
-  std::map<std::string,Material>::iterator it = m_lib.find (name);
-  if (it != m_lib.end ())
-  {    
-    std::cerr << "Material: " << name << " already in the database." << std::endl;
-  }
-  else
-  {
-    m_lib[name] = a;
-    //    std::cerr << "Material: " << name << " added in the database:" << a.absorption[0] << " = " << m_lib[name].absorption[0] << std::endl;
-  }
+    std::string name(material_name);
+    
+    std::map<std::string,Material>::iterator it = m_lib.find (name);
+    if( it != m_lib.end () )
+    {
+        std::cerr << "Material: " << name << " already in the database." << std::endl;
+    }
+    else
+    {
+        m_lib[name] = a;
+        //    std::cerr << "Material: " << name << " added in the database:" << a.absorption[0] << " = " << m_lib[name].absorption[0] << std::endl;
+    }
 }
 

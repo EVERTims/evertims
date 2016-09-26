@@ -68,10 +68,10 @@
 //------------------------------------------------------------------------
 
 #if defined(EL_DEBUG)
-#	include <cassert>
-#	define EL_ASSERT(e)		assert(e)
+    #include <cassert>
+    #define EL_ASSERT(e) assert(e)
 #else
-#	define EL_ASSERT(e)		(static_cast<void>(0))					
+    #define EL_ASSERT(e) (static_cast<void>(0))
 #endif
 
 //------------------------------------------------------------------------
@@ -79,9 +79,9 @@
 //------------------------------------------------------------------------
 
 #if defined(EL_DEBUG)
-#	define EL_DEBUG_CODE(X) X
+    #define EL_DEBUG_CODE(X) X
 #else
-#	define EL_DEBUG_CODE(X)
+    #define EL_DEBUG_CODE(X)
 #endif
 
 //------------------------------------------------------------------------
@@ -91,9 +91,9 @@
 namespace EL
 {
 
-#define	PI						3.141592654f
-template<class TT> inline TT	RAD( TT x ) { return x * TT(PI) / TT(180); }
-template<class TT> inline TT	DEG( TT x )	{ return x * TT(180) / TT(PI); }
+#define	PI 3.141592654f
+template<class TT> inline TT RAD( TT x ) { return x * TT(PI) / TT(180); }
+template<class TT> inline TT DEG( TT x )	{ return x * TT(180) / TT(PI); }
 
 //------------------------------------------------------------------------
 // Debug macros
@@ -139,14 +139,14 @@ template <class T> inline void swap(T& a, T& b)
 
 template <class T> inline const T& min2 (const T& a, const T& b)
 {
-	if(a <= b) return a;
-	else return b;
+    if( a <= b ){ return a; }
+    else{ return b; }
 }
 
 template <class T> inline const T& max2 (const T& a, const T& b)
 {
-	if(a >= b) return a;
-	else return b;
+    if( a >= b ){ return a; }
+    else{ return b; }
 }
 
 inline float frand(void)

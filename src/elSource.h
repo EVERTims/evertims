@@ -26,25 +26,24 @@
  ************************************************************************/
 
 #if !defined (__ELORIENTEDPOINT_HPP)
-#	include "elOrientedPoint.h"
+    #include "elOrientedPoint.h"
 #endif
 
 namespace EL
 {
 
-//------------------------------------------------------------------------
-
 class Source : public OrientedPoint
 {
+    
 public:
-						Source		(void);
-						Source		(const Source& s);
-						~Source		(void);
-
-	const Source&		operator=	(const Source& s);
+    
+    Source (void);
+    Source (const Source& s);
+    ~Source (void);
+    
+    const Source& operator= (const Source& s);
 };
 
-//------------------------------------------------------------------------
 } // namespace EL
 
 #endif // __ELSOURCE_HPP
