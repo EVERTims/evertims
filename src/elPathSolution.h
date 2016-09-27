@@ -37,6 +37,10 @@
 
 namespace EL
 {
+
+bool stop_signal;
+void setStopSignalValue( bool value ){ stop_signal = value; };
+bool getStopSignalValue( ){ return stop_signal; };
     
 //------------------------------------------------------------------------
 

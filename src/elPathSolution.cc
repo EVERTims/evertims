@@ -41,8 +41,6 @@
 
 using namespace EL;
 
-bool stop_signal;
-
 //------------------------------------------------------------------------
 
 // static const float EPS_SIMILAR_PATHS			= 0.00001f;
