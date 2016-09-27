@@ -46,7 +46,6 @@
 
 using namespace std;
 
-extern bool stop_signal;
 bool calculate_signal;
 
 Solver::Solver (int mindepth, int maxdepth, bool graphics) :
@@ -78,7 +77,7 @@ m_max_depth ( maxdepth )
      }
      */
     
-    stop_signal = false;
+    EL::setStopSignalValue(false);
     
     pthread_mutex_init (&next_solution_mutex, NULL);
     
@@ -267,9 +266,9 @@ void Solver::interruptCalculation()
 {
     // Signal the calculation thread to stop
     
-    stop_signal = true;
+    EL::setStopSignalValue(true);
     while (!m_next_solution_flag) ;
-    stop_signal = false;
+    EL::setStopSignalValue(false);
     
     pthread_mutex_lock (&next_solution_mutex);
     m_next_solution_flag = false;
@@ -313,7 +312,7 @@ void Solver::markGeometryChanged ()
 
 void Solver::update ()
 {
-    //  cout << "Starting the update round " << calculate_signal << "," << stop_signal << endl;
+    //  cout << "Starting the update round " << calculate_signal << "," << EL::getStopSignalValue() << endl;
     //  sleep(1);
     
     if(m_newSolutionNodesAvailable){ mapAvailableSolutionNodes (); }
