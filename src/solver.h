@@ -122,6 +122,7 @@ private:
     bool m_ready_to_draw;
     
     int m_current_room;
+    bool isLoadingNewRoom;
     
     // "Doublebuffering" for the data structures
     EL::Room m_room[20];

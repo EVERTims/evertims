@@ -54,6 +54,7 @@ m_request_for_stop ( false ),
 m_start_new ( true ),
 m_graphics ( graphics ),
 m_current_room ( 0 ),
+isLoadingNewRoom ( true ),
 m_lastMappedSolutionNode ( -1 ),
 m_lastAvailableSolutionNode ( -1 ),
 m_newSolutionNodesAvailable ( false ),
@@ -295,7 +296,13 @@ void Solver::markGeometryChanged ()
 {
     cout << "Geometry has changed!.";
     
-    //    int next = ((m_current+1)&1);
+    // adding the isLoadingNewRoom flag to make sure no computation will start before
+    // m_reader->getRoom ( m_room[next] ) is executed AND m_current_room is updated
+    // (to avoid using geometry 0 while it's geometry 1 that has just been defined.
+    // would happend e.g. when markSourceMovementMajor() was called in parallel with
+    // markGeometryChanged(). For the same kind of reason, isLoadingNewRoom initial
+    // value is set to true at startup)
+    isLoadingNewRoom = true;
     int next = (( m_current_room + 1 ) % 20);
     m_reader->getRoom ( m_room[next] );
     m_current_room = next;
@@ -308,6 +315,7 @@ void Solver::markGeometryChanged ()
     }
 
     m_request_for_stop = true;
+    isLoadingNewRoom = false;
 }
 
 void Solver::update ()
@@ -317,7 +325,7 @@ void Solver::update ()
     
     if(m_newSolutionNodesAvailable){ mapAvailableSolutionNodes (); }
     
-    if( m_request_for_stop )
+    if( m_request_for_stop && !isLoadingNewRoom )
     {
         if ( ! m_start_new ){ interruptCalculation(); }
         m_request_for_stop = false;
@@ -360,7 +368,7 @@ void Solver::update ()
         // Loop all the solutions, and start _one_ new calculation if
         // 1) geometry or source has changed
         for( t_solutionNodeIterator it = m_solutionNodeMap.begin();
-            (( it != m_solutionNodeMap.end() ) && ( m_start_new )) ; it++ )
+            (( it != m_solutionNodeMap.end() ) && ( m_start_new && !isLoadingNewRoom )) ; it++ )
         {
             if (it->second->m_geom_or_source_status == CHANGED)
             {
@@ -375,7 +383,7 @@ void Solver::update ()
         }
         // 2) maximum order is not reached
         for( t_solutionNodeIterator it = m_solutionNodeMap.begin();
-            (( it != m_solutionNodeMap.end() ) && ( m_start_new )) ; it++ )
+            (( it != m_solutionNodeMap.end() ) && ( m_start_new && !isLoadingNewRoom )) ; it++ )
         {
             if (it->second->m_solution)
             {
