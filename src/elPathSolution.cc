@@ -38,6 +38,7 @@
 #endif
 
 #include <cstdio>
+#define printf // Comment to add debug logs
 
 using namespace EL;
 
