@@ -41,6 +41,7 @@
 
 #include "solver.h"
 #include "material.h"
+#include "utils.h"
 
 // #include "graphics.h"
 
@@ -92,16 +93,16 @@ m_max_depth ( maxdepth )
         switch( error )
         {
             case EAGAIN:
-                cout << "Out of resources for a new thread" << endl;
+                COUT << "Out of resources for a new thread" << "\n";
                 break;
             case EINVAL:
-                cout << "Invalid attribute" << endl;
+                COUT << "Invalid attribute" << "\n";
                 break;
             case EPERM:
-                cout << "No permission to set scheduling parameters" << endl;
+                COUT << "No permission to set scheduling parameters" << "\n";
                 break;
             default:
-                cout << "Unknown error" << endl;
+                COUT << "Unknown error" << "\n";
                 break;
         }
     }
@@ -189,7 +190,7 @@ void Solver::createNewSolutionNode( const EL::Source& source, const EL::Listener
         }
     }
     
-    cout << "New solution node " << idx << " for " << solutionID( source, listener ) << " generated." << endl;
+    COUT << "New solution node " << idx << " for " << solutionID( source, listener ) << " generated." << "\n";
     
     m_lastAvailableSolutionNode = idx;
     m_newSolutionNodesAvailable = true;
@@ -278,13 +279,13 @@ void Solver::interruptCalculation()
     m_next_solution_flag = false;
     pthread_mutex_unlock (&next_solution_mutex);
     
-    cout << "Stopped calculation with old data" << endl;
+    COUT << "Stopped calculation with old data" << "\n";
     if (m_next_solution){ delete m_next_solution; }
 }  
 
 void Solver::createNewSolution( int depth, const EL::Source& source, const EL::Listener& listener )
 {
-    cout << "Creating new solution upto level " << depth << " from geometry " << m_current_room << endl;
+    COUT << "Creating new solution upto level " << depth << " from geometry " << m_current_room << "\n";
     m_next_solution = new EL::PathSolution (m_room[m_current_room],
                                             source,
                                             listener,
@@ -297,7 +298,7 @@ void Solver::createNewSolution( int depth, const EL::Source& source, const EL::L
 
 void Solver::markGeometryChanged ()
 {
-    cout << "Geometry has changed!.";
+    COUT << "Geometry has changed!.";
     
     // adding the isLoadingNewRoom flag to make sure no computation will start before
     // m_reader->getRoom ( m_room[next] ) is executed AND m_current_room is updated
@@ -339,7 +340,7 @@ void Solver::update ()
     
     if( m_next_solution_flag )
     {
-        cout << "New solution will be taken into use." << endl;
+        COUT << "New solution will be taken into use." << "\n";
         if( m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_solution )
         {
             delete m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_solution;
@@ -357,7 +358,7 @@ void Solver::update ()
         m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_current =
         (m_solutionNodeMap[ solutionID ( m_next_solution) ]->m_current + 1)&1;
         
-        cout << "Clearing the next solution flag ( m_current = " << m_solutionNodeMap[ solutionID (m_next_solution) ]->m_current << " ) " << endl;
+        COUT << "Clearing the next solution flag ( m_current = " << m_solutionNodeMap[ solutionID (m_next_solution) ]->m_current << " ) " << "\n";
         
         pthread_mutex_lock (&next_solution_mutex);
         m_next_solution_flag = false;
@@ -375,7 +376,7 @@ void Solver::update ()
         {
             if (it->second->m_geom_or_source_status == CHANGED)
             {
-                cout << "Geometry or source changed: " << solutionID ( it->second->m_source[0], it->second->m_listener[0] ) << endl;
+                COUT << "Geometry or source changed: " << solutionID ( it->second->m_source[0], it->second->m_listener[0] ) << "\n";
                 it->second->m_geom_or_source_status = IN_PROCESS;
                 int next = (it->second->m_current+1)&1;
                 it->second->m_source[next].setPosition ( it->second->m_new_source_position );
@@ -393,7 +394,7 @@ void Solver::update ()
             {
                 if (it->second->m_solution->getOrder () < m_max_depth)
                 {
-                    cout << "Deepening the solution: " << solutionID ( it->second->m_source[0], it->second->m_listener[0] ) << endl;
+                    COUT << "Deepening the solution: " << solutionID ( it->second->m_source[0], it->second->m_listener[0] ) << "\n";
                     it->second->m_geom_or_source_status = IN_PROCESS;
                     int next = (it->second->m_current+1)&1;
                     it->second->m_source[next].setPosition ( it->second->m_new_source_position );
@@ -418,7 +419,7 @@ void Solver::update ()
             //	cout << "Ready to update solution: " << solutionID ( it->second->m_solution ) << endl;
             if (it->second->m_listener_status_major == CHANGED)
             {
-                cout << "Updating the solution: " << solutionID ( it->second->m_solution ) << endl;
+                COUT << "Updating the solution: " << solutionID ( it->second->m_solution ) << "\n";
                 it->second->m_listener_status_major = UPDATED;
                 it->second->m_listener[it->second->m_current].setPosition ( it->second->m_new_listener_position );
                 it->second->m_listener[it->second->m_current].setOrientation ( it->second->m_new_listener_orientation );
@@ -432,7 +433,7 @@ void Solver::update ()
                 for (std::vector<Writer *>::iterator w = it->second->m_writers.begin();
                      w != it->second->m_writers.end(); w++)
                 {
-                    cout << "Sending the solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << endl;
+                    COUT << "Sending the solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << "\n";
                     (*w)->writeMajor ( it->second->m_solution );
                     it->second->m_to_send = false;
                 }
@@ -446,7 +447,7 @@ void Solver::update ()
                 for (std::vector<Writer *>::iterator w = it->second->m_writers.begin();
                      w != it->second->m_writers.end(); w++)
                 {
-                    cout << "Sending additional info on solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << endl;
+                    COUT << "Sending additional info on solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << "\n";
                     (*w)->writeMinor ( it->second->m_solution );
                     it->second->m_to_send = false;
                 }
@@ -464,10 +465,10 @@ void *path_solver_function (void *data)
         if( calculate_signal )
         {
             calculate_signal = false;
-            cout << "Thread " << pthread_self() << " beginning new calculation" << endl;
+            COUT << "Thread " << pthread_self() << " beginning new calculation" << "\n";
             Solver *solver = (Solver *)data;
             solver->calculateNextSolution ();
-            cout << "Thread " << pthread_self() << " finished calculation" << endl;
+            COUT << "Thread " << pthread_self() << " finished calculation" << "\n";
         }
         usleep( 2000 );
     }

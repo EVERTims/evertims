@@ -36,6 +36,7 @@
 
 #include "socket.h"
 #include "elRoom.h"
+#include "utils.h"
 
 class Solver;
 

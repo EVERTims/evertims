@@ -30,6 +30,7 @@
 
 #include "reverbEstimate.h"
 #include "elPolygon.h"
+#include "utils.h"
 
 #define SPEED_OF_SOUND 340
 
@@ -187,15 +188,15 @@ float ReverbEstimator::getEstimateR60(int band, double startDecay, double endDec
 {
     Response* r = m_SchroederPlots[band];
     
-    std::cout << "Starting to search the region: " << startDecay << " - " << endDecay << std::endl;
+    COUT << "Starting to search the region: " << startDecay << " - " << endDecay << "\n";
     
     float realStart = r->search();
-    std::cout << "realStart = " << realStart << std::endl;
+    COUT << "realStart = " << realStart << "\n";
     
     float startTime = r->search(startDecay);
-    std::cout << "startTime = " << startTime << std::endl;
+    COUT << "startTime = " << startTime << "\n";
     float endTime   = r->search(endDecay);
-    std::cout << "endTime = " << endTime << std::endl;
+    COUT << "endTime = " << endTime << "\n";
     
     float totalDecay = realStart + (60 * (endTime-startTime)/(endDecay - startDecay));
     

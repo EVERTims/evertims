@@ -117,10 +117,10 @@ void parsePosition(std::string msg, std::string& id, EL::Vector3& pos, EL::Matri
     ori = EL::Matrix3(m00, m01, m02, m10, m11, m12, m20, m21, m22);
     const EL::Vector3 eul = ori.toEuler();
     
-    std::cout << id << " moved ";
+    COUT << id << " moved ";
     // from: [" << pos[0] << "," << pos[1] << "," << pos[2] << "]";
     pos.set( p0, p1, p2 );
-    std::cout << " to: [" << pos[0] << "," << pos[1] << "," << pos[2] << "]" << " , [" << eul[0] << "," << eul[1] << "," << eul[2] << "]" << std::endl;
+    COUT << " to: [" << pos[0] << "," << pos[1] << "," << pos[2] << "]" << " , [" << eul[0] << "," << eul[1] << "," << eul[2] << "]\n";
 }
 
 void parseFace(std::string msg,
@@ -155,12 +155,12 @@ void parseFace(std::string msg,
     
     if (p[2] == p[3])
     {
-        cout << "3";
+        COUT << "3";
         polygon = EL::Polygon(&p[0], 3, m, id);
     }
     else
     {
-        cout << "4";
+        COUT << "4";
         polygon = EL::Polygon(&p[0], 4, m, id);
     }
     
@@ -199,12 +199,12 @@ void parsePolygon(std::string msg,
     //  sscanf(str, "%s %s %d ", &buf1, &buf2, &nof_vertices);
     for(int i=0;i<nof_vertices;i++)
     {
-        cout << "s=" << s << "!" << endl;
+        COUT << "s=" << s << "!\n";
         sscanf(s, "%f %f %f ", &p[i][0], &p[i][1], &p[i][2]);
         strsep( &s, " ");
         strsep( &s, " ");
         strsep( &s, " ");
-        cout << i << ". vertex = " << p[i][0] << "," << p[i][1] << "," << p[i][2] << endl;
+        COUT << i << ". vertex = " << p[i][0] << "," << p[i][1] << "," << p[i][2] << "\n";
     }
     
     id = string(id_str);
@@ -217,13 +217,13 @@ void parsePolygon(std::string msg,
     polygon = EL::Polygon(&p[0], nof_vertices, m, id);
     
     polygon.print();
-    cout << endl;
+    COUT << "\n";
     
-    cout << "Vertices of " << id << " made of " << name_str << ": [";
-    cout << p[0][0] << "," << p[0][1] << "," << p[0][2] << "] - [";
-    cout << p[1][0] << "," << p[1][1] << "," << p[1][2] << "] - [";
-    cout << p[2][0] << "," << p[2][1] << "," << p[2][2] << "] - [";
-    cout << p[3][0] << "," << p[3][1] << "," << p[3][2] << "]" << endl;
+    COUT << "Vertices of " << id << " made of " << name_str << ": [";
+    COUT << p[0][0] << "," << p[0][1] << "," << p[0][2] << "] - [";
+    COUT << p[1][0] << "," << p[1][1] << "," << p[1][2] << "] - [";
+    COUT << p[2][0] << "," << p[2][1] << "," << p[2][2] << "] - [";
+    COUT << p[3][0] << "," << p[3][1] << "," << p[3][2] << "]" << "\n";
 }
 
 void Reader::parseListener ( std::string& msg )
@@ -276,7 +276,7 @@ void Reader::parseListener ( std::string& msg )
         
         m_listeners[id] = listener;
         
-        cout << "New Listener generated!" << endl;
+        COUT << "New Listener generated!" << "\n";
         
         for (std::map<std::string, EL::Source>::iterator s = m_sources.begin();
              s != m_sources.end(); s++)
@@ -324,7 +324,7 @@ void Reader::parseSource ( std::string& msg )
         
         m_sources[id] = source;
         
-        cout << "New source generated!" << endl;
+        COUT << "New source generated!" << "\n";
         
         for (std::map<std::string, EL::Listener>::iterator l = m_listeners.begin();
              l != m_listeners.end(); l++)
@@ -336,20 +336,20 @@ void Reader::parseSource ( std::string& msg )
 
 void Reader::printSourcesAndListeners()
 {
-    cout << "Sources: ";
+    COUT << "Sources: ";
     for (std::map<std::string, EL::Source>::iterator s = m_sources.begin();
          s != m_sources.end(); s++)
     {
-        cout << s->second.getName () << " ";
+        COUT << s->second.getName () << " ";
     }
     
-    cout << endl << "Listener: ";
+    COUT << "\n" << "Listener: ";
     for (std::map<std::string, EL::Listener>::iterator l = m_listeners.begin();
          l != m_listeners.end(); l++)
     {
-        cout << l->second.getName () << " ";
+        COUT << l->second.getName () << " ";
     }
-    cout << endl;
+    COUT << "\n";
 }
 
 void *update_loop (void *obj)
@@ -386,17 +386,17 @@ void *update_loop (void *obj)
             re->updateElements(id, element);
         }
         else if (message.find("/source ")==0) {
-            cout << "Source ";
+            COUT << "Source ";
             re->parseSource(message);
         } 
         else if (message.find("/listener ")==0) 
         {
-            cout << "Listener ";
+            COUT << "Listener ";
             re->parseListener(message);
         } 
         else if (message.find("/facefinished")==0)
         {
-            cout << "Geometry modficiations done. Signaling the solver to restart." << endl;
+            COUT << "Geometry modficiations done. Signaling the solver to restart." << "\n";
             re->createElementList();
             re->signalSolver ();
         }

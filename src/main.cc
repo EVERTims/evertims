@@ -33,6 +33,7 @@
 #include "writer.h"
 #include "solver.h"
 #include "reader.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -117,7 +118,7 @@ int main (int argc, char **argv)
     re->attachSolver (s);
     
     re->start ();
-    cout << "Reader object started." << endl;
+    COUT << "Reader object started. \n";
     
     VisualizationWriter *vw;
     if (virchor_addr)
@@ -146,7 +147,7 @@ int main (int argc, char **argv)
     {
         usleep ( 2000 ); // for mac, else calculation never starts...
     }
-    cout << "Got some geometry!" << endl;
+    COUT << "Got some geometry! \n";
     
     //  s->readRoomDescription (room_file, materials_file);
     //  cout << "Room read." << endl;

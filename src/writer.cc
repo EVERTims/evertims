@@ -38,6 +38,7 @@
 #include "writer.h"
 #include "OSC-client.h"
 #include "reverbEstimate.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -169,7 +170,7 @@ void AuralizationWriter::createListenerMessage(const EL::Listener& listener)
     const EL::Vector3& p = listener.getPosition();
     const EL::Matrix3& mRot = listener.getOrientation();
     const EL::Vector3& eul = listener.getOrientation().toEuler();
-    cout << "listener pos: (" << p[0] << ", " << p[1] << ", " << p[2] << ") rot: (" << eul[0] << ", " << eul[1] << ", " << eul[2] << ")" << endl;
+    COUT << "listener pos: (" << p[0] << ", " << p[1] << ", " << p[2] << ") rot: (" << eul[0] << ", " << eul[1] << ", " << eul[2] << ")" << "\n";
     const std::string& name = listener.getName();
     char *cptr = strdup(name.c_str());
     // add header to OSC msg
