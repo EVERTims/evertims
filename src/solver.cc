@@ -174,6 +174,7 @@ void Solver::createNewSolutionNode( const EL::Source& source, const EL::Listener
     for (int i=0;i<2;i++){ m_solutionNodes[idx].m_listener[i] = listener; }
     m_solutionNodes[idx].m_new_source_position = source.getPosition ();
     m_solutionNodes[idx].m_new_listener_position = listener.getPosition ();
+    m_solutionNodes[idx].m_new_listener_orientation = listener.getOrientation ();
     m_solutionNodes[idx].m_solution = 0;
     m_solutionNodes[idx].m_current = 0;
     
@@ -243,12 +244,14 @@ void Solver::markListenerMovementMajor( const EL::Source& source, const EL::List
     t_solutionNodeIterator it = m_solutionNodeMap.find(id);
     
     const EL::Vector3& p = listener.getPosition();
+    const EL::Matrix3& m = listener.getOrientation();
     
     //  cout << "Listener moved to " << p[0] << "," << p[1] << "," << p[2] << endl;
     
     if( it != m_solutionNodeMap.end() )
     {
         it->second->m_new_listener_position = p;
+        it->second->m_new_listener_orientation = m;
         it->second->m_listener_status_major = CHANGED;
     }
 }
@@ -377,6 +380,7 @@ void Solver::update ()
                 int next = (it->second->m_current+1)&1;
                 it->second->m_source[next].setPosition ( it->second->m_new_source_position );
                 it->second->m_listener[next].setPosition ( it->second->m_new_listener_position );
+                it->second->m_listener[next].setOrientation( it->second->m_new_listener_orientation );
                 createNewSolution (m_min_depth, it->second->m_source[next], it->second->m_listener[next]);
                 m_start_new = false;
             }
@@ -394,6 +398,7 @@ void Solver::update ()
                     int next = (it->second->m_current+1)&1;
                     it->second->m_source[next].setPosition ( it->second->m_new_source_position );
                     it->second->m_listener[next].setPosition ( it->second->m_new_listener_position );
+                    it->second->m_listener[next].setOrientation ( it->second->m_new_listener_orientation );
                     createNewSolution (it->second->m_solution->getOrder() + 1, it->second->m_source[next], it->second->m_listener[next]);
                     m_start_new = false;
                 }
@@ -416,6 +421,7 @@ void Solver::update ()
                 cout << "Updating the solution: " << solutionID ( it->second->m_solution ) << endl;
                 it->second->m_listener_status_major = UPDATED;
                 it->second->m_listener[it->second->m_current].setPosition ( it->second->m_new_listener_position );
+                it->second->m_listener[it->second->m_current].setOrientation ( it->second->m_new_listener_orientation );
                 it->second->m_solution->update ();
                 it->second->m_to_send = true;
             }

@@ -246,6 +246,7 @@ void Reader::parseListener ( std::string& msg )
         {
             // OK, it did, and we have to update all the solution nodes of this source
             listener.setPosition ( pos );
+            listener.setOrientation( ori );
             
             for (std::map<std::string, EL::Source>::iterator s = m_sources.begin();
                  s != m_sources.end(); s++)
