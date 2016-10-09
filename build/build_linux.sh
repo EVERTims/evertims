@@ -44,7 +44,13 @@ cmake ../../
 make
 
 # create symbolic link of binary to parent folder
-cd ../../bin
+BINDIR=bin
+cd ../../
+if [ ! -d "$BINDIR" ]; then
+	mkdir $BINDIR
+fi
+cd $BINDIR
+
 TARGET=ims
 if [ -f "$TARGET" ]; then
 	echo 'Removing old ims binary..'
