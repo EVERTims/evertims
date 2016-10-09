@@ -28,16 +28,16 @@
 #ifndef _UTILS_H
 #define _UTILS_H
 
-// comment / uncomment following line to trigger debug logs in console
-// #define NDEBUG
-#ifdef NDEBUG
+// enable / disable logs in console based on DEBUG flag
+#ifdef DEBUG
     #define COUT std::cout
 #else
     #define COUT NullStream()
     #define printf
 #endif
 
-class NullStream {
+class NullStream
+{
 public:
     NullStream() { }
     template<typename T> NullStream& operator<<(T const&) { return *this; }
