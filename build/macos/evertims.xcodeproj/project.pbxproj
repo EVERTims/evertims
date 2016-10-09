@@ -210,6 +210,10 @@
 			baseConfigurationReference = F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				OTHER_LDFLAGS = (
+					"$(SRCROOT)/../../lib/libevert/lib/libevert_debug.a",
+					"$(FRAMEWORK_LINKED)",
+				);
 			};
 			name = Debug;
 		};
@@ -218,6 +222,10 @@
 			baseConfigurationReference = F8E490B4123FA5C20019176F /* evertims.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				OTHER_LDFLAGS = (
+					"$(SRCROOT)/../../lib/libevert/lib/libevert.a",
+					"$(FRAMEWORK_LINKED)",
+				);
 			};
 			name = Release;
 		};

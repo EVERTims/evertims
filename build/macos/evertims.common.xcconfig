@@ -33,9 +33,9 @@ EXECUTABLE_PREFIX               =
 GCC_VERSION                     = com.apple.compilers.llvm.clang.1_0     ///< for Xcode 4
 //GCC_VERSION                     = 4.2                                 ///< for Xcode 3.2
 
-SDKROOT                         = $(MACOSX_SDK_10_12)
+//SDKROOT                         = $(MACOSX_SDK_10_12)
 
-MACOSX_DEPLOYMENT_TARGET        = 10.12
+//MACOSX_DEPLOYMENT_TARGET        = 10.12
 VALID_ARCHS                     = i386 x86_64
 
 //**********************************************************************************
@@ -51,12 +51,12 @@ PRODUCT_VERSION                 = $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MIN
 //**********************************************************************************
 // Headers paths
 SRC_PATH                    =   $(SRCROOT)/../../src/**
-EVERT_PATH                  =   $(SRCROOT)/../../../evert/src/**
+EVERT_PATH                  =   $(SRCROOT)/../../lib/libevert/src/**
 
 HEADER_SEARCH_PATHS         =   $(SRC_PATH) $(EVERT_PATH)
 
 // Library paths
-EVERT_LIB_PATH              =   $(SRCROOT)/../../../evert/lib
+EVERT_LIB_PATH              =   $(SRCROOT)/../../lib/libevert/lib
 
 LIBRARY_SEARCH_PATHS        =   $(EVERT_LIB_PATH)
 
