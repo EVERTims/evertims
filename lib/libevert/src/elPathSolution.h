@@ -38,9 +38,9 @@
 namespace EL
 {
 
-bool stop_signal;
-void setStopSignalValue( bool value ){ stop_signal = value; };
-bool getStopSignalValue( ){ return stop_signal; };
+static bool stop_signal;
+inline void setStopSignalValue( bool value ){ stop_signal = value; };
+inline bool getStopSignalValue( ){ return stop_signal; };
     
 //------------------------------------------------------------------------
 
