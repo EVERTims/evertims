@@ -2,7 +2,8 @@
 # ---------------------------------------------
 
 OUTPUTDIR=linux
-CURRENTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BUILDDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd BUILDDIR
 
 # ------------------------------------------------------------
 # Build libevert
@@ -28,7 +29,7 @@ make && make install
 # ------------------------------------------------------------
 
 echo 'Building EVERTims...'
-cd $CURRENTDIR
+cd $BUILDDIR
 
 # rm old / create build directory
 if [ -d "$OUTPUTDIR" ]; then
