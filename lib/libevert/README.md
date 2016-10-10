@@ -1,1 +1,0 @@
-# EVERT Beam tracing library

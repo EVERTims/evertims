@@ -1,12 +1,15 @@
-# build libevert and evertims for MacOS (Xcode)
+# build libevert and evertims for Linux / MacOS
 # ---------------------------------------------
 
-OUTPUTDIR=macos
+OUTPUTDIR=linux
 BUILDDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# compile both (evert then evertims) with xcode
-echo 'Building libevert...'
-xcodebuild -project $BUILDDIR/../lib/libevert/build/macos/evert.xcodeproj
+# ------------------------------------------------------------
+# Build libevert
+# ------------------------------------------------------------
+$BUILDDIR/../libevert/build/build_macos.sh
 
-echo 'Building EVERTims...'
-xcodebuild -project $BUILDDIR/macos/evertims.xcodeproj
+# ------------------------------------------------------------
+# Build evertims
+# ------------------------------------------------------------
+$BUILDDIR/../evertims/build/build_macos.sh
