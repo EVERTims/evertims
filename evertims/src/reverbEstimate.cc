@@ -62,7 +62,7 @@ void Response::addItem(double time, double value)
 
 void Response::SchroederIntegrate()
 {
-    int idx = m_length;
+    int idx = m_length - 1;
     double sum = 0;
     
     while (idx)
@@ -71,7 +71,7 @@ void Response::SchroederIntegrate()
         m_signal[idx--] = sum;
     }
     
-    idx = m_length;
+    idx = m_length - 1;
     while (idx)
     {
         // DPQ: avoid adding -Inf values to m_signal when (guess here:) processing solution
@@ -201,6 +201,9 @@ float ReverbEstimator::getEstimateR60(int band, double startDecayAmpl, double en
     COUT << "startTime = " << startTime << "\n";
     float endTime   = r->search(endDecayAmpl);
     COUT << "endTime = " << endTime << "\n";
+    
+    // if material is full absorber:
+    if( realStart > endTime ) return 0.0;
     
     // get total decay time (based on start time + schroeder slope times -60dB)
     float totalDecay = realStart + (float)(60 * (endTime-startTime)/(endDecayAmpl - startDecayAmpl));
