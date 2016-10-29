@@ -50,13 +50,13 @@ Response::~Response()
 
 void Response::setItem(double time, double value)
 {
-    int idx = time * m_samplingFrequency;
+    int idx = (int) (time * m_samplingFrequency);
     if (idx < m_length){ m_signal[idx] = value; }
 }
 
 void Response::addItem(double time, double value)
 {
-    int idx = time * m_samplingFrequency;
+    int idx = (int) (time * m_samplingFrequency);
     if (idx < m_length){ m_signal[idx] += value; }
 }
 
@@ -90,7 +90,7 @@ float Response::search (double val)
     
     for (; idx < m_length; idx++){ if (m_signal[idx] <= val){ break; }}
     
-    return (float)idx / m_samplingFrequency;
+    return (float)( (float)idx / m_samplingFrequency );
 }
 
 void Response::getMaxMin(double& maxValue, double &maxTime, double& minValue, double& minTime)
@@ -151,11 +151,14 @@ ReverbEstimator::ReverbEstimator (double samplingFrequency, EL::PathSolution *so
     {
         const EL::PathSolution::Path& path = solution->getPath(i);
         
+        // get path total duration
         len = solution->getLength( path );
         time = len / speedOfSound;
         
+        // init per-band reflectance coefficients
         for (int k = 0; k < MAX_BANDS; k++){ reflectance[k] = 1.0; }
         
+        // estimate path absorption based on encountered materials
         for (int j = 0; j < path.m_order; j++)
         {
             const EL::Polygon* p = path.m_polygons[j];
@@ -163,6 +166,7 @@ ReverbEstimator::ReverbEstimator (double samplingFrequency, EL::PathSolution *so
             for (int k = 0; k < MAX_BANDS; k++) reflectance[k] *= ( 1 - m.absorption[k] );
         }
         
+        // add estimated reflectance to schroeder plot (at path time)
         for (int k = 0; k < MAX_BANDS; k++)
         {
             m_SchroederPlots[k]->addItem(time, reflectance[k]);  // Should I divide this by len ?
@@ -184,21 +188,22 @@ ReverbEstimator::~ReverbEstimator()
     for (int i = 0; i < MAX_BANDS; i++){ delete m_SchroederPlots[i]; }
 }
 
-float ReverbEstimator::getEstimateR60(int band, double startDecay, double endDecay)
+float ReverbEstimator::getEstimateR60(int band, double startDecayAmpl, double endDecayAmpl)
 {
     Response* r = m_SchroederPlots[band];
     
-    COUT << "Starting to search the region: " << startDecay << " - " << endDecay << "\n";
+    COUT << "Starting to search the region: " << startDecayAmpl << " - " << endDecayAmpl << "\n";
     
+    // convert from schroeder integrate values to originals
     float realStart = r->search();
     COUT << "realStart = " << realStart << "\n";
-    
-    float startTime = r->search(startDecay);
+    float startTime = r->search(startDecayAmpl);
     COUT << "startTime = " << startTime << "\n";
-    float endTime   = r->search(endDecay);
+    float endTime   = r->search(endDecayAmpl);
     COUT << "endTime = " << endTime << "\n";
     
-    float totalDecay = realStart + (60 * (endTime-startTime)/(endDecay - startDecay));
+    // get total decay time (based on start time + schroeder slope times -60dB)
+    float totalDecay = realStart + (float)(60 * (endTime-startTime)/(endDecayAmpl - startDecayAmpl));
     
     return totalDecay;
 }

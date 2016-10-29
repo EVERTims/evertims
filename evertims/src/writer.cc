@@ -368,16 +368,19 @@ void AuralizationWriter::writeMajor(EL::PathSolution *solution)
     
     solution->print( m_minOrder, m_maxOrder, m_maxAmount );
     
-    double minValue, minTime;
-    double maxValue, maxTime;
+    double minTime_ampl, minTime_time;
+    double maxTime_ampl, maxTime_time;
     
     for( int i=0; i<10; i++ )
     {
-        r.getMaxMin(i, minValue, minTime, maxValue, maxTime);
-        double startR60 = minValue * 1.1;
-        double endR60   = maxValue * 0.9;
-        double R60      = r.getEstimateR60(i, startR60, endR60);
-        printf( "%d. band: first %f at %f, last %f at %f. R60 = %f\n", i, maxValue, maxTime, minValue, minTime, R60 );
+        // get schroeder integrate min / max values
+        r.getMaxMin(i, minTime_ampl, minTime_time, maxTime_ampl, maxTime_time);
+        double startR60 = minTime_ampl * 1.1;
+        double endR60   = maxTime_ampl * 0.9;
+        
+        // compute RT60
+        double R60 = r.getEstimateR60(i, startR60, endR60);
+        printf( "%d. band: first %fdB at %fs, last %fdB at %fs. R60 = %f\n", i, minTime_ampl, minTime_time, maxTime_ampl, maxTime_time, R60 );
         OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, (float)R60);)
     }
     
