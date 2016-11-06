@@ -78,7 +78,6 @@ public:
     const Source & getSource (void) { return m_source; }
     
     int getOrder (void) { return m_maximumOrder; }
-    void renderPath (const Path& path) const;
     bool save (char *filename, char *modelname);
     
     void print (int minOrder, int maxOrder, int maxAmount);

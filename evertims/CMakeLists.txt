@@ -24,7 +24,6 @@ set(CMAKE_THREAD_PREFER_PTHREAD ON)
 find_package(Threads)
 
 find_package(evert REQUIRED)
-find_package(OpenGL REQUIRED)
 
 target_include_directories(${PROJECT}
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
