@@ -50,7 +50,7 @@ void Writer::parseOrder(char *s)
     maxStart = strchr(s, '-');
     if( maxStart ){ m_maxOrder = atoi(maxStart+1); }
     if( maxStart != s ){ m_minOrder = atoi(s); }
-    if( !m_maxOrder ){ m_maxOrder = m_minOrder + (1024*1024); }
+    if( !m_maxOrder ){ m_maxOrder = m_minOrder + (1024*1024); }
     
     amountStart = strchr(s, ',');
     if( amountStart ){ m_maxAmount = atoi(amountStart+1); }
@@ -109,7 +109,7 @@ void Writer::connect ()
 {
     m_socket = new Socket(m_host);
     
-    if( m_socket ){ std::cout << "New writer socket opened." << std::endl; }
+    if( m_socket ){ std::cout << "New writer socket opened." << std::endl; }
 }
 
 void Writer::disconnect () { delete m_socket; }
@@ -336,7 +336,7 @@ void AuralizationWriter::writeMajor(EL::PathSolution *solution)
     {
         const EL::PathSolution::Path& path = solution->getPath(i);
         
-        if( pathCount >= m_maxAmount ){ break; }
+        if( pathCount >= m_maxAmount ){ break; }
         if( (path.m_order < m_minOrder) || (path.m_order > m_maxOrder) ){ continue; }
         pathCount++;
         
@@ -394,12 +394,12 @@ void AuralizationWriter::writeMinor(EL::PathSolution *solution)
     int error;
     
     error = OSC_openBundle(&m_oscbuf, tt);
-    if( error ){ printf("OSC error: %s\n", OSC_errorMessage); }
+    if( error ){ printf("OSC error: %s\n", OSC_errorMessage); }
     
     createListenerMessage ( listener );
     
     error = OSC_closeBundle(&m_oscbuf);
-    if( error ){ printf("OSC error: %s\n", OSC_errorMessage); }
+    if( error ){ printf("OSC error: %s\n", OSC_errorMessage); }
     
     m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
     OSC_resetBuffer(&m_oscbuf);
@@ -419,8 +419,8 @@ void VisualizationWriter::writeMajor(EL::PathSolution *solution)
     {
         const EL::PathSolution::Path& path = solution->getPath(i);
         
-        if( pathCount >= m_maxAmount ){ break; }
-        if( (path.m_order < m_minOrder) || (path.m_order > m_maxOrder) ){ continue; }
+        if( pathCount >= m_maxAmount ){ break; }
+        if( (path.m_order < m_minOrder) || (path.m_order > m_maxOrder) ){ continue; }
         pathCount++;
         
         interesting = true;

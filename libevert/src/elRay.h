@@ -71,7 +71,7 @@ public:
             
             float det = dot(dir, cross(ea, eb));
             
-            if( sign == 0.f ){ sign = det; }
+            if( sign == 0.f ){ sign = det; }
             else if( det * sign < 0.f ){ return false; }
         }
         
@@ -92,7 +92,7 @@ public:
             
             float det = dot(dir, cross(ea, eb));
             
-            if( sign == 0.f ){ sign = det; }
+            if( sign == 0.f ){ sign = det; }
             else if( det * sign < 0.f ){ return false; }
         }
         

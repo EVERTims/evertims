@@ -48,7 +48,7 @@ Room::~Room(void)
 bool Room::import(const char* filename, MaterialFile& materials)
 {
     FILE* f = fopen(filename, "r");
-    if( !f ){ return false; }
+    if( !f ){ return false; }
     
     float maxNonPlanarity = 0.f;
     while( !feof(f) )

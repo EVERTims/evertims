@@ -240,7 +240,7 @@ static void polyTessEnd(void)
             s_polyTriangles->push_back(Polygon(v, 3, s_polyPleq, s_polyName));
         }
     }
-    else{ EL_ASSERT(0); }
+    else{ EL_ASSERT(0); }
     
     s_polyVertices->resize(0);
 }
@@ -330,7 +330,7 @@ void Polygon::splitConvex(std::vector<Polygon>& polygons)
     for(;;)
     {
         bool success = mergePartials(partials, vertices);
-        if (!success){ break; }
+        if (!success){ break; }
     }
     
     // reconstruct
@@ -630,7 +630,7 @@ Polygon::ClipResult Polygon::clip(const Beam& beam)
         swap(clipSource, clipTarget);
         
         if( res == CLIP_VANISHED ){ return CLIP_VANISHED; }
-        else if( res == CLIP_CLIPPED ){ result = CLIP_CLIPPED; }
+        else if( res == CLIP_CLIPPED ){ result = CLIP_CLIPPED; }
     }
     
     m_points.resize(clippedVertices);
