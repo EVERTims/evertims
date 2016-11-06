@@ -348,7 +348,7 @@ void PathSolution::validatePath(const Vector3& source,
             // the polygon so reconstruct the fail plane from its plane
             // equation; make sure it is facing away
             missPlane = missPoly->getPleq();
-            if( dot(missRay.m_a, missPlane) > 0.f ){ missPlane = -missPlane; }
+            if( dot(missRay.m_a, missPlane) > 0.f ){ missPlane = -missPlane; }
         }
         else
         {
