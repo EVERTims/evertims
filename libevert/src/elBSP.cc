@@ -369,7 +369,7 @@ static BSP::TempNode* constructRecursive(const Polygon** polygons, int numPolygo
                 }
             }
             
-            if( !overlap ){ continue; }
+            if( !overlap ){ continue; }
             
             if( poly.clip(aabbTest) != Polygon::CLIP_VANISHED )
             {

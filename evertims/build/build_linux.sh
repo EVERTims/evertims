@@ -1,9 +1,10 @@
 # build libevert and evertims for Linux / MacOS
 # ---------------------------------------------
 
+set -e
+
 OUTPUTDIR=linux
 BUILDDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd BUILDDIR
 
 # ------------------------------------------------------------
 # Build EVERTims
