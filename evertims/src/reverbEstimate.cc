@@ -206,7 +206,9 @@ float ReverbEstimator::getEstimateR60(int band, double startDecayAmpl, double en
     if( realStart > endTime ) return 0.0;
     
     // get total decay time (based on start time + schroeder slope times -60dB)
-    float totalDecay = realStart + (float)(60 * (endTime-startTime)/(endDecayAmpl - startDecayAmpl));
+    // float totalDecay = realStart + (float)(60 * (endTime-startTime)/(endDecayAmpl - startDecayAmpl));
+    // DPQ: the minus seems to make more sense when looking at a Schroeder graph
+    float totalDecay = realStart + (float)(- 60 * (endTime-startTime)/(endDecayAmpl - startDecayAmpl));
     
     return totalDecay;
 }
