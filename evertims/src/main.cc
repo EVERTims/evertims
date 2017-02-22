@@ -54,7 +54,7 @@ int main (int argc, char **argv)
     char  *print_addr = 0;
     char  tmp[256];
     float threshold_loc = 0.1;
-    float threshold_rot = 0.1;
+    float threshold_rot = 0.01; // small threshold here, real threshold defined in geometry client 
     
     strcpy (room_file, "sigyn.room");
     strcpy (material_file, "materials.dat");

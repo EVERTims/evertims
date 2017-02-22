@@ -242,7 +242,7 @@ void Reader::parseListener ( std::string& msg )
     {
         // Yes, we do. So let us check if it moved enough
         EL::Listener& listener = l->second;
-        if ( ( pos - listener.getPosition() ).lengthSqr() > m_threshold_loc )
+        if ( ( pos - listener.getPosition() ).length() > m_threshold_loc )
         {
             // OK, it did, and we have to update all the solution nodes of this source
             listener.setPosition ( pos );
@@ -254,7 +254,7 @@ void Reader::parseListener ( std::string& msg )
         }
         
         // It did not move enough to resimulate propagation, but did it rotate so that we must update the auralization client?
-        if ( ( ori.toEuler() - listener.getOrientation().toEuler() ).lengthSqr() > m_threshold_rot )
+        if ( ( ori.toEuler() - listener.getOrientation().toEuler() ).length() > m_threshold_rot )
         {
             // OK it did and we just have to notify the auralization client (no solution update required)
             listener.setOrientation( ori );
@@ -301,7 +301,7 @@ void Reader::parseSource ( std::string& msg )
     if ( s != m_sources.end() )
     {
         // Yes, we do. So let us check if the source really moved enough
-        if ( ( pos - s->second.getPosition() ).lengthSqr() > m_threshold_loc )
+        if ( ( pos - s->second.getPosition() ).length() > m_threshold_loc )
         {
             // OK, it did, and we have to update all the solution nodes of this source
             s->second.setPosition ( pos );
