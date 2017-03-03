@@ -60,6 +60,7 @@ public:
     {
         enum Status          m_listener_status_major;
         enum Status          m_listener_status_minor;
+        enum Status          m_source_status_minor;
         enum Status          m_geom_or_source_status;
         bool                 m_to_send;
         // double buffering for the source and listener
@@ -68,6 +69,7 @@ public:
         int m_current;
         
         EL::Vector3          m_new_source_position;
+        EL::Matrix3          m_new_source_orientation;
         EL::Vector3          m_new_listener_position;
         EL::Matrix3          m_new_listener_orientation;
         EL::PathSolution     *m_solution;
@@ -102,6 +104,7 @@ public:
     void markGeometryChanged  ();
     void createNewSolutionNode ( const EL::Source& source, const EL::Listener& listener );
     void markSourceMovementMajor   ( const EL::Source& source, const EL::Listener& listener );
+    void markSourceMovementMinor   ( const EL::Source& source, const EL::Listener& listener );
     void markListenerMovementMajor ( const EL::Source& source, const EL::Listener& listener );
     void markListenerMovementMinor ( const EL::Source& source, const EL::Listener& listener );
     

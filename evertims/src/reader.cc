@@ -295,6 +295,7 @@ void Reader::parseSource ( std::string& msg )
     parsePosition(msg, id, pos, ori);
     //  pos[0] = 0.0*SCALER;  pos[1] = -1.0*SCALER;  pos[2] = 1.50*SCALER;
     
+    std::map<std::string, EL::Listener>::iterator l = m_listeners.find(id);
     std::map<std::string, EL::Source>::iterator s = m_sources.find(id);
     
     // Do we know the source already
@@ -312,6 +313,19 @@ void Reader::parseSource ( std::string& msg )
                 m_solver->markSourceMovementMajor ( s->second, l->second );
             }
         }
+
+        // It did not move enough to resimulate propagation, but did it rotate so that we must update the auralization client?
+        if ( ( ori.toEuler() - s->second.getOrientation().toEuler() ).length() > m_threshold_rot )
+        {
+            // OK it did and we just have to notify the auralization client (no solution update required)
+            s->second.setOrientation( ori );
+            
+            for (std::map<std::string, EL::Listener>::iterator l = m_listeners.begin();
+                 l != m_listeners.end(); l++)
+            {
+                m_solver->markSourceMovementMinor ( s->second, l->second );
+            }
+        }
     }
     
     // No. We got to create a new source and solution nodes. Cool!
@@ -320,6 +334,7 @@ void Reader::parseSource ( std::string& msg )
         EL::Source source;
         
         source.setPosition ( pos );
+        source.setOrientation ( ori );
         source.setName ( id );
         
         m_sources[id] = source;

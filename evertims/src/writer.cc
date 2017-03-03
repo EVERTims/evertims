@@ -153,15 +153,32 @@ int AuralizationWriter::getPathIDandState(const EL::PathSolution::Path& p, enum 
 void AuralizationWriter::createSourceMessage(const EL::Source& source)
 {
     const EL::Vector3& p = source.getPosition();
+    const EL::Matrix3& mRot = source.getOrientation();
+    const EL::Vector3& eul = source.getOrientation().toEuler();
+    COUT << "source pos: (" << p[0] << ", " << p[1] << ", " << p[2] << ") rot: (" << eul[0] << ", " << eul[1] << ", " << eul[2] << ")" << "\n";
     const std::string& name = source.getName();
     char *cptr = strdup(name.c_str());
     
-    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/source", ",sfff");)
+    // add header to OSC msg
+    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/source", ",sffffffffffff");)
+    
+    // add position information to OSC msg
     OSC_SAFE(OSC_writeStringArg(&m_oscbuf, cptr);)
     OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[0]);)
     OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[1]);)
     OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[2]);)
     
+    // add orientation information to OSC msg
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            // WARNING: trying to access mRot[i][j] will not return the full matrix here
+            OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, mRot.getRow(i)[j]);)
+        }
+    }
+    
+    // free alloc
     free(cptr);
 }
 
@@ -173,18 +190,17 @@ void AuralizationWriter::createListenerMessage(const EL::Listener& listener)
     COUT << "listener pos: (" << p[0] << ", " << p[1] << ", " << p[2] << ") rot: (" << eul[0] << ", " << eul[1] << ", " << eul[2] << ")" << "\n";
     const std::string& name = listener.getName();
     char *cptr = strdup(name.c_str());
+    
     // add header to OSC msg
     OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/listener", ",sffffffffffff");)
     OSC_SAFE(OSC_writeStringArg(&m_oscbuf, cptr);)
+    
     // add position information to OSC msg
     OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[0]);)
     OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[1]);)
     OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, p[2]);)
-    // add orientation information to OSC msg
-    //  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[0]);)
-    //  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[1]);)
-    //  OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, eul[2]);)
     
+    // add orientation information to OSC msg
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -194,6 +210,7 @@ void AuralizationWriter::createListenerMessage(const EL::Listener& listener)
         }
     }
     
+    // free alloc
     free(cptr);
 }
 
@@ -386,28 +403,34 @@ void AuralizationWriter::writeMajor(EL::PathSolution *solution)
     
     m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
     OSC_resetBuffer(&m_oscbuf);
-    
-    printf ( "Sent!\n" );
 }
 
-void AuralizationWriter::writeMinor(EL::PathSolution *solution)
+void AuralizationWriter::writeMinor(EL::PathSolution *solution, int listSrcOrBoth)
 {
     const EL::Listener& listener = solution->getListener();
+    const EL::Source& source = solution->getSource();
     OSCTimeTag tt;
     int error;
     
+    // open OSC bundle
     error = OSC_openBundle(&m_oscbuf, tt);
     if( error ){ printf("OSC error: %s\n", OSC_errorMessage); }
     
-    createListenerMessage ( listener );
+    // send specific message based on who (source or listener) needs the update
+    if( listSrcOrBoth == 0 ){ createListenerMessage ( listener ); }
+    else if( listSrcOrBoth == 1 ){ createSourceMessage ( source ); }
+    else
+    {
+        createListenerMessage ( listener );
+        createSourceMessage ( source );
+    }
     
+    // close OSC bundle
     error = OSC_closeBundle(&m_oscbuf);
     if( error ){ printf("OSC error: %s\n", OSC_errorMessage); }
     
     m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
     OSC_resetBuffer(&m_oscbuf);
-    
-    printf ( "Sent!\n" );
 }
 
 #define ABS(x) ((x)>0 ? (x) : (-(x)))
@@ -450,7 +473,7 @@ void VisualizationWriter::writeMajor(EL::PathSolution *solution)
     m_numLines = numLines;
 }
 
-void VisualizationWriter::writeMinor(EL::PathSolution *solution) {}
+void VisualizationWriter::writeMinor(EL::PathSolution *solution, int listSrcOrBoth) {}
 
 void PrintWriter::writeMajor(EL::PathSolution *solution)
 {
@@ -473,4 +496,4 @@ void PrintWriter::writeMajor(EL::PathSolution *solution)
 
 }
 
-void PrintWriter::writeMinor(EL::PathSolution *solution) {}
+void PrintWriter::writeMinor(EL::PathSolution *solution, int listSrcOrBoth) {}

@@ -54,7 +54,7 @@ public:
     
     virtual const char* getType() { return "Base"; };
     virtual void writeMajor (EL::PathSolution *solution) { return; };
-    virtual void writeMinor (EL::PathSolution *solution) { return; };
+    virtual void writeMinor (EL::PathSolution *solution, int listSrcOrBoth) { return; };
     
     
 protected:
@@ -83,7 +83,7 @@ public:
     
     virtual const char* getType() { return "Auralization"; };
     void writeMajor (EL::PathSolution *solution);
-    void writeMinor (EL::PathSolution *solution);
+    void writeMinor (EL::PathSolution *solution, int listSrcOrBoth);
     
     
 private:
@@ -135,7 +135,7 @@ public:
     
     virtual const char* getType() { return "VirChor"; };
     void writeMajor (EL::PathSolution *solution);
-    void writeMinor (EL::PathSolution *solution);
+    void writeMinor (EL::PathSolution *solution, int listSrcOrBoth);
     
     
 private:
@@ -153,7 +153,7 @@ public:
     
     virtual const char* getType() { return "Print"; };
     void writeMajor (EL::PathSolution *solution);
-    void writeMinor (EL::PathSolution *solution);
+    void writeMinor (EL::PathSolution *solution, int listSrcOrBoth);
 };
 
 #endif

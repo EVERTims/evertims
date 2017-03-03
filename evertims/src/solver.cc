@@ -174,6 +174,7 @@ void Solver::createNewSolutionNode( const EL::Source& source, const EL::Listener
     for (int i=0;i<2;i++){ m_solutionNodes[idx].m_source[i] = source; }
     for (int i=0;i<2;i++){ m_solutionNodes[idx].m_listener[i] = listener; }
     m_solutionNodes[idx].m_new_source_position = source.getPosition ();
+    m_solutionNodes[idx].m_new_source_orientation = source.getOrientation ();
     m_solutionNodes[idx].m_new_listener_position = listener.getPosition ();
     m_solutionNodes[idx].m_new_listener_orientation = listener.getOrientation ();
     m_solutionNodes[idx].m_solution = 0;
@@ -265,6 +266,16 @@ void Solver::markListenerMovementMinor( const EL::Source& source, const EL::List
     const EL::Matrix3& ori = listener.getOrientation();
     it->second->m_new_listener_orientation = ori;
     it->second->m_listener_status_minor = CHANGED;
+}
+
+void Solver::markSourceMovementMinor( const EL::Source& source, const EL::Listener& listener )
+{
+    std::string id = solutionID ( source, listener );
+    t_solutionNodeIterator it = m_solutionNodeMap.find(id);
+    
+    const EL::Matrix3& ori = source.getOrientation();
+    it->second->m_new_source_orientation = ori;
+    it->second->m_source_status_minor = CHANGED;
 }
 
 void Solver::interruptCalculation()
@@ -380,6 +391,7 @@ void Solver::update ()
                 it->second->m_geom_or_source_status = IN_PROCESS;
                 int next = (it->second->m_current+1)&1;
                 it->second->m_source[next].setPosition ( it->second->m_new_source_position );
+                it->second->m_source[next].setOrientation ( it->second->m_new_source_orientation );
                 it->second->m_listener[next].setPosition ( it->second->m_new_listener_position );
                 it->second->m_listener[next].setOrientation( it->second->m_new_listener_orientation );
                 createNewSolution (m_min_depth, it->second->m_source[next], it->second->m_listener[next]);
@@ -398,6 +410,7 @@ void Solver::update ()
                     it->second->m_geom_or_source_status = IN_PROCESS;
                     int next = (it->second->m_current+1)&1;
                     it->second->m_source[next].setPosition ( it->second->m_new_source_position );
+                    it->second->m_source[next].setOrientation ( it->second->m_new_source_orientation );
                     it->second->m_listener[next].setPosition ( it->second->m_new_listener_position );
                     it->second->m_listener[next].setOrientation ( it->second->m_new_listener_orientation );
                     createNewSolution (it->second->m_solution->getOrder() + 1, it->second->m_source[next], it->second->m_listener[next]);
@@ -439,6 +452,7 @@ void Solver::update ()
                 }
             }
             
+            // check if listener orientation has changed
             if (it->second->m_listener_status_minor == CHANGED)
             {
                 it->second->m_listener_status_minor = UPDATED;
@@ -447,11 +461,27 @@ void Solver::update ()
                 for (std::vector<Writer *>::iterator w = it->second->m_writers.begin();
                      w != it->second->m_writers.end(); w++)
                 {
-                    COUT << "Sending additional info on solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << "\n";
-                    (*w)->writeMinor ( it->second->m_solution );
+                    COUT << "listener moved, sending additional info on solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << "\n";
+                    (*w)->writeMinor ( it->second->m_solution, 0 );
                     it->second->m_to_send = false;
                 }
             }
+            
+            // check if source orientation has changed
+            if (it->second->m_source_status_minor == CHANGED)
+            {
+                it->second->m_source_status_minor = UPDATED;
+                it->second->m_source[it->second->m_current].setOrientation ( it->second->m_new_source_orientation );
+                // Update output to the Auralization writer (only) of the solution node (writeReduce methods of other writers are dummies)
+                for (std::vector<Writer *>::iterator w = it->second->m_writers.begin();
+                     w != it->second->m_writers.end(); w++)
+                {
+                    COUT << "source moved, sending additional info on solution " << solutionID ( it->second->m_solution ) << " with the " << (*w)->getType() << " protocol." << "\n";
+                    (*w)->writeMinor ( it->second->m_solution, 1 );
+                    it->second->m_to_send = false;
+                }
+            }
+            
         }
     }
     
