@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		35D31A441EFD272B002A9AA6 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../../src/utils.h; sourceTree = "<group>"; };
 		F8E48DEE123E319D0019176F /* ims_debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ims_debug; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E490B2123FA5C20019176F /* evertims.common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evertims.common.xcconfig; sourceTree = "<group>"; };
 		F8E490B3123FA5C20019176F /* evertims.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = evertims.debug.xcconfig; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 				F8E490BD123FA6380019176F /* reverbEstimate.h */,
 				F8E490BE123FA6380019176F /* socket.h */,
 				F8E490BF123FA6380019176F /* solver.h */,
+				35D31A441EFD272B002A9AA6 /* utils.h */,
 				F8E490C0123FA6380019176F /* writer.h */,
 				F8E490C1123FA6380019176F /* main.cc */,
 				F8E490C2123FA6380019176F /* reader.cc */,
