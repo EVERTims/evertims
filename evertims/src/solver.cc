@@ -283,7 +283,8 @@ void Solver::interruptCalculation()
     // Signal the calculation thread to stop
     
     EL::setStopSignalValue(true);
-    while (!m_next_solution_flag) ;
+    // added usleep to avoid blocking while loop in osx (postponing the complete re-write? true :)  
+    while (!m_next_solution_flag){ usleep(1); };
     EL::setStopSignalValue(false);
     
     pthread_mutex_lock (&next_solution_mutex);
