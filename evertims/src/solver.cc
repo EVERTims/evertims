@@ -323,7 +323,7 @@ void Solver::markGeometryChanged ()
     m_reader->getRoom ( m_room[next] );
     m_current_room = next;
     
-    cout << "The new official geometry is " << m_current_room << endl;
+    COUT << "The new official geometry is " << m_current_room << "\n";
     
     for( t_solutionNodeIterator it = m_solutionNodeMap.begin(); it != m_solutionNodeMap.end() ; it++ )
     {
