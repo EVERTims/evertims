@@ -37,7 +37,7 @@
 
 #include "writer.h"
 #include "OSC-client.h"
-#include "reverbEstimate.h"
+// #include "reverbEstimate.h"
 #include "utils.h"
 
 using namespace std;
@@ -378,31 +378,33 @@ void AuralizationWriter::writeMajor(EL::PathSolution *solution)
     }
     
     
-    // SEND R60
-    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/r60" , ",ffffffffff");)
-    
-    ReverbEstimator r(SAMPLE_RATE, solution, SPEED_OF_SOUND, MAX_RESPONSE_TIME);
-    
-    solution->print( m_minOrder, m_maxOrder, m_maxAmount );
-    
-    double minTime_ampl, minTime_time;
-    double maxTime_ampl, maxTime_time;
-    
-    for( int i=0; i<10; i++ )
-    {
-        // get schroeder integrate min / max values
-        r.getMaxMin(i, minTime_ampl, minTime_time, maxTime_ampl, maxTime_time);
-        double startR60 = minTime_ampl * 1.1;
-        double endR60   = maxTime_ampl * 0.9;
-        
-        // compute RT60
-        double R60 = r.getEstimateR60(i, startR60, endR60);
-        printf( "%d. band: first %fdB at %fs, last %fdB at %fs. R60 = %f\n", i, minTime_ampl, minTime_time, maxTime_ampl, maxTime_time, R60 );
-        OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, (float)R60);)
-    }
-    
-    m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
-    OSC_resetBuffer(&m_oscbuf);
+// DISCARDED: RT60 sent by Blender add-on for now
+//
+//    // SEND R60
+//    OSC_SAFE(OSC_writeAddressAndTypes(&m_oscbuf, "/r60" , ",ffffffffff");)
+//    
+//    ReverbEstimator r(SAMPLE_RATE, solution, SPEED_OF_SOUND, MAX_RESPONSE_TIME);
+//    
+//    solution->print( m_minOrder, m_maxOrder, m_maxAmount );
+//    
+//    double minTime_ampl, minTime_time;
+//    double maxTime_ampl, maxTime_time;
+//    
+//    for( int i=0; i<10; i++ )
+//    {
+//        // get schroeder integrate min / max values
+//        r.getMaxMin(i, minTime_ampl, minTime_time, maxTime_ampl, maxTime_time);
+//        double startR60 = minTime_ampl * 1.1;
+//        double endR60   = maxTime_ampl * 0.9;
+//        
+//        // compute RT60
+//        double R60 = r.getEstimateR60(i, startR60, endR60);
+//        printf( "%d. band: first %fdB at %fs, last %fdB at %fs. R60 = %f\n", i, minTime_ampl, minTime_time, maxTime_ampl, maxTime_time, R60 );
+//        OSC_SAFE(OSC_writeFloatArg(&m_oscbuf, (float)R60);)
+//    }
+//    
+//    m_socket->write(OSC_packetSize(&m_oscbuf), OSC_getPacket(&m_oscbuf));
+//    OSC_resetBuffer(&m_oscbuf);
 }
 
 void AuralizationWriter::writeMinor(EL::PathSolution *solution, int listSrcOrBoth)

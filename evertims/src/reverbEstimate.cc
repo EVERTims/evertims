@@ -25,6 +25,8 @@
  *
  ***********************************************************************/
 
+// DEPRECATED: RT60 is now estimated in Blender add-on
+
 #include <iostream>
 #include <fstream>
 

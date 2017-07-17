@@ -25,6 +25,8 @@
  *
  ***********************************************************************/
 
+// DEPRECATED: RT60 is now estimated in Blender add-on
+
 #ifndef _REVERB_ESTIM_H
 #define _REVERB_ESTIM_H
 
