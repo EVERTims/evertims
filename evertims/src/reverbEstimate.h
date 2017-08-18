@@ -23,7 +23,7 @@
  *
  * Copyright
  *
- * (C) 2004-2005 Samuli Laine
+ * (C) 2007 Lauri Savioja
  * Helsinki University of Technology
  *
  * (C) 2008-2017 Markus Noisternig
