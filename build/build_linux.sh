@@ -6,12 +6,12 @@ set -e
 BUILDDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # install deps
-sudo apt get install git
-sudo apt get install cmake
+sudo apt-get install git
+sudo apt-get install cmake
 # openGL
-sudo apt get install freeglut3-dev
+sudo apt-get install freeglut3-dev
 # bsd
-sudo apt get install libbsd-dev
+sudo apt-get install libbsd-dev
 
 # ------------------------------------------------------------
 # Build libevert
