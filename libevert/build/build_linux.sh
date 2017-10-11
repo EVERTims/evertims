@@ -23,4 +23,4 @@ mkdir $OUTPUTDIR
 # build
 cd $OUTPUTDIR
 cmake ../../
-make && make install
+make && sudo make install
