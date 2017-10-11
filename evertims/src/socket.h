@@ -54,6 +54,7 @@
 #ifdef __Linux
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #endif
 
 typedef int SOCKET;

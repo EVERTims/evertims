@@ -41,6 +41,7 @@
 #if !defined (__ELVECTOR_HPP)
     #include "elVector.h"
 #endif
+#include "stdint.h"
 
 namespace EL
 {
