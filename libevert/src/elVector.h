@@ -192,8 +192,8 @@ EL_FORCE_INLINE					Matrix3::Matrix3	(float m00, float m01, float m02, float m10
 EL_FORCE_INLINE					Matrix3::Matrix3	(float m)	{ set(m,m,m,m,m,m,m,m,m); }
 EL_FORCE_INLINE					Matrix3::~Matrix3	(void)							{}
 EL_FORCE_INLINE Matrix3&		Matrix3::operator=	(const Matrix3& m)				{ for(int i=0;i<3;i++) for(int j=0;j<3;j++) matrix[i][j] = m.matrix[i][j]; return *this; }
-EL_FORCE_INLINE Vector3&		Matrix3::operator[]	(int i)							{ EL_ASSERT(i>=0&&i<3); return (Vector3&)matrix[i][0]; }
-EL_FORCE_INLINE const Vector3&	Matrix3::operator[]	(int i) const					{ EL_ASSERT(i>=0&&i<3); return (const Vector3&)matrix[i][0]; }
+EL_FORCE_INLINE Vector3&		Matrix3::operator[]	(int i)							{ EL_ASSERT(i>=0&&i<3); return (Vector3&)matrix[i]; }
+EL_FORCE_INLINE const Vector3&	Matrix3::operator[]	(int i) const					{ EL_ASSERT(i>=0&&i<3); return (const Vector3&)matrix[i]; }
 EL_FORCE_INLINE void			Matrix3::set		(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) { 	matrix[0][0] = m00; matrix[0][1] = m01; matrix[0][2] = m02; matrix[1][0] = m10; matrix[1][1] = m11; matrix[1][2] = m12; matrix[2][0] = m20; matrix[2][1] = m21; matrix[2][2] = m22; }
 EL_FORCE_INLINE const Vector3	Matrix3::getRow		(int i) const					{ EL_ASSERT(i>=0&&i<3); return Vector3(matrix[i][0],matrix[i][1],matrix[i][2]); }
 EL_FORCE_INLINE const Vector3	Matrix3::getColumn	(int i) const					{ EL_ASSERT(i>=0&&i<3); return Vector3(matrix[0][i],matrix[1][i],matrix[2][i]); }
