@@ -7,7 +7,6 @@ set (EVERT_SOURCES
     src/elBSP.cc
     src/elOrientedPoint.cc
     src/elVector.cc
-    src/elRay.cc
     src/elListener.cc
     src/elPathSolution.cc
     src/elRoom.cc

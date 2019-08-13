@@ -36,14 +36,6 @@
 #include "elRoom.h"
 #include <cstdio>
 
-#ifdef __Darwin
-    #include <OpenGL/glu.h>
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/glu.h>
-    #include <GL/gl.h>
-#endif
-
 using namespace EL;
 
 
@@ -273,49 +265,3 @@ Vector3 Room::getCenter(void) const
     getBoundingBox(mn, mx);
     return .5f*(mn+mx);
 }
-
-//------------------------------------------------------------------------
-
-void Room::render(void) const
-{
-    glPushAttrib(GL_ALL_ATTRIB_BITS);
-    glEnable(GL_POLYGON_OFFSET_FILL);
-    glPolygonOffset(1, 1);
-    
-    for( int i=0; i < numConvexElements(); i++ )
-    {
-        const Room::Element& e = getConvexElement(i);
-        Vector3 color = e.m_color;
-        
-        float ldot = dot(e.m_polygon.getNormal(), normalize(Vector3(3,2,4)));
-        ldot = .25f + .75f*fabsf(ldot);
-        color *= ldot;
-        glColor3fv(&color.x);
-        
-        /*
-         glBegin(GL_POLYGON);
-         for (int j=0; j < e.m_polygon.numPoints(); j++)
-         glVertex3fv(&e.m_polygon[j].x);
-         
-         glEnd();
-         */
-    }
-    glDisable(GL_POLYGON_OFFSET_FILL);
-    
-    glLineWidth(1.f);
-    for( int i=0; i < numElements(); i++ )
-    {
-        const Room::Element& e = getElement(i);
-        glColor3f(1.f, 1.f, 1.f);
-        Vector3 color = e.m_color;
-        glColor3fv(&color.x);
-        glBegin(GL_LINE_LOOP);
-        for( int j=0; j < e.m_polygon.numPoints(); j++ )
-        {
-            glVertex3fv(&e.m_polygon[j].x);
-        }
-        glEnd();
-    }
-    glPopAttrib();
-}
-

@@ -40,12 +40,6 @@
 #include "elRoom.h"
 #include "elSource.h"
 
-#ifdef __Darwin
-    #include <OpenGL/gl.h>
-#else
-    #include <GL/gl.h>
-#endif
-
 #include <cstdio>
 #define printf // Comment to add debug logs
 
@@ -73,41 +67,6 @@ public:
     const Polygon* m_polygon;
 };
 
-//------------------------------------------------------------------------
-void PathSolution::renderPath(const Path& path) const
-{
-    glPushAttrib(GL_ALL_ATTRIB_BITS);
-    
-    float width = 2.f*(m_maximumOrder-path.m_order+1.f);
-    float alpha = ((float)m_maximumOrder-path.m_order+4)/(m_maximumOrder+4);
-    
-    //	std::cerr << "Drawing path: width = " << width << ", alpha = " << alpha << std::endl;
-    
-    glLineWidth(width);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(1.f, 1.f, 0.f, alpha);
-    
-    glBegin(GL_LINE_STRIP);
-    for( int i=0; i < (int)path.m_points.size(); i++ )
-    {
-        glVertex3fv(&path.m_points[i].x);
-    }
-    glEnd();
-    
-    glPointSize(width*2.f);
-    glColor4f(1.f, 1.f, 1.f, alpha*2);
-    glEnable(GL_POINT_SMOOTH);
-    glDepthMask(GL_FALSE);
-    glBegin(GL_POINTS);
-    for( int i=0; i < (int)path.m_points.size(); i++ )
-    {
-        glVertex3fv(&path.m_points[i].x);
-    }
-    glEnd();
-    
-    glPopAttrib();
-}
 //------------------------------------------------------------------------
 
 PathSolution::PathSolution(const Room& room, const Source& source, const Listener& listener, int maximumOrder, bool changed):

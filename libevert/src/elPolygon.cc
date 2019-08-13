@@ -690,17 +690,3 @@ void Polygon::expand (float eps)
     }
     
 }
-
-
-//------------------------------------------------------------------------
-/*
- void Polygon::render(const Vector3& color) const
- {
-	glBegin(GL_POLYGON);
-	glColor3fv(&color.x);
-	for (int i=0; i < numPoints(); i++)
- glVertex3fv(&m_points[i].x);
-	glEnd();
- }
- */
-
